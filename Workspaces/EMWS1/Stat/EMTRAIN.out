@@ -1,0 +1,203 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+Role         Level         Count
+
+ID         INTERVAL          1    
+INPUT      INTERVAL          6    
+INPUT      NOMINAL           4    
+TARGET     NOMINAL           1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+Variable Levels Summary
+(maximum 500 observations printed)
+
+                        Frequency
+ Variable     Role        Count
+
+Churned       TARGET          2  
+CustomerID    ID          10000  
+ 
+                                                                                                                                                                                                                                                                
+ 
+Class Variable Summary Statistics
+(maximum 500 observations printed)
+
+Data Role=TRAIN
+
+                                     Number
+Data                                   of                              Mode                    Mode2
+Role     Variable Name      Role     Levels    Missing    Mode      Percentage    Mode2      Percentage
+
+TRAIN    Country           INPUT        3         0       France      50.14       Germany      25.09   
+TRAIN    Gender            INPUT        2         0       Male        54.57       Female       45.43   
+TRAIN    HasCreditCard     INPUT        2         0       Yes         70.55       No           29.45   
+TRAIN    IsActiveMember    INPUT        2         0       Yes         51.51       No           48.49   
+TRAIN    Churned           TARGET       2         0       No          79.63       Yes          20.37   
+ 
+                                                                                                                                                                                                                                                                
+ 
+Distribution of Class Target and Segment Variables
+(maximum 500 observations printed)
+
+Data Role=TRAIN
+
+Data     Variable                        Frequency
+Role       Name       Role     Level         Count    Percent
+
+TRAIN    Churned     TARGET     No            7963     79.63 
+TRAIN    Churned     TARGET     Yes           2037     20.37 
+ 
+                                                                                                                                                                                                                                                                
+ 
+Interval Variable Summary Statistics
+(maximum 500 observations printed)
+
+Data Role=TRAIN
+
+                                        Standard          Non
+Variable           Role         Mean    Deviation     Missing     Missing     Minimum      Median     Maximum    Skewness    Kurtosis
+
+Age                INPUT     38.9218    10.48781        10000           0          18          37          92     1.01132    1.395347
+Balance            INPUT    76485.89    62397.41        10000           0           0    97188.62    250898.1    -0.14111    -1.48941
+CreditScore        INPUT    650.5288     96.6533        10000           0         350         652         850    -0.07161    -0.42573
+EstimatedSalary    INPUT    100090.2    57510.49        10000           0       11.58    100187.4    199992.5    0.002085    -1.18152
+NumOfProducts      INPUT      1.5302    0.581654        10000           0           1           1           4    0.745568    0.582981
+Tenure             INPUT      5.0128    2.892174        10000           0           0           5          10    0.010991    -1.16523
+ 
+                                                                                                                                                                                                                                                                
+ 
+Class Variable Summary Statistics by Class Target
+(maximum 500 observations printed)
+
+Data Role=TRAIN Variable Name=Country
+
+                       Number
+             Target      of                               Mode                    Mode2
+ Target      Level     Levels    Missing     Mode      Percentage     Mode2     Percentage
+
+Churned       No          3         0       France       52.79       Spain        25.92   
+Churned       Yes         3         0       Germany      39.96       France       39.76   
+_OVERALL_                 3         0       France       50.14       Germany      25.09   
+
+
+Data Role=TRAIN Variable Name=Gender
+
+                       Number
+             Target      of                              Mode                   Mode2
+ Target      Level     Levels    Missing     Mode     Percentage    Mode2     Percentage
+
+Churned       No          2         0       Male        57.25       Female      42.75   
+Churned       Yes         2         0       Female      55.92       Male        44.08   
+_OVERALL_                 2         0       Male        54.57       Female      45.43   
+
+
+Data Role=TRAIN Variable Name=HasCreditCard
+
+                       Number
+             Target      of                            Mode                  Mode2
+ Target      Level     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+Churned       No          2         0       Yes       70.71        No        29.29   
+Churned       Yes         2         0       Yes       69.91        No        30.09   
+_OVERALL_                 2         0       Yes       70.55        No        29.45   
+
+
+Data Role=TRAIN Variable Name=IsActiveMember
+
+                       Number
+             Target      of                            Mode                  Mode2
+ Target      Level     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+Churned       No          2         0       Yes       55.46        No        44.54   
+Churned       Yes         2         0       No        63.92        Yes       36.08   
+_OVERALL_                 2         0       Yes       51.51        No        48.49   
+ 
+                                                                                                                                                                                                                                                                
+ 
+Interval Variable Summary Statistics by Class Target
+(maximum 500 observations printed)
+
+Data Role=TRAIN Variable=Age
+
+             Target                                 Non                                        Standard
+ Target      Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role     Label
+
+Churned       No             36           0        7963          18          92    37.40839    10.12536     1.377699    2.850252    INPUT     Age 
+Churned       Yes            45           0        2037          18          84      44.838    9.761562     0.077978    -0.12254    INPUT     Age 
+_OVERALL_                    37           0       10000          18          92     38.9218    10.48781      1.01132    1.395347    INPUT     Age 
+
+
+Data Role=TRAIN Variable=Balance
+
+             Target                                 Non                                        Standard
+ Target      Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role      Label
+
+Churned       No       92072.68           0        7963           0    221532.8     72745.3    62848.04     -0.04689    -1.55769    INPUT    Balance
+Churned       Yes      109339.2           0        2037           0    250898.1    91108.54    58360.79     -0.51273     -0.9278    INPUT    Balance
+_OVERALL_              97188.62           0       10000           0    250898.1    76485.89    62397.41     -0.14111    -1.48941    INPUT    Balance
+
+
+Data Role=TRAIN Variable=CreditScore
+
+             Target                                 Non                                        Standard
+ Target      Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role        Label
+
+Churned       No            653           0        7963         405         850    651.8532    95.65384     -0.04702    -0.48473    INPUT    CreditScore
+Churned       Yes           646           0        2037         350         850    645.3515    100.3215     -0.14108    -0.27408    INPUT    CreditScore
+_OVERALL_                   652           0       10000         350         850    650.5288     96.6533     -0.07161    -0.42573    INPUT    CreditScore
+
+
+Data Role=TRAIN Variable=EstimatedSalary
+
+             Target                                 Non                                        Standard
+ Target      Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role          Label
+
+Churned       No       99645.04           0        7963       90.07    199992.5    99738.39    57405.59     0.010996    -1.17284    INPUT    EstimatedSalary
+Churned       Yes      102402.9           0        2037       11.58    199808.1    101465.7    57912.42      -0.0331    -1.21228    INPUT    EstimatedSalary
+_OVERALL_              100187.4           0       10000       11.58    199992.5    100090.2    57510.49     0.002085    -1.18152    INPUT    EstimatedSalary
+
+
+Data Role=TRAIN Variable=NumOfProducts
+
+             Target                                 Non                                        Standard
+ Target      Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role         Label
+
+Churned       No              2           0        7963           1           3    1.544267    0.509536     -0.04661    -1.67339    INPUT    NumOfProducts
+Churned       Yes             1           0        2037           1           4    1.475209    0.801521      1.57032    1.442275    INPUT    NumOfProducts
+_OVERALL_                     1           0       10000           1           4      1.5302    0.581654     0.745568    0.582981    INPUT    NumOfProducts
+
+
+Data Role=TRAIN Variable=Tenure
+
+             Target                                 Non                                        Standard
+ Target      Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role     Label
+
+Churned       No              5           0        7963           0          10    5.033279    2.880658     0.000749    -1.16131    INPUT    Tenure
+Churned       Yes             5           0        2037           0          10    4.932744    2.936106      0.05192    -1.17801    INPUT    Tenure
+_OVERALL_                     5           0       10000           0          10      5.0128    2.892174     0.010991    -1.16523    INPUT    Tenure
+ 
+                                                                                                                                                                                                                                                                
+ 
+Chi-Square Statistics
+(maximum 500 observations printed)
+
+Data Role=TRAIN Target=Churned
+
+Input              Chi-Square    Df      Prob
+
+NumOfProducts       1503.6294     3    <.0001
+Age                 1177.9626     4    <.0001
+Country              301.2553     2    <.0001
+IsActiveMember       243.7604     1    <.0001
+Balance              185.7437     4    <.0001
+Gender               113.4491     1    <.0001
+CreditScore           21.1481     4    0.0003
+Tenure                 7.8627     4    0.0967
+EstimatedSalary        2.4884     4    0.6467
+HasCreditCard          0.5095     1    0.4754

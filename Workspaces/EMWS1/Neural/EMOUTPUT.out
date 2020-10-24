@@ -1,0 +1,529 @@
+*------------------------------------------------------------*
+User:                20161277
+Date:                October 23, 2020
+Time:                19:47:10
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+INPUT      INTERVAL          7
+TARGET     NOMINAL           1
+ 
+ 
+ 
+ 
+Model Events
+ 
+                                   Number
+                    Measurement      of
+Target     Event       Level       Levels      Order       Label
+ 
+Churned     YES       NOMINAL         2      Descending
+ 
+ 
+ 
+ 
+Predicted and decision variables
+ 
+Type         Variable        Label
+ 
+TARGET       Churned
+PREDICTED    P_ChurnedYes    Predicted: Churned=Yes
+RESIDUAL     R_ChurnedYes    Residual: Churned=Yes
+PREDICTED    P_ChurnedNo     Predicted: Churned=No
+RESIDUAL     R_ChurnedNo     Residual: Churned=No
+FROM         F_Churned       From: Churned
+INTO         I_Churned       Into: Churned
+ 
+ 
+ 
+ 
+ 
+The NEURAL Procedure
+ 
+Preliminary       Starting         Objective         Number
+ Training          Random           Function           of        Terminating
+    Run             Seed             Value         Iterations     Criteria
+ 
+        1               12345    0.340599041426           10
+        2          1951901954    0.343499661136           10
+        3          2134622722    0.351687248075           10
+        4            60270049    0.361061392126           10
+        5          1452870783    0.343828617939           10
+ 
+ 
+ 
+ 
+ 
+The NEURAL Procedure
+ 
+                     Optimization Start
+                    Parameter Estimates
+                                                   Gradient
+                                                  Objective
+  N Parameter                      Estimate        Function
+ 
+  1 Age_Zscore_H11                -0.716643       -0.000217
+  2 CountrySpain_H11               0.020826        0.000561
+  3 EstimatedSal_Zscore_H11       -0.164082       -0.000600
+  4 GenderFemale_H11              -0.030854        0.000322
+  5 HasCreditCardNo_H11            0.099788       -0.000356
+  6 IsActiveMemberNo_H11           0.430000        0.000498
+  7 NumOfProducts_H11             -2.544181    -0.000008335
+  8 Age_Zscore_H12                -0.307717     0.000038528
+  9 CountrySpain_H12               0.168977    -0.000018556
+ 10 EstimatedSal_Zscore_H12       -0.110129    -0.000051258
+ 11 GenderFemale_H12               0.116893        0.000363
+ 12 HasCreditCardNo_H12            0.130574    -0.000079661
+ 13 IsActiveMemberNo_H12          -0.622664       -0.000470
+ 14 NumOfProducts_H12              1.012247        0.000270
+ 15 Age_Zscore_H13                -1.280488    -0.000028076
+ 16 CountrySpain_H13               0.973883    -0.000076367
+ 17 EstimatedSal_Zscore_H13       -0.838082     0.000021569
+ 18 GenderFemale_H13               0.625255       -0.000216
+ 19 HasCreditCardNo_H13           -0.011356       -0.000103
+ 20 IsActiveMemberNo_H13           0.967309       -0.000397
+ 21 NumOfProducts_H13             -0.956252        0.000113
+ 22 Age_Zscore_H14                 1.095166       -0.000537
+ 23 CountrySpain_H14              -0.459700       -0.000391
+ 24 EstimatedSal_Zscore_H14        0.837807     0.000037341
+ 25 GenderFemale_H14               0.116324     0.000083920
+ 26 HasCreditCardNo_H14            0.437309        0.000127
+ 27 IsActiveMemberNo_H14          -1.005525    -0.000003183
+ 28 NumOfProducts_H14             -0.716875       -0.000255
+ 29 Age_Zscore_H15                -1.018374       -0.000993
+ 30 CountrySpain_H15               0.073389       -0.000434
+ 31 EstimatedSal_Zscore_H15        0.120200       -0.000331
+ 32 GenderFemale_H15               0.076248       -0.000649
+ 33 HasCreditCardNo_H15            0.017717        0.001040
+ 34 IsActiveMemberNo_H15           0.128228       -0.001172
+ 35 NumOfProducts_H15             -0.081553       -0.001142
+ 36 Age_Zscore_H16                -0.079567       -0.005943
+ 37 CountrySpain_H16              -0.078619       -0.002588
+ 38 EstimatedSal_Zscore_H16       -0.065114        0.000459
+ 39 GenderFemale_H16              -0.164463       -0.001379
+ 40 HasCreditCardNo_H16           -0.124613       -0.000386
+ 41 IsActiveMemberNo_H16          -0.969667       -0.000693
+ 42 NumOfProducts_H16             -0.434314       -0.000904
+ 43 Age_Zscore_H17                 0.883060       -0.000110
+ 44 CountrySpain_H17               0.053976        0.000204
+ 45 EstimatedSal_Zscore_H17       -0.286530       -0.000123
+ 46 GenderFemale_H17              -0.721213        0.000317
+ 47 HasCreditCardNo_H17           -0.174911        0.000293
+ 48 IsActiveMemberNo_H17           2.061265        0.000427
+ 49 NumOfProducts_H17             -0.528358       -0.000165
+ 50 Age_Zscore_H18                -1.323248        0.000372
+ 51 CountrySpain_H18              -0.711497     0.000090190
+ 52 EstimatedSal_Zscore_H18        0.900604     0.000091574
+ 53 GenderFemale_H18               0.138808     0.000080799
+ 54 HasCreditCardNo_H18           -0.796652       -0.000285
+ 55 IsActiveMemberNo_H18          -0.980409        0.000352
+ 56 NumOfProducts_H18             -0.185561        0.000472
+ 57 BIAS_H11                      -0.502735     0.000054028
+ 58 BIAS_H12                      -1.662408        0.000500
+ 59 BIAS_H13                      -0.525338    -0.000083841
+ 60 BIAS_H14                       0.922776       -0.000115
+ 61 BIAS_H15                       0.484721       -0.001766
+ 62 BIAS_H16                       0.817532       -0.002352
+ 63 BIAS_H17                       1.585511       -0.000663
+ 64 BIAS_H18                       1.087988       -0.000114
+ 65 H11_ChurnedYes                 2.534219       -0.000584
+ 66 H12_ChurnedYes                 2.073454       -0.000524
+ 67 H13_ChurnedYes                -0.485644       -0.000369
+ 68 H14_ChurnedYes                -0.706755        0.001059
+ 69 H15_ChurnedYes                -3.249748       -0.000366
+ 70 H16_ChurnedYes                -3.199115        0.000288
+ 71 H17_ChurnedYes                -1.093576    -0.000003198
+ 72 H18_ChurnedYes                 0.717678       -0.000723
+ 73 BIAS_ChurnedYes                2.450246        0.000735
+ 
+Value of Objective Function = 0.3405990414
+ 
+ 
+ 
+ 
+ 
+ 
+The NEURAL Procedure
+ 
+Levenberg-Marquardt Optimization
+ 
+ 
+Minimum Iterations                                0
+Maximum Iterations                               50
+Maximum Function Calls                   2147483647
+Maximum CPU Time                              14400
+ABSGCONV Gradient Criterion                 0.00001
+GCONV Gradient Criterion                       1E-8
+GCONV2 Gradient Criterion                         0
+ABSFCONV Function Criterion                       0
+FCONV Function Criterion                     0.0001
+FCONV2 Function Criterion                         0
+FSIZE Parameter                                   0
+ABSXCONV Parameter Change Criterion               0
+XCONV Parameter Change Criterion                  0
+XSIZE Parameter                                   0
+ABSCONV Function Criterion             0.0018192373
+Trust Region Initial Radius Factor                1
+Singularity Tolerance (SINGULAR)               1E-8
+ 
+Levenberg-Marquardt Optimization
+ 
+Scaling Update of More (1978)
+ 
+Parameter Estimates              73
+ 
+                                             Optimization Start
+ 
+Active Constraints                                  0  Objective Function                       0.3405990414
+Max Abs Gradient Element                 0.0059432673  Radius                                              1
+ 
+ 
+                                                                                                         Ratio
+                                                                                                       Between
+                                                                                                        Actual
+                                                                 Objective     Max Abs                     and
+                     Function         Active        Objective     Function    Gradient               Predicted
+Iter     Restarts       Calls    Constraints         Function       Change     Element     Lambda       Change
+ 
+   1            0           3              0          0.34010     0.000498     0.00399     0.0465        0.574
+   2            0           5              0          0.34003     0.000067    0.000936      0.152        0.103
+   3            0           6              0          0.33995     0.000083     0.00140      0.242       0.0864
+   4            0           7              0          0.33956     0.000387    0.000920      0.849        0.653
+   5            0           8              0          0.33938     0.000185    0.000456      0.230        1.094
+   6            0           9              0          0.33910     0.000284    0.000524     0.0920        1.029
+   7            0          10              0          0.33877     0.000328    0.000924     0.0321        0.871
+   8            0          11              0          0.33830     0.000469     0.00609    0.00650        0.637
+   9            0          12              0          0.33817     0.000131     0.00483    0.00276        0.184
+  10            0          14              0          0.33811     0.000058     0.00383    0.00771       0.0726
+  11            0          15              0          0.33789     0.000217     0.00110      0.145        0.201
+  12            0          17              0          0.33758     0.000312    0.000820      0.393        0.674
+  13            0          18              0          0.33753     0.000051    0.000379     0.0586        0.551
+  14            0          19              0          0.33751     0.000019    0.000356     0.0608        0.200
+  15            0          20              0          0.33750     0.000013    0.000340     0.0829       0.0879
+  16            0          21              0          0.33743     0.000066    0.000251      0.410        0.546
+  17            0          22              0          0.33741     0.000021    0.000119      0.122        0.575
+  18            0          23              0          0.33740     0.000010    0.000188      0.152        0.218
+  19            0          24              0          0.33739     0.000014    0.000248      0.209        0.194
+  20            0          25              0          0.33737     0.000015    0.000205      0.234        0.193
+  21            0          26              0          0.33735     0.000018    0.000256      0.225        0.228
+  22            0          27              0          0.33734     0.000016    0.000203      0.230        0.213
+  23            0          28              0          0.33732     0.000019    0.000249      0.225        0.251
+  24            0          29              0          0.33730     0.000017    0.000199      0.228        0.238
+  25            0          30              0          0.33728     0.000020    0.000246      0.224        0.269
+  26            0          31              0          0.33726     0.000018    0.000197      0.224        0.254
+ 
+                                            Optimization Results
+ 
+Iterations                                         26  Function Calls                                     33
+Jacobian Calls                                     28  Active Constraints                                  0
+Objective Function                       0.3372649019  Max Abs Gradient Element                 0.0001973652
+Lambda                                   0.2244478858  Actual Over Pred Change                  0.2537186866
+Radius                                   0.0149545713
+ 
+Convergence criterion (FCONV=0.0001) satisfied.
+ 
+ 
+ 
+ 
+ 
+The NEURAL Procedure
+ 
+                    Optimization Results
+                    Parameter Estimates
+                                                   Gradient
+                                                  Objective
+  N Parameter                      Estimate        Function
+ 
+  1 Age_Zscore_H11                -0.607345    -0.000029275
+  2 CountrySpain_H11              -0.016912     0.000066434
+  3 EstimatedSal_Zscore_H11       -0.109587    -0.000053126
+  4 GenderFemale_H11               0.003840    -0.000016177
+  5 HasCreditCardNo_H11            0.096591    -0.000023589
+  6 IsActiveMemberNo_H11           0.414325     0.000020229
+  7 NumOfProducts_H11             -2.414769    -0.000032768
+  8 Age_Zscore_H12                -0.293745     0.000026024
+  9 CountrySpain_H12               0.158100    -0.000020389
+ 10 EstimatedSal_Zscore_H12       -0.101491     0.000018911
+ 11 GenderFemale_H12               0.131310    -0.000035386
+ 12 HasCreditCardNo_H12            0.142811    -0.000021108
+ 13 IsActiveMemberNo_H12          -0.997006     0.000060050
+ 14 NumOfProducts_H12              0.791182    -0.000010735
+ 15 Age_Zscore_H13                -5.784624       -0.000137
+ 16 CountrySpain_H13               5.517308     0.000070942
+ 17 EstimatedSal_Zscore_H13       -3.951031        0.000197
+ 18 GenderFemale_H13               2.664346     0.000063890
+ 19 HasCreditCardNo_H13           -0.257082    -0.000039147
+ 20 IsActiveMemberNo_H13           5.768398    -0.000060759
+ 21 NumOfProducts_H13             -4.649336        0.000163
+ 22 Age_Zscore_H14                 2.785944    -0.000033903
+ 23 CountrySpain_H14              -0.496422     0.000014095
+ 24 EstimatedSal_Zscore_H14        2.562620    -0.000070075
+ 25 GenderFemale_H14               0.353981    -0.000012828
+ 26 HasCreditCardNo_H14            0.519273     0.000003511
+ 27 IsActiveMemberNo_H14          -0.994179     0.000022731
+ 28 NumOfProducts_H14             -1.157040     0.000035211
+ 29 Age_Zscore_H15                -0.925997    -0.000033971
+ 30 CountrySpain_H15               0.062137     0.000092258
+ 31 EstimatedSal_Zscore_H15        0.113099     0.000074329
+ 32 GenderFemale_H15               0.040983        0.000185
+ 33 HasCreditCardNo_H15            0.003776     0.000043575
+ 34 IsActiveMemberNo_H15           0.141035       -0.000102
+ 35 NumOfProducts_H15             -0.026419     0.000092831
+ 36 Age_Zscore_H16                 0.052527    -0.000062126
+ 37 CountrySpain_H16              -0.063328        0.000103
+ 38 EstimatedSal_Zscore_H16       -0.055242     0.000014123
+ 39 GenderFemale_H16              -0.091960     0.000058876
+ 40 HasCreditCardNo_H16           -0.038945     0.000085365
+ 41 IsActiveMemberNo_H16          -0.895070    -0.000013631
+ 42 NumOfProducts_H16             -0.472330     0.000091752
+ 43 Age_Zscore_H17                 1.436357     0.000030910
+ 44 CountrySpain_H17               0.227328    -0.000037677
+ 45 EstimatedSal_Zscore_H17       -1.252178     0.000050704
+ 46 GenderFemale_H17              -0.943787    -0.000034136
+ 47 HasCreditCardNo_H17            0.245467    -0.000038960
+ 48 IsActiveMemberNo_H17           4.899251    -0.000005054
+ 49 NumOfProducts_H17             -1.480249     0.000026075
+ 50 Age_Zscore_H18                -3.357614    -0.000046228
+ 51 CountrySpain_H18              -1.753406     0.000030246
+ 52 EstimatedSal_Zscore_H18        2.526253    -0.000040068
+ 53 GenderFemale_H18               0.462255     0.000049205
+ 54 HasCreditCardNo_H18           -2.011108     0.000050580
+ 55 IsActiveMemberNo_H18          -2.842177     0.000027375
+ 56 NumOfProducts_H18             -0.576620     0.000018635
+ 57 BIAS_H11                      -0.471928     0.000010196
+ 58 BIAS_H12                      -1.425610     0.000004041
+ 59 BIAS_H13                      -2.346803    -0.000073171
+ 60 BIAS_H14                       1.469039    -0.000043774
+ 61 BIAS_H15                       0.401430    -0.000023010
+ 62 BIAS_H16                       0.924954     0.000016714
+ 63 BIAS_H17                       4.266701    -0.000062796
+ 64 BIAS_H18                       2.737572    -0.000009654
+ 65 H11_ChurnedYes                 3.223358    -0.000005764
+ 66 H12_ChurnedYes                 2.613571    -0.000065938
+ 67 H13_ChurnedYes                -0.447664    -0.000000329
+ 68 H14_ChurnedYes                -0.491746     0.000030882
+ 69 H15_ChurnedYes                -3.770619    -0.000073841
+ 70 H16_ChurnedYes                -5.116194        0.000142
+ 71 H17_ChurnedYes                -0.951678    -0.000039734
+ 72 H18_ChurnedYes                 0.565052    -0.000032928
+ 73 BIAS_ChurnedYes                3.669003       -0.000123
+ 
+Value of Objective Function = 0.3372649019
+ 
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Fit Statistics
+ 
+Target=Churned Target Label=' '
+ 
+   Fit
+Statistics    Statistics Label                      Train    Validation       Test
+ 
+ _DFT_        Total Degrees of Freedom            5383.00          .           .
+ _DFE_        Degrees of Freedom for Error        5310.00          .           .
+ _DFM_        Model Degrees of Freedom              73.00          .           .
+ _NW_         Number of Estimated Weights           73.00          .           .
+ _AIC_        Akaike's Information Criterion      3812.89          .           .
+ _SBC_        Schwarz's Bayesian Criterion        4294.03          .           .
+ _ASE_        Average Squared Error                  0.10         0.11        0.11
+ _MAX_        Maximum Absolute Error                 0.99         0.99        0.99
+ _DIV_        Divisor for ASE                    10766.00      4616.00     4618.00
+ _NOBS_       Sum of Frequencies                  5383.00      2308.00     2309.00
+ _RASE_       Root Average Squared Error             0.32         0.33        0.33
+ _SSE_        Sum of Squared Errors               1119.98       501.77      514.53
+ _SUMW_       Sum of Case Weights Times Freq     10766.00      4616.00     4618.00
+ _FPE_        Final Prediction Error                 0.11          .           .
+ _MSE_        Mean Squared Error                     0.11         0.11        0.11
+ _RFPE_       Root Final Prediction Error            0.33          .           .
+ _RMSE_       Root Mean Squared Error                0.32         0.33        0.33
+ _AVERR_      Average Error Function                 0.34         0.36        0.37
+ _ERR_        Error Function                      3666.89      1650.33     1688.51
+ _MISC_       Misclassification Rate                 0.14         0.14        0.15
+ _WRONG_      Number of Wrong Classifications      763.00       330.00      350.00
+ 
+ 
+ 
+ 
+Classification Table
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+ NO         NO         87.4257       96.0112        4116        76.4629
+ YES        NO         12.5743       54.0146         592        10.9976
+ NO         YES        25.3333        3.9888         171         3.1767
+ YES        YES        74.6667       45.9854         504         9.3628
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+ NO         NO         87.2162       96.1371        1767        76.5598
+ YES        NO         12.7838       55.1064         259        11.2218
+ NO         YES        25.1773        3.8629          71         3.0763
+ YES        YES        74.8227       44.8936         211         9.1421
+ 
+ 
+ 
+ 
+Event Classification Table
+ 
+Data Role=TRAIN Target=Churned Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   592        4116         171         504
+ 
+ 
+Data Role=VALIDATE Target=Churned Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   259        1767         71          211
+ 
+ 
+ 
+ 
+Assessment Score Rankings
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    358.406   4.58406     4.58406     93.3333     93.3333         270         0.92268
+  10    300.938   3.43257     4.00938     69.8885     81.6327         269         0.70284
+  15    244.048   2.30055     3.44048     46.8401     70.0495         269         0.50243
+  20    204.175   1.84409     3.04175     37.5465     61.9313         269         0.36685
+  25    171.118   1.38763     2.71118     28.2528     55.2006         269         0.28843
+  30    143.294   1.04073     2.43294     21.1896     49.5356         269         0.23202
+  35    123.818   1.07325     2.23818     21.8519     45.5703         270         0.18976
+  40    103.392   0.60253     2.03392     12.2677     41.4113         269         0.15690
+  45     89.527   0.78511     1.89527     15.9851     38.5885         269         0.13171
+  50     75.515   0.49298     1.75515     10.0372     35.7355         269         0.11152
+  55     63.882   0.47472     1.63882      9.6654     33.3671         269         0.09382
+  60     54.035   0.45646     1.54035      9.2937     31.3622         269         0.08073
+  65     45.843   0.47472     1.45843      9.6654     29.6942         269         0.06766
+  70     37.089   0.23648     1.37089      4.8148     27.9119         270         0.05624
+  75     29.660   0.25562     1.29660      5.2045     26.3992         269         0.04745
+  80     22.702   0.18258     1.22702      3.7175     24.9826         269         0.03993
+  85     16.133   0.10955     1.16133      2.2305     23.6451         269         0.03331
+  90     10.293   0.10955     1.10293      2.2305     22.4561         269         0.02736
+  95      5.068   0.10955     1.05068      2.2305     21.3923         269         0.02065
+ 100      0.000   0.03652     1.00000      0.7435     20.3604         269         0.01242
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    365.664   4.65664     4.65664     94.8276     94.8276         116         0.92096
+  10    301.779   3.37340     4.01779     68.6957     81.8182         115         0.68894
+  15    235.395   2.03199     3.35395     41.3793     68.2997         116         0.48428
+  20    190.174   1.53724     2.90174     31.3043     59.0909         115         0.35187
+  25    156.170   1.19563     2.56170     24.3478     52.1664         115         0.28468
+  30    131.005   1.05833     2.31005     21.5517     47.0418         116         0.22998
+  35    109.675   0.81132     2.09675     16.5217     42.6980         115         0.19202
+  40     95.044   0.93133     1.95044     18.9655     39.7186         116         0.15914
+  45     81.490   0.72592     1.81490     14.7826     36.9586         115         0.13334
+  50     72.340   0.89673     1.72340     18.2609     35.0953         115         0.11201
+  55     62.399   0.63500     1.62399     12.9310     33.0709         116         0.09610
+  60     52.106   0.38431     1.52106      7.8261     30.9747         115         0.08174
+  65     42.314   0.25400     1.42314      5.1724     28.9807         116         0.06745
+  70     34.313   0.29891     1.34313      6.0870     27.3515         115         0.05641
+  75     27.943   0.38431     1.27943      7.8261     26.0543         115         0.04769
+  80     20.971   0.16933     1.20971      3.4483     24.6345         116         0.04044
+  85     15.883   0.34161     1.15883      6.9565     23.5984         115         0.03333
+  90      9.887   0.08467     1.09887      1.7241     22.3773         116         0.02731
+  95      4.572   0.08540     1.04572      1.7391     21.2950         115         0.02004
+ 100      0.000   0.12810     1.00000      2.6087     20.3640         115         0.01198
+ 
+ 
+ 
+ 
+Assessment Score Distribution
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       88            0        0.97774         1.6348
+ 0.90-0.95       73            4        0.92689         1.4304
+ 0.85-0.90       83           12        0.87615         1.7648
+ 0.80-0.85       43           11        0.82454         1.0032
+ 0.75-0.80       38            7        0.77650         0.8360
+ 0.70-0.75       29            8        0.72513         0.6873
+ 0.65-0.70       40           22        0.67613         1.1518
+ 0.60-0.65       33           17        0.62169         0.9289
+ 0.55-0.60       35           43        0.57334         1.4490
+ 0.50-0.55       42           47        0.52463         1.6534
+ 0.45-0.50       48           52        0.47517         1.8577
+ 0.40-0.45       43           52        0.42127         1.7648
+ 0.35-0.40       38           64        0.37189         1.8949
+ 0.30-0.35       50          132        0.32440         3.3810
+ 0.25-0.30       70          159        0.27582         4.2541
+ 0.20-0.25       63          230        0.22339         5.4431
+ 0.15-0.20       63          344        0.17346         7.5608
+ 0.10-0.15       86          544        0.12368        11.7035
+ 0.05-0.10       91         1019        0.07295        20.6205
+ 0.00-0.05       40         1520        0.02947        28.9801
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       39           0         0.97793         1.6898
+ 0.90-0.95       34           3         0.92444         1.6031
+ 0.85-0.90       25           2         0.87665         1.1698
+ 0.80-0.85       17           5         0.82262         0.9532
+ 0.75-0.80       16           5         0.77475         0.9099
+ 0.70-0.75       14           7         0.72443         0.9099
+ 0.65-0.70       17           7         0.68031         1.0399
+ 0.60-0.65       17           5         0.62382         0.9532
+ 0.55-0.60       17          10         0.57090         1.1698
+ 0.50-0.55       15          27         0.52159         1.8198
+ 0.45-0.50       12          17         0.47846         1.2565
+ 0.40-0.45       16          23         0.42578         1.6898
+ 0.35-0.40       21          32         0.37123         2.2964
+ 0.30-0.35       20          64         0.32490         3.6395
+ 0.25-0.30       29          77         0.27439         4.5927
+ 0.20-0.25       22         105         0.22143         5.5026
+ 0.15-0.20       33         151         0.17446         7.9723
+ 0.10-0.15       43         222         0.12330        11.4818
+ 0.05-0.10       36         437         0.07326        20.4939
+ 0.00-0.05       27         639         0.02935        28.8562

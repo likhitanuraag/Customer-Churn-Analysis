@@ -1,0 +1,269 @@
+*------------------------------------------------------------*
+User:                20161277
+Date:                October 23, 2020
+Time:                19:47:13
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+Role         Level         Count
+ 
+ID         INTERVAL          2
+INPUT      INTERVAL          7
+TARGET     NOMINAL           1
+ 
+ 
+ 
+ 
+Model Events
+ 
+                                   Number
+                    Measurement      of
+Target     Event       Level       Levels      Order       Label
+ 
+Churned     YES       NOMINAL         2      Descending
+ 
+ 
+ 
+ 
+Predicted and decision variables
+ 
+Type         Variable        Label
+ 
+TARGET       Churned
+PREDICTED    P_ChurnedYes    Predicted: Churned=Yes
+RESIDUAL     R_ChurnedYes    Residual: Churned=Yes
+PREDICTED    P_ChurnedNo     Predicted: Churned=No
+RESIDUAL     R_ChurnedNo     Residual: Churned=No
+FROM         F_Churned       From: Churned
+INTO         I_Churned       Into: Churned
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+Variable Importance
+ 
+                                                                                                   Ratio of
+                                         Number of                                               Validation
+                                         Splitting                            Validation        to Training
+Variable Name             Label            Rules           Importance         Importance         Importance
+ 
+Age_Zscore                                   6                 1.0000             1.0000             1.0000
+NumOfProducts                                7                 0.7789             0.9108             1.1693
+IsActiveMemberNo    IsActiveMember=No        2                 0.5885             0.6153             1.0457
+GenderFemale        Gender=Female            2                 0.1027             0.1038             1.0107
+ 
+ 
+ 
+Tree Leaf Report
+ 
+                                 Training
+Node               Training       Percent
+ Id     Depth    Observations       YES
+ 
+ 18       4          1045          0.03
+ 19       4           845          0.06
+ 28       5           627          0.16
+ 26       5           547          0.09
+ 27       5           393          0.16
+ 21       4           366          0.11
+ 30       5           299          0.42
+ 29       5           272          0.29
+ 22       4           250          0.55
+ 24       4           198          0.87
+ 23       4           162          0.30
+ 31       5           152          0.14
+ 10       3            51          0.61
+ 11       3            42          0.83
+ 43       6            42          0.76
+ 13       3            39          0.95
+ 37       5            28          1.00
+ 42       6            25          0.32
+ 
+ 
+ 
+ 
+Fit Statistics
+ 
+Target=Churned Target Label=' '
+ 
+   Fit
+Statistics    Statistics Label                 Train    Validation       Test
+ 
+  _NOBS_      Sum of Frequencies             5383.00      2308.00     2309.00
+  _MISC_      Misclassification Rate            0.15         0.15        0.15
+  _MAX_       Maximum Absolute Error            0.97         0.97        0.97
+  _SSE_       Sum of Squared Errors          1194.52       525.96      531.64
+  _ASE_       Average Squared Error             0.11         0.11        0.12
+  _RASE_      Root Average Squared Error        0.33         0.34        0.34
+  _DIV_       Divisor for ASE               10766.00      4616.00     4618.00
+  _DFT_       Total Degrees of Freedom       5383.00          .           .
+ 
+ 
+ 
+ 
+Classification Table
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+ NO         NO         86.8582       95.8946        4111        76.3701
+ YES        NO         13.1418       56.7518         622        11.5549
+ NO         YES        27.0769        4.1054         176         3.2696
+ YES        YES        72.9231       43.2482         474         8.8055
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+ NO         NO         86.4878       96.4635        1773        76.8198
+ YES        NO         13.5122       58.9362         277        12.0017
+ NO         YES        25.1938        3.5365          65         2.8163
+ YES        YES        74.8062       41.0638         193         8.3622
+ 
+ 
+ 
+ 
+Event Classification Table
+ 
+Data Role=TRAIN Target=Churned Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   622        4111         176         474
+ 
+ 
+Data Role=VALIDATE Target=Churned Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   277        1773         65          193
+ 
+ 
+ 
+ 
+Assessment Score Rankings
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    340.519   4.40519     4.40519     89.6914     89.6914         270         0.89691
+  10    276.088   3.11417     3.76088     63.4057     76.5729         269         0.63406
+  15    228.276   2.32475     3.28276     47.3329     66.8383         269         0.47333
+  20    191.021   1.79116     2.91021     36.4687     59.2530         269         0.36469
+  25    161.909   1.45355     2.61909     29.5949     53.3258         269         0.29595
+  30    133.971   0.94176     2.33971     19.1746     47.6374         269         0.19175
+  35    111.790   0.79117     2.11790     16.1085     43.1213         270         0.16108
+  40     95.131   0.78394     1.95131     15.9614     39.7295         269         0.15961
+  45     82.070   0.77484     1.82070     15.7761     37.0702         269         0.15776
+  50     70.379   0.65075     1.70379     13.2495     34.6899         269         0.13250
+  55     59.963   0.55722     1.59963     11.3452     32.5691         269         0.11345
+  60     50.380   0.44895     1.50380      9.1408     30.6179         269         0.09141
+  65     42.245   0.44568     1.42245      9.0741     28.9617         269         0.09074
+  70     34.220   0.30225     1.34220      6.1538     27.3278         270         0.06154
+  75     27.292   0.30225     1.27292      6.1538     25.9172         269         0.06154
+  80     21.230   0.30225     1.21230      6.1538     24.6829         269         0.06154
+  85     15.066   0.16374     1.15066      3.3338     23.4279         269         0.03334
+  90      9.486   0.14570     1.09486      2.9665     22.2919         269         0.02967
+  95      4.494   0.14570     1.04494      2.9665     21.2753         269         0.02967
+ 100      0.000   0.14570     1.00000      2.9665     20.3604         269         0.02967
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    331.233   4.31233     4.31233     87.8161     87.8161         116         0.89550
+  10    275.062   3.18402     3.75062     64.8393     76.3774         115         0.62845
+  15    221.642   2.15262     3.21642     43.8359     65.4990         116         0.44924
+  20    178.216   1.47185     2.78216     29.9726     56.6558         115         0.35084
+  25    152.199   1.47675     2.52199     30.0725     51.3576         115         0.29535
+  30    127.462   1.04422     2.27462     21.2644     46.3203         116         0.19320
+  35    107.796   0.89284     2.07796     18.1818     42.3155         115         0.16108
+  40     92.535   0.86236     1.92535     17.5611     39.2078         116         0.16014
+  45     79.921   0.78570     1.79921     16.0000     36.6391         115         0.15776
+  50     70.114   0.81503     1.70114     16.5973     34.6418         115         0.13815
+  55     60.354   0.63266     1.60354     12.8834     32.6545         116         0.11475
+  60     51.593   0.54843     1.51593     11.1681     30.8704         115         0.09344
+  65     43.856   0.51479     1.43856     10.4831     29.2948         116         0.08832
+  70     35.703   0.29278     1.35703      5.9621     27.6344         115         0.06154
+  75     28.632   0.29278     1.28632      5.9621     26.1946         115         0.06154
+  80     22.392   0.29278     1.22392      5.9621     24.9239         116         0.06154
+  85     15.903   0.11682     1.15903      2.3790     23.6024         115         0.03271
+  90      9.981   0.09821     1.09981      2.0000     22.3965         116         0.02967
+  95      4.729   0.09821     1.04729      2.0000     21.3269         115         0.02967
+ 100      0.000   0.09821     1.00000      2.0000     20.3640         115         0.02967
+ 
+ 
+ 
+ 
+Assessment Score Distribution
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00        28           0        1.00000         0.5202
+ 0.90-0.95        37           2        0.94872         0.7245
+ 0.85-0.90       173          25        0.87374         3.6782
+ 0.80-0.85        35           7        0.83333         0.7802
+ 0.75-0.80        32          10        0.76190         0.7802
+ 0.60-0.65        31          20        0.60784         0.9474
+ 0.55-0.60       138         112        0.55200         4.6443
+ 0.40-0.45       125         174        0.41806         5.5545
+ 0.30-0.35        57         130        0.30481         3.4739
+ 0.25-0.30        80         192        0.29412         5.0529
+ 0.15-0.20       163         857        0.15980        18.9485
+ 0.10-0.15        64         454        0.12355         9.6229
+ 0.05-0.10       102        1290        0.07328        25.8592
+ 0.00-0.05        31        1014        0.02967        19.4130
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       12           0         1.00000         0.5199
+ 0.90-0.95       13           1         0.94872         0.6066
+ 0.85-0.90       76          13         0.87374         3.8562
+ 0.80-0.85       13           2         0.83333         0.6499
+ 0.75-0.80       10           7         0.76190         0.7366
+ 0.60-0.65       15           8         0.60784         0.9965
+ 0.55-0.60       54          34         0.55200         3.8128
+ 0.40-0.45       52          83         0.41806         5.8492
+ 0.30-0.35       21          65         0.30532         3.7262
+ 0.25-0.30       39          87         0.29412         5.4593
+ 0.15-0.20       80         381         0.15982        19.9740
+ 0.10-0.15       31         183         0.12190         9.2721
+ 0.05-0.10       45         533         0.07234        25.0433
+ 0.00-0.05        9         441         0.02967        19.4974

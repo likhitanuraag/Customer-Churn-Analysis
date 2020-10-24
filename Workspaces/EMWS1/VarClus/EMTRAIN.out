@@ -1,0 +1,316 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+Role         Level         Count
+
+ID         INTERVAL          2    
+INPUT      INTERVAL          6    
+INPUT      NOMINAL           4    
+TARGET     NOMINAL           1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+Oblique Principal Component Cluster Analysis
+
+Observations           5383    Proportion          0
+Variables                15    Maxeigen            1
+
+
+Clustering algorithm converged.                                            
+
+
+                      Cluster Summary for 1 Cluster
+ 
+                        Cluster    Variation    Proportion        Second
+Cluster    Members    Variation    Explained     Explained    Eigenvalue
+------------------------------------------------------------------------
+      1         15           15     2.090522        0.1394        1.9991
+
+Total variation explained = 2.090522 Proportion = 0.1394
+
+Cluster 1 will be split because it has the largest second eigenvalue, 1.999108, which is greater than the MAXEIGEN=1 value.
+
+
+Clustering algorithm converged.                                            
+
+
+                     Cluster Summary for 2 Clusters
+ 
+                        Cluster    Variation    Proportion        Second
+Cluster    Members    Variation    Explained     Explained    Eigenvalue
+------------------------------------------------------------------------
+      1         10           10     2.081046        0.2081        1.9445
+      2          5            5      2.00414        0.4008        1.3303
+
+Total variation explained = 4.085186 Proportion = 0.2723
+
+
+                                       R-squared with
+2 Clusters                           ------------------
+                                         Own       Next    1-R**2    Variable
+Cluster       Variable               Cluster    Closest     Ratio    Label
+---------------------------------------------------------------------------------------
+Cluster 1     Age_Zscore              0.0132     0.0000    0.9869                      
+              Balance_Zscore          0.0010     0.0000    0.9990                      
+              Creditscore_Zscore      0.0007     0.0000    0.9993                      
+              EstimatedSal_Zscore     0.0003     0.0000    0.9997                      
+              NumOfProducts           0.0022     0.0001    0.9979                      
+              CountryFrance           0.0007     0.0000    0.9994    Country=France    
+              GenderFemale            0.4608     0.0000    0.5392    Gender=Female     
+              GenderMale              0.4608     0.0000    0.5392    Gender=Male       
+              IsActiveMemberNo        0.5707     0.0002    0.4294    IsActiveMember=No 
+              IsActiveMemberYes       0.5707     0.0002    0.4294    IsActiveMember=Yes
+---------------------------------------------------------------------------------------
+Cluster 2     Tenure                  0.0031     0.0003    0.9972                      
+              CountryGermany          0.0035     0.0000    0.9965    Country=Germany   
+              CountrySpain            0.0039     0.0007    0.9967    Country=Spain     
+              HasCreditCardNo         0.9968     0.0001    0.0032    HasCreditCard=No  
+              HasCreditCardYes        0.9968     0.0001    0.0032    HasCreditCard=Yes 
+
+Cluster 1 will be split because it has the largest second eigenvalue, 1.944501, which is greater than the MAXEIGEN=1 value.
+
+
+Clustering algorithm converged.                                            
+
+
+                     Cluster Summary for 3 Clusters
+ 
+                        Cluster    Variation    Proportion        Second
+Cluster    Members    Variation    Explained     Explained    Eigenvalue
+------------------------------------------------------------------------
+      1          6            6     2.020136        0.3367        1.0330
+      2          5            5      2.00414        0.4008        1.3303
+      3          4            4     2.004152        0.5010        1.2987
+
+Total variation explained = 6.028428 Proportion = 0.4019
+
+
+                                       R-squared with
+3 Clusters                           ------------------
+                                         Own       Next    1-R**2    Variable
+Cluster       Variable               Cluster    Closest     Ratio    Label
+---------------------------------------------------------------------------------------
+Cluster 1     Age_Zscore              0.0357     0.0002    0.9645                      
+              Creditscore_Zscore      0.0020     0.0000    0.9981                      
+              EstimatedSal_Zscore     0.0007     0.0000    0.9993                      
+              CountryFrance           0.0013     0.0000    0.9987    Country=France    
+              IsActiveMemberNo        0.9902     0.0013    0.0098    IsActiveMember=No 
+              IsActiveMemberYes       0.9902     0.0013    0.0098    IsActiveMember=Yes
+---------------------------------------------------------------------------------------
+Cluster 2     Tenure                  0.0031     0.0006    0.9975                      
+              CountryGermany          0.0035     0.0004    0.9969    Country=Germany   
+              CountrySpain            0.0039     0.0005    0.9965    Country=Spain     
+              HasCreditCardNo         0.9968     0.0001    0.0032    HasCreditCard=No  
+              HasCreditCardYes        0.9968     0.0001    0.0032    HasCreditCard=Yes 
+---------------------------------------------------------------------------------------
+Cluster 3     Balance_Zscore          0.0027     0.0000    0.9973                      
+              NumOfProducts           0.0084     0.0001    0.9917                      
+              GenderFemale            0.9965     0.0012    0.0035    Gender=Female     
+              GenderMale              0.9965     0.0012    0.0035    Gender=Male       
+
+Cluster 2 will be split because it has the largest second eigenvalue, 1.330261, which is greater than the MAXEIGEN=1 value.
+
+
+Clustering algorithm converged.                                            
+
+
+                     Cluster Summary for 4 Clusters
+ 
+                        Cluster    Variation    Proportion        Second
+Cluster    Members    Variation    Explained     Explained    Eigenvalue
+------------------------------------------------------------------------
+      1          6            6     2.020136        0.3367        1.0330
+      2          3            3     2.001638        0.6672        0.9984
+      3          4            4     2.004152        0.5010        1.2987
+      4          2            2     1.332248        0.6661        0.6678
+
+Total variation explained = 7.358174 Proportion = 0.4905
+
+
+                                       R-squared with
+4 Clusters                           ------------------
+                                         Own       Next    1-R**2    Variable
+Cluster       Variable               Cluster    Closest     Ratio    Label
+---------------------------------------------------------------------------------------
+Cluster 1     Age_Zscore              0.0357     0.0010    0.9652                      
+              Creditscore_Zscore      0.0020     0.0000    0.9981                      
+              EstimatedSal_Zscore     0.0007     0.0001    0.9994                      
+              CountryFrance           0.0013     0.0000    0.9987    Country=France    
+              IsActiveMemberNo        0.9902     0.0013    0.0098    IsActiveMember=No 
+              IsActiveMemberYes       0.9902     0.0013    0.0098    IsActiveMember=Yes
+---------------------------------------------------------------------------------------
+Cluster 2     Tenure                  0.0033     0.0006    0.9973                      
+              HasCreditCardNo         0.9992     0.0006    0.0008    HasCreditCard=No  
+              HasCreditCardYes        0.9992     0.0006    0.0008    HasCreditCard=Yes 
+---------------------------------------------------------------------------------------
+Cluster 3     Balance_Zscore          0.0027     0.1031    1.1119                      
+              NumOfProducts           0.0084     0.0001    0.9917                      
+              GenderFemale            0.9965     0.0012    0.0035    Gender=Female     
+              GenderMale              0.9965     0.0012    0.0035    Gender=Male       
+---------------------------------------------------------------------------------------
+Cluster 4     CountryGermany          0.6661     0.0004    0.3340    Country=Germany   
+              CountrySpain            0.6661     0.0005    0.3340    Country=Spain     
+
+Cluster 3 will be split because it has the largest second eigenvalue, 1.298714, which is greater than the MAXEIGEN=1 value.
+
+
+Clustering algorithm converged.                                            
+
+
+                     Cluster Summary for 5 Clusters
+ 
+                        Cluster    Variation    Proportion        Second
+Cluster    Members    Variation    Explained     Explained    Eigenvalue
+------------------------------------------------------------------------
+      1          6            6     2.020136        0.3367        1.0330
+      2          3            3     2.001638        0.6672        0.9984
+      3          2            2            2        1.0000        0.0000
+      4          2            2     1.332248        0.6661        0.6678
+      5          2            2     1.302356        0.6512        0.6976
+
+Total variation explained = 8.656378 Proportion = 0.5771
+
+
+                                       R-squared with
+5 Clusters                           ------------------
+                                         Own       Next    1-R**2    Variable
+Cluster       Variable               Cluster    Closest     Ratio    Label
+---------------------------------------------------------------------------------------
+Cluster 1     Age_Zscore              0.0357     0.0020    0.9662                      
+              Creditscore_Zscore      0.0020     0.0000    0.9981                      
+              EstimatedSal_Zscore     0.0007     0.0001    0.9994                      
+              CountryFrance           0.0013     0.0220    1.0211    Country=France    
+              IsActiveMemberNo        0.9902     0.0013    0.0098    IsActiveMember=No 
+              IsActiveMemberYes       0.9902     0.0013    0.0098    IsActiveMember=Yes
+---------------------------------------------------------------------------------------
+Cluster 2     Tenure                  0.0033     0.0006    0.9973                      
+              HasCreditCardNo         0.9992     0.0006    0.0008    HasCreditCard=No  
+              HasCreditCardYes        0.9992     0.0006    0.0008    HasCreditCard=Yes 
+---------------------------------------------------------------------------------------
+Cluster 3     GenderFemale            1.0000     0.0012    0.0000    Gender=Female     
+              GenderMale              1.0000     0.0012    0.0000    Gender=Male       
+---------------------------------------------------------------------------------------
+Cluster 4     CountryGermany          0.6661     0.0633    0.3564    Country=Germany   
+              CountrySpain            0.6661     0.0063    0.3360    Country=Spain     
+---------------------------------------------------------------------------------------
+Cluster 5     Balance_Zscore          0.6512     0.1031    0.3889                      
+              NumOfProducts           0.6512     0.0015    0.3493                      
+
+Cluster 1 will be split because it has the largest second eigenvalue, 1.032985, which is greater than the MAXEIGEN=1 value.
+
+
+Clustering algorithm converged.                                            
+
+
+                     Cluster Summary for 6 Clusters
+ 
+                        Cluster    Variation    Proportion        Second
+Cluster    Members    Variation    Explained     Explained    Eigenvalue
+------------------------------------------------------------------------
+      1          2            2            2        1.0000        0.0000
+      2          3            3     2.001638        0.6672        0.9984
+      3          2            2            2        1.0000        0.0000
+      4          2            2     1.332248        0.6661        0.6678
+      5          2            2     1.302356        0.6512        0.6976
+      6          4            4     1.044594        0.2611        1.0171
+
+Total variation explained = 9.680836 Proportion = 0.6454
+
+
+                                       R-squared with
+6 Clusters                           ------------------
+                                         Own       Next    1-R**2    Variable
+Cluster       Variable               Cluster    Closest     Ratio    Label
+---------------------------------------------------------------------------------------
+Cluster 1     IsActiveMemberNo        1.0000     0.0060    0.0000    IsActiveMember=No 
+              IsActiveMemberYes       1.0000     0.0060    0.0000    IsActiveMember=Yes
+---------------------------------------------------------------------------------------
+Cluster 2     Tenure                  0.0033     0.0005    0.9973                      
+              HasCreditCardNo         0.9992     0.0006    0.0008    HasCreditCard=No  
+              HasCreditCardYes        0.9992     0.0006    0.0008    HasCreditCard=Yes 
+---------------------------------------------------------------------------------------
+Cluster 3     GenderFemale            1.0000     0.0013    0.0000    Gender=Female     
+              GenderMale              1.0000     0.0013    0.0000    Gender=Male       
+---------------------------------------------------------------------------------------
+Cluster 4     CountryGermany          0.6661     0.1540    0.3947    Country=Germany   
+              CountrySpain            0.6661     0.1384    0.3875    Country=Spain     
+---------------------------------------------------------------------------------------
+Cluster 5     Balance_Zscore          0.6512     0.1031    0.3889                      
+              NumOfProducts           0.6512     0.0015    0.3493                      
+---------------------------------------------------------------------------------------
+Cluster 6     Age_Zscore              0.4069     0.0092    0.5986                      
+              Creditscore_Zscore      0.0507     0.0005    0.9498                      
+              EstimatedSal_Zscore     0.1493     0.0001    0.8508                      
+              CountryFrance           0.4376     0.0220    0.5750    Country=France    
+
+Cluster 6 will be split because it has the largest second eigenvalue, 1.017106, which is greater than the MAXEIGEN=1 value.
+
+
+Clustering algorithm converged.                                            
+
+
+                     Cluster Summary for 7 Clusters
+ 
+                        Cluster    Variation    Proportion        Second
+Cluster    Members    Variation    Explained     Explained    Eigenvalue
+------------------------------------------------------------------------
+      1          2            2            2        1.0000        0.0000
+      2          3            3     2.001638        0.6672        0.9984
+      3          2            2            2        1.0000        0.0000
+      4          2            2     1.332248        0.6661        0.6678
+      5          2            2     1.302356        0.6512        0.6976
+      6          2            2     1.031517        0.5158        0.9685
+      7          2            2     1.012306        0.5062        0.9877
+
+Total variation explained = 10.68006 Proportion = 0.7120
+
+
+                                       R-squared with
+7 Clusters                           ------------------
+                                         Own       Next    1-R**2    Variable
+Cluster       Variable               Cluster    Closest     Ratio    Label
+---------------------------------------------------------------------------------------
+Cluster 1     IsActiveMemberNo        1.0000     0.0060    0.0000    IsActiveMember=No 
+              IsActiveMemberYes       1.0000     0.0060    0.0000    IsActiveMember=Yes
+---------------------------------------------------------------------------------------
+Cluster 2     Tenure                  0.0033     0.0005    0.9973                      
+              HasCreditCardNo         0.9992     0.0006    0.0008    HasCreditCard=No  
+              HasCreditCardYes        0.9992     0.0006    0.0008    HasCreditCard=Yes 
+---------------------------------------------------------------------------------------
+Cluster 3     GenderFemale            1.0000     0.0013    0.0000    Gender=Female     
+              GenderMale              1.0000     0.0013    0.0000    Gender=Male       
+---------------------------------------------------------------------------------------
+Cluster 4     CountryGermany          0.6661     0.1853    0.4098    Country=Germany   
+              CountrySpain            0.6661     0.1597    0.3973    Country=Spain     
+---------------------------------------------------------------------------------------
+Cluster 5     Balance_Zscore          0.6512     0.1031    0.3889                      
+              NumOfProducts           0.6512     0.0015    0.3493                      
+---------------------------------------------------------------------------------------
+Cluster 6     Age_Zscore              0.5158     0.0092    0.4887                      
+              CountryFrance           0.5158     0.0220    0.4951    Country=France    
+---------------------------------------------------------------------------------------
+Cluster 7     Creditscore_Zscore      0.5062     0.0005    0.4941                      
+              EstimatedSal_Zscore     0.5062     0.0005    0.4941                      
+
+No cluster meets the criterion for splitting.
+
+
+                 Total     Proportion       Minimum       Maximum                  Maximum
+             Variation             of    Proportion        Second      Minimum      1-R**2
+  Number     Explained      Variation     Explained    Eigenvalue    R-squared       Ratio
+      of            by      Explained          by a          in a        for a       for a
+Clusters      Clusters    by Clusters       Cluster       Cluster     Variable    Variable
+------------------------------------------------------------------------------------------
+       1      2.090522         0.1394        0.1394      1.999108       0.0000            
+       2      4.085186         0.2723        0.2081      1.944501       0.0003      0.9997
+       3      6.028428         0.4019        0.3367      1.330261       0.0007      0.9993
+       4      7.358174         0.4905        0.3367      1.298714       0.0007      1.1119
+       5      8.656378         0.5771        0.3367      1.032985       0.0007      1.0211
+       6      9.680836         0.6454        0.2611      1.017106       0.0033      0.9973
+       7     10.680065         0.7120        0.5062      0.998362       0.0033      0.9973

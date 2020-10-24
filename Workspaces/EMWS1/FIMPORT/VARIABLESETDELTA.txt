@@ -1,0 +1,12 @@
+if NAME="Churned" then do;
+ROLE="TARGET";
+LEVEL="NOMINAL";
+ORDER="";
+DROP="N";
+end;
+if NAME="CustomerID" then do;
+ROLE="ID";
+LEVEL="INTERVAL";
+ORDER="";
+DROP="N";
+end;

@@ -1,0 +1,433 @@
+*------------------------------------------------------------*
+ Node = 6
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: YES or MISSING
+AND Age >= 51.5
+then 
+ Tree Node Identifier   = 6
+ Number of Observations = 512
+ Predicted: _SEGMENT_=3  = 0.01
+ Predicted: _SEGMENT_=4  = 0.01
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.98
+ 
+*------------------------------------------------------------*
+ Node = 15
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: NO
+AND Age >= 55.5
+then 
+ Tree Node Identifier   = 15
+ Number of Observations = 16
+ Predicted: _SEGMENT_=3  = 0.06
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.94
+ 
+*------------------------------------------------------------*
+ Node = 17
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND Gender IS ONE OF: FEMALE
+AND Balance >= 16098.8 or MISSING
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 17
+ Number of Observations = 1024
+ Predicted: _SEGMENT_=3  = 0.99
+ Predicted: _SEGMENT_=4  = 0.01
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 19
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance >= 31833.1 or MISSING
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 19
+ Number of Observations = 1421
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.99
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 26
+*------------------------------------------------------------*
+if NumOfProducts < 1.5 or MISSING
+AND IsActiveMember IS ONE OF: NO
+AND Age < 55.5 AND Age >= 51.5 or MISSING
+then 
+ Tree Node Identifier   = 26
+ Number of Observations = 13
+ Predicted: _SEGMENT_=3  = 0.38
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.62
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 27
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5
+AND IsActiveMember IS ONE OF: NO
+AND Age < 55.5 AND Age >= 51.5 or MISSING
+then 
+ Tree Node Identifier   = 27
+ Number of Observations = 7
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.14
+ Predicted: _SEGMENT_=5  = 0.29
+ Predicted: _SEGMENT_=1  = 0.14
+ Predicted: _SEGMENT_=2  = 0.43
+ 
+*------------------------------------------------------------*
+ Node = 28
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Gender IS ONE OF: FEMALE
+AND Balance < 16098.8
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 28
+ Number of Observations = 139
+ Predicted: _SEGMENT_=3  = 0.98
+ Predicted: _SEGMENT_=4  = 0.02
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 36
+*------------------------------------------------------------*
+if Tenure < 5.5 or MISSING
+AND NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: NO
+AND Balance < 109785 or MISSING
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 36
+ Number of Observations = 488
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.90
+ Predicted: _SEGMENT_=5  = 0.10
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 39
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance < 109785 or MISSING
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 39
+ Number of Observations = 1007
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.09
+ Predicted: _SEGMENT_=5  = 0.88
+ Predicted: _SEGMENT_=1  = 0.02
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 41
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5 or MISSING
+AND Gender IS ONE OF: FEMALE
+AND Balance >= 109785
+AND Age < 51.5 AND Age >= 49.5
+then 
+ Tree Node Identifier   = 41
+ Number of Observations = 6
+ Predicted: _SEGMENT_=3  = 0.17
+ Predicted: _SEGMENT_=4  = 0.17
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.67
+ 
+*------------------------------------------------------------*
+ Node = 44
+*------------------------------------------------------------*
+if Tenure < 4.5
+AND NumOfProducts < 1.5
+AND HasCreditCard IS ONE OF: NO
+AND Gender IS ONE OF: FEMALE
+AND Balance < 16098.8
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 44
+ Number of Observations = 21
+ Predicted: _SEGMENT_=3  = 0.24
+ Predicted: _SEGMENT_=4  = 0.76
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 45
+*------------------------------------------------------------*
+if Tenure >= 4.5 or MISSING
+AND NumOfProducts < 1.5
+AND HasCreditCard IS ONE OF: NO
+AND Gender IS ONE OF: FEMALE
+AND Balance < 16098.8
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 45
+ Number of Observations = 26
+ Predicted: _SEGMENT_=3  = 0.92
+ Predicted: _SEGMENT_=4  = 0.08
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 48
+*------------------------------------------------------------*
+if Tenure < 4.5 or MISSING
+AND NumOfProducts < 1.5
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance < 31833.1
+AND Age < 45.5 or MISSING
+then 
+ Tree Node Identifier   = 48
+ Number of Observations = 127
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.07
+ Predicted: _SEGMENT_=5  = 0.10
+ Predicted: _SEGMENT_=1  = 0.82
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 49
+*------------------------------------------------------------*
+if Tenure >= 4.5
+AND NumOfProducts < 1.5
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance < 31833.1
+AND Age < 45.5 or MISSING
+then 
+ Tree Node Identifier   = 49
+ Number of Observations = 109
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=5  = 0.71
+ Predicted: _SEGMENT_=1  = 0.28
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 50
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND IsActiveMember IS ONE OF: YES or MISSING
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance < 31833.1
+AND Age < 51.5 AND Age >= 45.5
+then 
+ Tree Node Identifier   = 50
+ Number of Observations = 8
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 51
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND IsActiveMember IS ONE OF: NO
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance < 31833.1
+AND Age < 51.5 AND Age >= 45.5
+then 
+ Tree Node Identifier   = 51
+ Number of Observations = 7
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=5  = 0.43
+ Predicted: _SEGMENT_=1  = 0.57
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 56
+*------------------------------------------------------------*
+if Tenure >= 5.5
+AND NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: NO
+AND Balance < 109785 or MISSING
+AND Age < 48.5 or MISSING
+then 
+ Tree Node Identifier   = 56
+ Number of Observations = 235
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.48
+ Predicted: _SEGMENT_=5  = 0.51
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 57
+*------------------------------------------------------------*
+if Tenure >= 5.5
+AND NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: NO
+AND Balance < 109785 or MISSING
+AND Age < 51.5 AND Age >= 48.5
+then 
+ Tree Node Identifier   = 57
+ Number of Observations = 9
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.44
+ Predicted: _SEGMENT_=5  = 0.11
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.44
+ 
+*------------------------------------------------------------*
+ Node = 58
+*------------------------------------------------------------*
+if Tenure < 4.5 or MISSING
+AND NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Gender IS ONE OF: FEMALE
+AND Balance < 109785 or MISSING
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 58
+ Number of Observations = 414
+ Predicted: _SEGMENT_=3  = 0.02
+ Predicted: _SEGMENT_=4  = 0.72
+ Predicted: _SEGMENT_=5  = 0.25
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 59
+*------------------------------------------------------------*
+if Tenure >= 4.5
+AND NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Gender IS ONE OF: FEMALE
+AND Balance < 109785 or MISSING
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 59
+ Number of Observations = 372
+ Predicted: _SEGMENT_=3  = 0.07
+ Predicted: _SEGMENT_=4  = 0.16
+ Predicted: _SEGMENT_=5  = 0.77
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 62
+*------------------------------------------------------------*
+if Tenure < 3.5
+AND NumOfProducts >= 1.5 or MISSING
+AND Gender IS ONE OF: FEMALE
+AND Balance >= 109785
+AND Age < 49.5 or MISSING
+then 
+ Tree Node Identifier   = 62
+ Number of Observations = 160
+ Predicted: _SEGMENT_=3  = 0.28
+ Predicted: _SEGMENT_=4  = 0.71
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 63
+*------------------------------------------------------------*
+if Tenure >= 3.5 or MISSING
+AND NumOfProducts >= 1.5 or MISSING
+AND Gender IS ONE OF: FEMALE
+AND Balance >= 109785
+AND Age < 49.5 or MISSING
+then 
+ Tree Node Identifier   = 63
+ Number of Observations = 189
+ Predicted: _SEGMENT_=3  = 0.72
+ Predicted: _SEGMENT_=4  = 0.27
+ Predicted: _SEGMENT_=5  = 0.01
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 64
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: NO
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance >= 109785
+AND Age < 47.5 or MISSING
+then 
+ Tree Node Identifier   = 64
+ Number of Observations = 130
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.63
+ Predicted: _SEGMENT_=5  = 0.08
+ Predicted: _SEGMENT_=1  = 0.28
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 65
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance >= 109785
+AND Age < 47.5 or MISSING
+then 
+ Tree Node Identifier   = 65
+ Number of Observations = 340
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.03
+ Predicted: _SEGMENT_=5  = 0.37
+ Predicted: _SEGMENT_=1  = 0.59
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 66
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5 or MISSING
+AND IsActiveMember IS ONE OF: YES or MISSING
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance >= 109785
+AND Age < 51.5 AND Age >= 47.5
+then 
+ Tree Node Identifier   = 66
+ Number of Observations = 17
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=2  = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 67
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5 or MISSING
+AND IsActiveMember IS ONE OF: NO
+AND Gender IS ONE OF: MALE or MISSING
+AND Balance >= 109785
+AND Age < 51.5 AND Age >= 47.5
+then 
+ Tree Node Identifier   = 67
+ Number of Observations = 6
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=5  = 0.50
+ Predicted: _SEGMENT_=1  = 0.50
+ Predicted: _SEGMENT_=2  = 0.00
+ 

@@ -1,0 +1,216 @@
+*------------------------------------------------------------*
+ Node = 10
+*------------------------------------------------------------*
+if NumOfProducts >= 2.5
+AND Age_Zscore < -0.1356 or MISSING
+then 
+ Tree Node Identifier   = 10
+ Number of Observations = 51
+ Predicted: Churned=Yes = 0.61
+ Predicted: Churned=No = 0.39
+ 
+*------------------------------------------------------------*
+ Node = 11
+*------------------------------------------------------------*
+if NumOfProducts >= 2.5
+AND Age_Zscore < 0.34118 AND Age_Zscore >= -0.1356
+then 
+ Tree Node Identifier   = 11
+ Number of Observations = 42
+ Predicted: Churned=Yes = 0.83
+ Predicted: Churned=No = 0.17
+ 
+*------------------------------------------------------------*
+ Node = 13
+*------------------------------------------------------------*
+if NumOfProducts >= 2.5
+AND IsActiveMember=No < 0.5 or MISSING
+AND Age_Zscore >= 0.34118
+then 
+ Tree Node Identifier   = 13
+ Number of Observations = 39
+ Predicted: Churned=Yes = 0.95
+ Predicted: Churned=No = 0.05
+ 
+*------------------------------------------------------------*
+ Node = 18
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 AND NumOfProducts >= 1.5 or MISSING
+AND Gender=Female < 0.5 or MISSING
+AND Age_Zscore < 0.34118 or MISSING
+then 
+ Tree Node Identifier   = 18
+ Number of Observations = 1045
+ Predicted: Churned=Yes = 0.03
+ Predicted: Churned=No = 0.97
+ 
+*------------------------------------------------------------*
+ Node = 19
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 AND NumOfProducts >= 1.5 or MISSING
+AND Gender=Female >= 0.5
+AND Age_Zscore < 0.34118 or MISSING
+then 
+ Tree Node Identifier   = 19
+ Number of Observations = 845
+ Predicted: Churned=Yes = 0.06
+ Predicted: Churned=No = 0.94
+ 
+*------------------------------------------------------------*
+ Node = 21
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 AND NumOfProducts >= 1.5
+AND IsActiveMember=No < 0.5 or MISSING
+AND Age_Zscore >= 0.34118
+then 
+ Tree Node Identifier   = 21
+ Number of Observations = 366
+ Predicted: Churned=Yes = 0.11
+ Predicted: Churned=No = 0.89
+ 
+*------------------------------------------------------------*
+ Node = 22
+*------------------------------------------------------------*
+if NumOfProducts < 1.5 or MISSING
+AND IsActiveMember=No >= 0.5
+AND Age_Zscore < 0.91327 AND Age_Zscore >= 0.34118 or MISSING
+then 
+ Tree Node Identifier   = 22
+ Number of Observations = 250
+ Predicted: Churned=Yes = 0.55
+ Predicted: Churned=No = 0.45
+ 
+*------------------------------------------------------------*
+ Node = 23
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5
+AND IsActiveMember=No >= 0.5
+AND Age_Zscore < 0.91327 AND Age_Zscore >= 0.34118 or MISSING
+then 
+ Tree Node Identifier   = 23
+ Number of Observations = 162
+ Predicted: Churned=Yes = 0.30
+ Predicted: Churned=No = 0.70
+ 
+*------------------------------------------------------------*
+ Node = 24
+*------------------------------------------------------------*
+if NumOfProducts < 1.5 or MISSING
+AND IsActiveMember=No >= 0.5
+AND Age_Zscore >= 0.91327
+then 
+ Tree Node Identifier   = 24
+ Number of Observations = 198
+ Predicted: Churned=Yes = 0.87
+ Predicted: Churned=No = 0.13
+ 
+*------------------------------------------------------------*
+ Node = 26
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND IsActiveMember=No < 0.5 or MISSING
+AND Gender=Female < 0.5 or MISSING
+AND Age_Zscore < 0.34118 or MISSING
+then 
+ Tree Node Identifier   = 26
+ Number of Observations = 547
+ Predicted: Churned=Yes = 0.09
+ Predicted: Churned=No = 0.91
+ 
+*------------------------------------------------------------*
+ Node = 27
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND IsActiveMember=No < 0.5 or MISSING
+AND Gender=Female >= 0.5
+AND Age_Zscore < 0.34118 or MISSING
+then 
+ Tree Node Identifier   = 27
+ Number of Observations = 393
+ Predicted: Churned=Yes = 0.16
+ Predicted: Churned=No = 0.84
+ 
+*------------------------------------------------------------*
+ Node = 28
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND IsActiveMember=No >= 0.5
+AND Age_Zscore < -0.1356 or MISSING
+then 
+ Tree Node Identifier   = 28
+ Number of Observations = 627
+ Predicted: Churned=Yes = 0.16
+ Predicted: Churned=No = 0.84
+ 
+*------------------------------------------------------------*
+ Node = 29
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND IsActiveMember=No >= 0.5
+AND Age_Zscore < 0.34118 AND Age_Zscore >= -0.1356
+then 
+ Tree Node Identifier   = 29
+ Number of Observations = 272
+ Predicted: Churned=Yes = 0.29
+ Predicted: Churned=No = 0.71
+ 
+*------------------------------------------------------------*
+ Node = 30
+*------------------------------------------------------------*
+if NumOfProducts < 1.5 or MISSING
+AND IsActiveMember=No < 0.5 or MISSING
+AND Age_Zscore < 1.77141 AND Age_Zscore >= 0.34118 or MISSING
+then 
+ Tree Node Identifier   = 30
+ Number of Observations = 299
+ Predicted: Churned=Yes = 0.42
+ Predicted: Churned=No = 0.58
+ 
+*------------------------------------------------------------*
+ Node = 31
+*------------------------------------------------------------*
+if NumOfProducts < 1.5 or MISSING
+AND IsActiveMember=No < 0.5 or MISSING
+AND Age_Zscore >= 1.77141
+then 
+ Tree Node Identifier   = 31
+ Number of Observations = 152
+ Predicted: Churned=Yes = 0.14
+ Predicted: Churned=No = 0.86
+ 
+*------------------------------------------------------------*
+ Node = 37
+*------------------------------------------------------------*
+if NumOfProducts >= 2.5
+AND IsActiveMember=No >= 0.5
+AND Age_Zscore >= 0.91327
+then 
+ Tree Node Identifier   = 37
+ Number of Observations = 28
+ Predicted: Churned=Yes = 1.00
+ Predicted: Churned=No = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 42
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 AND NumOfProducts >= 1.5 or MISSING
+AND IsActiveMember=No >= 0.5
+AND Age_Zscore < 1.19932 AND Age_Zscore >= 0.91327
+then 
+ Tree Node Identifier   = 42
+ Number of Observations = 25
+ Predicted: Churned=Yes = 0.32
+ Predicted: Churned=No = 0.68
+ 
+*------------------------------------------------------------*
+ Node = 43
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 AND NumOfProducts >= 1.5 or MISSING
+AND IsActiveMember=No >= 0.5
+AND Age_Zscore >= 1.19932 or MISSING
+then 
+ Tree Node Identifier   = 43
+ Number of Observations = 42
+ Predicted: Churned=Yes = 0.76
+ Predicted: Churned=No = 0.24
+ 

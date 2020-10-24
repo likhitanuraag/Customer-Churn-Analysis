@@ -1,0 +1,138 @@
+*------------------------------------------------------------*
+User:                20161277
+Date:                October 24, 2020
+Time:                18:49:04
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+            Measurement    Frequency
+Role           Level         Count
+ 
+ID           INTERVAL          1
+INPUT        INTERVAL          6
+INPUT        NOMINAL           4
+REJECTED     INTERVAL          1
+REJECTED     NOMINAL           1
+SEGMENT      NOMINAL           1
+TARGET       NOMINAL           1
+ 
+ 
+ 
+ 
+Frequencies: _SEGMENT_
+ 
+                                     Percent of
+ Segment     Segment    Frequency       Total
+Variable      Value       Count       Frequency
+ 
+_SEGMENT_       2            524       25.7241
+_SEGMENT_       4            497       24.3986
+_SEGMENT_       3            392       19.2440
+_SEGMENT_       1            346       16.9858
+_SEGMENT_       5            278       13.6475
+ 
+ 
+ 
+Variable: _SEGMENT_ Segment: 2 Count: 524
+Decision Tree Importance Profiles
+ 
+Variable            Worth     Rank
+ 
+HasCreditCard      0.30744      1
+NumOfProducts      0.02133      2
+CreditScore        0.00384      3
+Balance            0.00383      4
+Age                0.00259      5
+EstimatedSalary    0.00239      6
+Tenure             0.00183      7
+IsActiveMember     0.00152      8
+Gender             0.00013      9
+Country            0.00010     10
+ 
+ 
+ 
+Variable: _SEGMENT_ Segment: 4 Count: 497
+Decision Tree Importance Profiles
+ 
+Variable             Worth     Rank
+ 
+HasCreditCard      0.051252      1
+Balance            0.048459      2
+EstimatedSalary    0.023530      3
+Tenure             0.023132      4
+NumOfProducts      0.019924      5
+CreditScore        0.016908      6
+Country            0.014180      7
+Gender             0.007252      8
+Age                0.003115      9
+IsActiveMember     0.002659     10
+ 
+ 
+ 
+Variable: _SEGMENT_ Segment: 3 Count: 392
+Decision Tree Importance Profiles
+ 
+Variable             Worth     Rank
+ 
+HasCreditCard      0.028723      1
+Balance            0.027877      2
+Tenure             0.027629      3
+CreditScore        0.023974      4
+EstimatedSalary    0.021828      5
+NumOfProducts      0.011354      6
+Country            0.007152      7
+IsActiveMember     0.007138      8
+Gender             0.005249      9
+Age                0.002461     10
+ 
+ 
+ 
+Variable: _SEGMENT_ Segment: 1 Count: 346
+Decision Tree Importance Profiles
+ 
+Variable            Worth     Rank
+ 
+Balance            0.13913      1
+Country            0.03842      2
+HasCreditCard      0.02484      3
+NumOfProducts      0.00922      4
+EstimatedSalary    0.00382      5
+CreditScore        0.00311      6
+Age                0.00226      7
+Tenure             0.00147      8
+IsActiveMember     0.00067      9
+Gender             0.00011     10
+ 
+ 
+ 
+Variable: _SEGMENT_ Segment: 5 Count: 278
+Decision Tree Importance Profiles
+ 
+Variable            Worth     Rank
+ 
+NumOfProducts      0.23375      1
+EstimatedSalary    0.00285      2
+Balance            0.00238      3
+Tenure             0.00228      4
+Age                0.00210      5
+CreditScore        0.00191      6
+IsActiveMember     0.00039      7
+Gender             0.00018      8
+Country            0.00000      9
+HasCreditCard      0.00000     10
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*

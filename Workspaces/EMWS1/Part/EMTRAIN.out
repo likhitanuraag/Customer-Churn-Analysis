@@ -1,0 +1,26 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+Role         Level         Count
+
+ID         INTERVAL          1    
+INPUT      INTERVAL          6    
+INPUT      NOMINAL           4    
+TARGET     NOMINAL           1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Partition Summary
+
+                                     Number of
+Type             Data Set          Observations
+
+DATA        EMWS1.Trans_TRAIN          10000   
+TRAIN       EMWS1.Part_TRAIN            5383   
+VALIDATE    EMWS1.Part_VALIDATE         2308   
+TEST        EMWS1.Part_TEST             2309   

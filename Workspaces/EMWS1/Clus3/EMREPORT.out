@@ -1,0 +1,20 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Importance
+
+                            Number of    Number of
+                            Splitting    Surrogate
+Variable Name      Label      Rules        Rules      Importance
+
+CreditScore                     0            14         1.00000 
+EstimatedSalary                 0            14         0.97361 
+Gender                          3             0         0.90462 
+Age                             6            10         0.88012 
+Balance                         3             8         0.78260 
+NumOfProducts                   2             3         0.77471 
+Tenure                          5             5         0.69284 
+HasCreditCard                   3             1         0.41150 
+Country                         0             5         0.30897 
+IsActiveMember                  3             1         0.12602 

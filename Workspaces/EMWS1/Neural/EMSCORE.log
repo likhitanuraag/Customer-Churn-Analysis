@@ -1,0 +1,167 @@
+*------------------------------------------------------------*
+* Score Log
+Date:                October 23, 2020
+Time:                19:47:07
+*------------------------------------------------------------*
+NOTE: This SAS session is using a registry in WORK.  All changes will be lost at the end of this session.
+11286  data work.outkey;
+11287  set EMWS1.Neural_OUTKEY;
+11288  if upcase(ROLE) = 'HIDDEN';
+11289  run;
+
+NOTE: There were 27 observations read from the data set EMWS1.NEURAL_OUTKEY.
+NOTE: The data set WORK.OUTKEY has 8 observations and 8 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11290  filename emflow "C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+11291  *------------------------------------------------------------*;
+11292  * Neural: Scoring DATA data;
+11293  *------------------------------------------------------------*;
+11294  data EMWS1.Neural_TRAIN
+11295  / view=EMWS1.Neural_TRAIN
+11296  ;
+11297  set EMWS1.VarClus_TRAIN
+11298  ;
+11299  %inc emflow;
+11575  run;
+
+NOTE: DATA STEP view saved on file EMWS1.NEURAL_TRAIN.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.VARCLUS_TRAIN.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.03 seconds
+      
+
+11576  quit;
+11577  filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+
+11578  filename emflow "C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+11579  *------------------------------------------------------------*;
+11580  * Neural: Scoring VALIDATE data;
+11581  *------------------------------------------------------------*;
+11582  data EMWS1.Neural_VALIDATE
+11583  / view=EMWS1.Neural_VALIDATE
+11584  ;
+11585  set EMWS1.VarClus_VALIDATE
+11586  ;
+11587  %inc emflow;
+11863  run;
+
+NOTE: DATA STEP view saved on file EMWS1.NEURAL_VALIDATE.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.VARCLUS_VALIDATE.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+
+11864  quit;
+11865  filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+
+11866  filename emflow "C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+11867  *------------------------------------------------------------*;
+11868  * Neural: Scoring TEST data;
+11869  *------------------------------------------------------------*;
+11870  data EMWS1.Neural_TEST
+11871  / view=EMWS1.Neural_TEST
+11872  ;
+11873  set EMWS1.VarClus_TEST
+11874  ;
+11875  %inc emflow;
+12151  run;
+
+NOTE: DATA STEP view saved on file EMWS1.NEURAL_TEST.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.VARCLUS_TEST.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+
+12152  quit;
+12153  filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+
+12154  *------------------------------------------------------------*;
+12155  * Neural: Computing metadata for TRAIN data;
+12156  *------------------------------------------------------------*;
+
+NOTE: View EMWS1.NEURAL_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+12509  data WORK.MODELTEMP_INFO;
+12510  set EMWS1.Neural_EMINFO;
+12511  where DATA='Neural' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+12512  run;
+
+NOTE: There were 0 observations read from the data set EMWS1.NEURAL_EMINFO.
+      WHERE (DATA='Neural') and KEY not in ('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+NOTE: The data set WORK.MODELTEMP_INFO has 0 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+12513  data EMWS1.Neural_EMINFO;
+12514  length TARGET KEY $32 DATA $43;
+12515  input TARGET KEY DATA $;
+12516  cards;
+
+NOTE: The data set EMWS1.NEURAL_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+12520  run;
+12521  data EMWS1.Neural_EMINFO;
+12522  set EMWS1.Neural_EMINFO WORK.MODELTEMP_INFO;
+12523  run;
+
+NOTE: There were 3 observations read from the data set EMWS1.NEURAL_EMINFO.
+NOTE: There were 0 observations read from the data set WORK.MODELTEMP_INFO.
+NOTE: The data set EMWS1.NEURAL_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+12524  proc sort data = EMWS1.Neural_EMINFO NOTHREADS;
+12525  by TARGET KEY;
+12526  run;
+
+NOTE: There were 3 observations read from the data set EMWS1.NEURAL_EMINFO.
+NOTE: The data set EMWS1.NEURAL_EMINFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: View EMWS1.NEURAL_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+NOTE: View EMWS1.NEURAL_VALIDATE.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+NOTE: View EMWS1.NEURAL_TEST.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      

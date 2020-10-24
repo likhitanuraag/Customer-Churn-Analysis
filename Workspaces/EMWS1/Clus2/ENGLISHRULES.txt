@@ -1,0 +1,413 @@
+*------------------------------------------------------------*
+ Node = 11
+*------------------------------------------------------------*
+if HasCreditCard IS ONE OF: NO
+AND Age >= 56.5 or MISSING
+then 
+ Tree Node Identifier   = 11
+ Number of Observations = 140
+ Predicted: _SEGMENT_=1  = 0.01
+ Predicted: _SEGMENT_=3  = 0.01
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.98
+ 
+*------------------------------------------------------------*
+ Node = 17
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: NO
+AND Balance < 40702.3
+AND Age < 53.5 or MISSING
+then 
+ Tree Node Identifier   = 17
+ Number of Observations = 686
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 1.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 19
+*------------------------------------------------------------*
+if HasCreditCard IS ONE OF: NO
+AND Balance >= 40702.3 or MISSING
+AND Age < 53.5 AND Age >= 51.5
+then 
+ Tree Node Identifier   = 19
+ Number of Observations = 17
+ Predicted: _SEGMENT_=1  = 0.71
+ Predicted: _SEGMENT_=3  = 0.06
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.24
+ 
+*------------------------------------------------------------*
+ Node = 20
+*------------------------------------------------------------*
+if HasCreditCard IS ONE OF: NO
+AND Balance < 115529 or MISSING
+AND Age < 56.5 AND Age >= 53.5
+then 
+ Tree Node Identifier   = 20
+ Number of Observations = 15
+ Predicted: _SEGMENT_=1  = 0.07
+ Predicted: _SEGMENT_=3  = 0.20
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.73
+ 
+*------------------------------------------------------------*
+ Node = 21
+*------------------------------------------------------------*
+if HasCreditCard IS ONE OF: NO
+AND Balance >= 115529
+AND Age < 56.5 AND Age >= 53.5
+then 
+ Tree Node Identifier   = 21
+ Number of Observations = 7
+ Predicted: _SEGMENT_=1  = 1.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 24
+*------------------------------------------------------------*
+if HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 22771.6
+AND Age < 45.5 or MISSING
+then 
+ Tree Node Identifier   = 24
+ Number of Observations = 1903
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 1.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 26
+*------------------------------------------------------------*
+if NumOfProducts < 1.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance >= 22771.6 or MISSING
+AND Age < 49.5 or MISSING
+then 
+ Tree Node Identifier   = 26
+ Number of Observations = 1954
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 1.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 29
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: YES or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Age >= 52.5 or MISSING
+then 
+ Tree Node Identifier   = 29
+ Number of Observations = 401
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 33
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND HasCreditCard IS ONE OF: NO
+AND Balance < 40702.3
+AND Age < 53.5 AND Age >= 46.5
+then 
+ Tree Node Identifier   = 33
+ Number of Observations = 7
+ Predicted: _SEGMENT_=1  = 0.14
+ Predicted: _SEGMENT_=3  = 0.43
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.43
+ 
+*------------------------------------------------------------*
+ Node = 34
+*------------------------------------------------------------*
+if NumOfProducts < 1.5 or MISSING
+AND HasCreditCard IS ONE OF: NO
+AND Balance >= 40702.3 or MISSING
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 34
+ Number of Observations = 844
+ Predicted: _SEGMENT_=1  = 1.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 39
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 22771.6
+AND Age < 49.5 AND Age >= 45.5
+then 
+ Tree Node Identifier   = 39
+ Number of Observations = 106
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 1.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 43
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance >= 104499 or MISSING
+AND Age < 49.5 or MISSING
+then 
+ Tree Node Identifier   = 43
+ Number of Observations = 781
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.95
+ Predicted: _SEGMENT_=4  = 0.04
+ Predicted: _SEGMENT_=2  = 0.01
+ 
+*------------------------------------------------------------*
+ Node = 44
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: YES or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 20343
+AND Age < 52.5 AND Age >= 49.5
+then 
+ Tree Node Identifier   = 44
+ Number of Observations = 20
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.55
+ Predicted: _SEGMENT_=2  = 0.45
+ 
+*------------------------------------------------------------*
+ Node = 45
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: YES or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance >= 20343 or MISSING
+AND Age < 52.5 AND Age >= 49.5
+then 
+ Tree Node Identifier   = 45
+ Number of Observations = 51
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.06
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.94
+ 
+*------------------------------------------------------------*
+ Node = 46
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: NO
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 24556.9
+AND Age < 54 AND Age >= 49.5 or MISSING
+then 
+ Tree Node Identifier   = 46
+ Number of Observations = 11
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 1.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 47
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: NO
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 24556.9
+AND Age >= 54
+then 
+ Tree Node Identifier   = 47
+ Number of Observations = 9
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.22
+ Predicted: _SEGMENT_=2  = 0.78
+ 
+*------------------------------------------------------------*
+ Node = 48
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: NO
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance >= 24556.9 or MISSING
+AND Age < 55.5 AND Age >= 49.5 or MISSING
+then 
+ Tree Node Identifier   = 48
+ Number of Observations = 32
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.94
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.06
+ 
+*------------------------------------------------------------*
+ Node = 49
+*------------------------------------------------------------*
+if IsActiveMember IS ONE OF: NO
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance >= 24556.9 or MISSING
+AND Age >= 55.5
+then 
+ Tree Node Identifier   = 49
+ Number of Observations = 11
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.09
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.91
+ 
+*------------------------------------------------------------*
+ Node = 50
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND HasCreditCard IS ONE OF: NO
+AND CreditScore < 774 or MISSING
+AND Balance < 40702.3
+AND Age < 46.5 or MISSING
+then 
+ Tree Node Identifier   = 50
+ Number of Observations = 122
+ Predicted: _SEGMENT_=1  = 0.05
+ Predicted: _SEGMENT_=3  = 0.95
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 51
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND HasCreditCard IS ONE OF: NO
+AND CreditScore >= 774
+AND Balance < 40702.3
+AND Age < 46.5 or MISSING
+then 
+ Tree Node Identifier   = 51
+ Number of Observations = 16
+ Predicted: _SEGMENT_=1  = 0.69
+ Predicted: _SEGMENT_=3  = 0.31
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 52
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5
+AND HasCreditCard IS ONE OF: NO
+AND Balance < 87802.3 AND Balance >= 40702.3
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 52
+ Number of Observations = 81
+ Predicted: _SEGMENT_=1  = 0.28
+ Predicted: _SEGMENT_=3  = 0.72
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 53
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5
+AND HasCreditCard IS ONE OF: NO
+AND Balance >= 87802.3 or MISSING
+AND Age < 51.5 or MISSING
+then 
+ Tree Node Identifier   = 53
+ Number of Observations = 397
+ Predicted: _SEGMENT_=1  = 0.87
+ Predicted: _SEGMENT_=3  = 0.13
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 56
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND IsActiveMember IS ONE OF: NO
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 22771.6
+AND Age < 49.5 AND Age >= 45.5
+then 
+ Tree Node Identifier   = 56
+ Number of Observations = 9
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 1.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 57
+*------------------------------------------------------------*
+if NumOfProducts < 1.5
+AND IsActiveMember IS ONE OF: YES or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 22771.6
+AND Age < 49.5 AND Age >= 45.5
+then 
+ Tree Node Identifier   = 57
+ Number of Observations = 10
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=4  = 0.10
+ Predicted: _SEGMENT_=2  = 0.90
+ 
+*------------------------------------------------------------*
+ Node = 60
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 104499 AND Balance >= 22771.6
+AND Age < 45.5 or MISSING
+then 
+ Tree Node Identifier   = 60
+ Number of Observations = 318
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.43
+ Predicted: _SEGMENT_=4  = 0.57
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 61
+*------------------------------------------------------------*
+if NumOfProducts >= 1.5
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 104499 AND Balance >= 22771.6
+AND Age < 49.5 AND Age >= 45.5
+then 
+ Tree Node Identifier   = 61
+ Number of Observations = 15
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=3  = 0.00
+ Predicted: _SEGMENT_=5  = 0.33
+ Predicted: _SEGMENT_=4  = 0.20
+ Predicted: _SEGMENT_=2  = 0.47
+ 

@@ -1,0 +1,121 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+            Measurement    Frequency
+Role           Level         Count
+
+ID           INTERVAL          1    
+INPUT        INTERVAL          6    
+INPUT        NOMINAL           4    
+REJECTED     INTERVAL          1    
+REJECTED     NOMINAL           1    
+SEGMENT      NOMINAL           1    
+TARGET       NOMINAL           1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Frequencies: _SEGMENT_
+
+                                     Percent of
+ Segment     Segment    Frequency       Total
+Variable      Value       Count       Frequency
+
+_SEGMENT_       1           1806       26.5471 
+_SEGMENT_       5           1686       24.7832 
+_SEGMENT_       3           1411       20.7408 
+_SEGMENT_       4           1307       19.2121 
+_SEGMENT_       2            593        8.7167 
+ 
+                                                                                                                                                                                                                                                                
+ 
+Variable: _SEGMENT_ Segment: 1 Count: 1806
+Decision Tree Importance Profiles
+
+Variable            Worth     Rank
+
+Gender             0.10555      1 
+NumOfProducts      0.08773      2 
+Balance            0.06342      3 
+Age                0.01225      4 
+Country            0.00330      5 
+Tenure             0.00222      6 
+CreditScore        0.00149      7 
+IsActiveMember     0.00125      8 
+EstimatedSalary    0.00125      9 
+HasCreditCard      0.00010     10 
+ 
+                                                                                                                                                                                                                                                                
+ 
+Variable: _SEGMENT_ Segment: 5 Count: 1686
+Decision Tree Importance Profiles
+
+Variable             Worth     Rank
+
+Balance            0.088369      1 
+NumOfProducts      0.082338      2 
+Tenure             0.023591      3 
+HasCreditCard      0.019143      4 
+Gender             0.017506      5 
+Age                0.012182      6 
+Country            0.011288      7 
+IsActiveMember     0.009070      8 
+EstimatedSalary    0.005401      9 
+CreditScore        0.005299     10 
+ 
+                                                                                                                                                                                                                                                                
+ 
+Variable: _SEGMENT_ Segment: 3 Count: 1411
+Decision Tree Importance Profiles
+
+Variable            Worth     Rank
+
+Gender             0.11489      1 
+NumOfProducts      0.05039      2 
+Balance            0.02851      3 
+Age                0.00696      4 
+Country            0.00236      5 
+CreditScore        0.00160      6 
+EstimatedSalary    0.00129      7 
+Tenure             0.00102      8 
+IsActiveMember     0.00046      9 
+HasCreditCard      0.00041     10 
+ 
+                                                                                                                                                                                                                                                                
+ 
+Variable: _SEGMENT_ Segment: 4 Count: 1307
+Decision Tree Importance Profiles
+
+Variable             Worth     Rank
+
+NumOfProducts      0.055986      1 
+HasCreditCard      0.029235      2 
+Tenure             0.021281      3 
+Gender             0.017110      4 
+Balance            0.014310      5 
+EstimatedSalary    0.009015      6 
+CreditScore        0.006948      7 
+Age                0.006364      8 
+IsActiveMember     0.002477      9 
+Country            0.000187     10 
+ 
+                                                                                                                                                                                                                                                                
+ 
+Variable: _SEGMENT_ Segment: 2 Count: 593
+Decision Tree Importance Profiles
+
+Variable            Worth     Rank
+
+Age                0.13644      1 
+IsActiveMember     0.01045      2 
+EstimatedSalary    0.00061      3 
+CreditScore        0.00044      4 
+Balance            0.00029      5 
+Gender             0.00016      6 
+Country            0.00016      7 
+Tenure             0.00010      8 
+NumOfProducts      0.00002      9 
+HasCreditCard      0.00001     10 

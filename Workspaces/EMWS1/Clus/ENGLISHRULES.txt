@@ -1,0 +1,142 @@
+*------------------------------------------------------------*
+ Node = 3
+*------------------------------------------------------------*
+if NumOfProducts >= 2.5
+then 
+ Tree Node Identifier   = 3
+ Number of Observations = 280
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=5  = 0.99
+ Predicted: _SEGMENT_=3  = 0.01
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 5
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 or MISSING
+AND HasCreditCard IS ONE OF: NO
+then 
+ Tree Node Identifier   = 5
+ Number of Observations = 530
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=3  = 0.01
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.99
+ 
+*------------------------------------------------------------*
+ Node = 8
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND Balance < 66155.1
+then 
+ Tree Node Identifier   = 8
+ Number of Observations = 338
+ Predicted: _SEGMENT_=1  = 0.98
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=3  = 0.02
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 22
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND CreditScore < 594
+AND Balance < 80411.9 AND Balance >= 66155.1
+then 
+ Tree Node Identifier   = 22
+ Number of Observations = 13
+ Predicted: _SEGMENT_=1  = 0.23
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=3  = 0.77
+ Predicted: _SEGMENT_=4  = 0.00
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 23
+*------------------------------------------------------------*
+if NumOfProducts < 2.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND CreditScore >= 594 or MISSING
+AND Balance < 80411.9 AND Balance >= 66155.1
+then 
+ Tree Node Identifier   = 23
+ Number of Observations = 28
+ Predicted: _SEGMENT_=1  = 0.32
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=3  = 0.07
+ Predicted: _SEGMENT_=4  = 0.61
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 26
+*------------------------------------------------------------*
+if Tenure < 5.5 or MISSING
+AND NumOfProducts < 2.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND EstimatedSalary < 132760 or MISSING
+AND Balance >= 80411.9 or MISSING
+then 
+ Tree Node Identifier   = 26
+ Number of Observations = 328
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=3  = 0.10
+ Predicted: _SEGMENT_=4  = 0.89
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 27
+*------------------------------------------------------------*
+if Tenure < 5.5 or MISSING
+AND NumOfProducts < 2.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND EstimatedSalary >= 132760
+AND Balance >= 80411.9 or MISSING
+then 
+ Tree Node Identifier   = 27
+ Number of Observations = 148
+ Predicted: _SEGMENT_=1  = 0.01
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=3  = 0.51
+ Predicted: _SEGMENT_=4  = 0.48
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 28
+*------------------------------------------------------------*
+if Tenure >= 5.5
+AND NumOfProducts < 2.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND CreditScore < 662 or MISSING
+AND Balance >= 80411.9 or MISSING
+then 
+ Tree Node Identifier   = 28
+ Number of Observations = 216
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=3  = 0.88
+ Predicted: _SEGMENT_=4  = 0.12
+ Predicted: _SEGMENT_=2  = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 29
+*------------------------------------------------------------*
+if Tenure >= 5.5
+AND NumOfProducts < 2.5 or MISSING
+AND HasCreditCard IS ONE OF: YES or MISSING
+AND CreditScore >= 662
+AND Balance >= 80411.9 or MISSING
+then 
+ Tree Node Identifier   = 29
+ Number of Observations = 156
+ Predicted: _SEGMENT_=1  = 0.00
+ Predicted: _SEGMENT_=5  = 0.00
+ Predicted: _SEGMENT_=3  = 0.42
+ Predicted: _SEGMENT_=4  = 0.58
+ Predicted: _SEGMENT_=2  = 0.00
+ 

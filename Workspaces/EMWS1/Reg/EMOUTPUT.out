@@ -1,0 +1,621 @@
+*------------------------------------------------------------*
+User:                20161277
+Date:                October 23, 2020
+Time:                19:47:08
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+INPUT      INTERVAL          7
+TARGET     NOMINAL           1
+ 
+ 
+ 
+ 
+Model Events
+ 
+                                   Number
+                    Measurement      of
+Target     Event       Level       Levels      Order       Label
+ 
+Churned     YES       NOMINAL         2      Descending
+ 
+ 
+ 
+ 
+Predicted and decision variables
+ 
+Type         Variable        Label
+ 
+TARGET       Churned
+PREDICTED    P_ChurnedYes    Predicted: Churned=Yes
+RESIDUAL     R_ChurnedYes    Residual: Churned=Yes
+PREDICTED    P_ChurnedNo     Predicted: Churned=No
+RESIDUAL     R_ChurnedNo     Residual: Churned=No
+FROM         F_Churned       From: Churned
+INTO         I_Churned       Into: Churned
+ 
+ 
+ 
+ 
+ 
+The DMREG Procedure
+ 
+                Model Information
+ 
+Training Data Set              WORK.EM_DMREG.VIEW
+DMDB Catalog                   WORK.REG_DMDB
+Target Variable                Churned
+Target Measurement Level       Nominal
+Number of Target Categories    2
+Error                          MBernoulli
+Link Function                  Logit
+Number of Model Parameters     8
+Number of Observations         5383
+ 
+ 
+          Target Profile
+ 
+ Ordered                     Total
+   Value     Churned     Frequency
+ 
+       1     Yes              1096
+       2     No               4287
+ 
+ 
+ 
+ 
+Backward Elimination Procedure
+ 
+ 
+Step 0: The following effects were entered.
+ 
+Intercept  Age_Zscore  CountrySpain  EstimatedSal_Zscore  GenderFemale  HasCreditCardNo  IsActiveMemberNo  NumOfProducts
+ 
+ 
+ 
+ 
+ 
+The DMREG Procedure
+ 
+Newton-Raphson Ridge Optimization
+ 
+Without Parameter Scaling
+ 
+Parameter Estimates               8
+ 
+                                             Optimization Start
+ 
+Active Constraints                                  0  Objective Function                       2720.3428425
+Max Abs Gradient Element                  337.2955601
+ 
+ 
+                                                                                                        Ratio
+                                                                                                      Between
+                                                                                                       Actual
+                                                                 Objective     Max Abs                    and
+                     Function         Active        Objective     Function    Gradient              Predicted
+Iter     Restarts       Calls    Constraints         Function       Change     Element     Ridge       Change
+ 
+   1            0           2              0             2398        322.0       164.7         0        0.964
+   2            0           3              0             2379      19.6758     10.0258         0        1.048
+   3            0           4              0             2379       0.1520      0.1080         0        1.008
+   4            0           5              0             2379     0.000024    0.000017         0        1.000
+ 
+                                            Optimization Results
+ 
+Iterations                                          4  Function Calls                                      7
+Hessian Calls                                       5  Active Constraints                                  0
+Objective Function                       2378.5085576  Max Abs Gradient Element                 0.0000169178
+Ridge                                               0  Actual Over Pred Change                  1.0001085572
+ 
+Convergence criterion (GCONV=1E-6) satisfied.
+ 
+ 
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+ 
+   5440.686        4757.017       683.6686        7         <.0001
+ 
+ 
+              Type 3 Analysis of Effects
+ 
+                                     Wald
+Effect                   DF    Chi-Square    Pr > ChiSq
+ 
+Age_Zscore                1      424.2928        <.0001
+CountrySpain              1       17.1837        <.0001
+EstimatedSal_Zscore       1        0.0021        0.9632
+GenderFemale              1       59.2605        <.0001
+HasCreditCardNo           1        0.1605        0.6887
+IsActiveMemberNo          1      190.3969        <.0001
+NumOfProducts             1        6.0451        0.0139
+ 
+ 
+                                      Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard          Wald                  Standardized
+Parameter              Churned    DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+ 
+Intercept              Yes         1     -2.0589      0.1215        287.03        <.0001                       0.128
+Age_Zscore             Yes         1      0.7460      0.0362        424.29        <.0001          0.4106       2.109
+CountrySpain           Yes         1     -0.3666      0.0884         17.18        <.0001         -0.0877       0.693
+EstimatedSal_Zscore    Yes         1    -0.00168      0.0363          0.00        0.9632        -0.00093       0.998
+GenderFemale           Yes         1      0.5623      0.0730         59.26        <.0001          0.1544       1.755
+HasCreditCardNo        Yes         1      0.0321      0.0802          0.16        0.6887         0.00803       1.033
+IsActiveMemberNo       Yes         1      1.0671      0.0773        190.40        <.0001          0.2940       2.907
+NumOfProducts          Yes         1     -0.1515      0.0616          6.05        0.0139         -0.0486       0.859
+ 
+ 
+             Odds Ratio Estimates
+ 
+                                          Point
+Effect                      Churned    Estimate
+ 
+Age_Zscore                  Yes           2.109
+CountrySpain                Yes           0.693
+EstimatedSal_Zscore         Yes           0.998
+GenderFemale                Yes           1.755
+HasCreditCardNo             Yes           1.033
+IsActiveMemberNo            Yes           2.907
+NumOfProducts               Yes           0.859
+ 
+ 
+Step 1: Effect EstimatedSal_Zscore removed.
+ 
+ 
+ 
+ 
+ 
+The DMREG Procedure
+ 
+Newton-Raphson Ridge Optimization
+ 
+Without Parameter Scaling
+ 
+Parameter Estimates               7
+ 
+                                             Optimization Start
+ 
+Active Constraints                                  0  Objective Function                       2720.3428425
+Max Abs Gradient Element                  337.2955601
+ 
+ 
+                                                                                                        Ratio
+                                                                                                      Between
+                                                                                                       Actual
+                                                                 Objective     Max Abs                    and
+                     Function         Active        Objective     Function    Gradient              Predicted
+Iter     Restarts       Calls    Constraints         Function       Change     Element     Ridge       Change
+ 
+   1            0           2              0             2398        322.0       164.7         0        0.964
+   2            0           3              0             2379      19.6754     10.0257         0        1.048
+   3            0           4              0             2379       0.1520      0.1080         0        1.008
+   4            0           5              0             2379     0.000024    0.000017         0        1.000
+ 
+                                            Optimization Results
+ 
+Iterations                                          4  Function Calls                                      7
+Hessian Calls                                       5  Active Constraints                                  0
+Objective Function                       2378.5096218  Max Abs Gradient Element                 0.0000169154
+Ridge                                               0  Actual Over Pred Change                  1.0001084822
+ 
+Convergence criterion (GCONV=1E-6) satisfied.
+ 
+ 
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+ 
+   5440.686        4757.019       683.6664        6         <.0001
+ 
+ 
+              Type 3 Analysis of Effects
+ 
+                                     Wald
+Effect                   DF    Chi-Square    Pr > ChiSq
+ 
+Age_Zscore                1      424.5059        <.0001
+CountrySpain              1       17.1818        <.0001
+GenderFemale              1       59.2650        <.0001
+HasCreditCardNo           1        0.1607        0.6885
+IsActiveMemberNo          1      190.4315        <.0001
+NumOfProducts             1        6.0459        0.0139
+ 
+ 
+                                      Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard          Wald                  Standardized
+Parameter              Churned    DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+ 
+Intercept              Yes         1     -2.0589      0.1215        287.02        <.0001                       0.128
+Age_Zscore             Yes         1      0.7461      0.0362        424.51        <.0001          0.4106       2.109
+CountrySpain           Yes         1     -0.3666      0.0884         17.18        <.0001         -0.0877       0.693
+GenderFemale           Yes         1      0.5624      0.0730         59.26        <.0001          0.1544       1.755
+HasCreditCardNo        Yes         1      0.0321      0.0802          0.16        0.6885         0.00803       1.033
+IsActiveMemberNo       Yes         1      1.0670      0.0773        190.43        <.0001          0.2940       2.907
+NumOfProducts          Yes         1     -0.1515      0.0616          6.05        0.0139         -0.0486       0.859
+ 
+ 
+             Odds Ratio Estimates
+ 
+                                          Point
+Effect                      Churned    Estimate
+ 
+Age_Zscore                  Yes           2.109
+CountrySpain                Yes           0.693
+GenderFemale                Yes           1.755
+HasCreditCardNo             Yes           1.033
+IsActiveMemberNo            Yes           2.907
+NumOfProducts               Yes           0.859
+ 
+ 
+Step 2: Effect HasCreditCardNo removed.
+ 
+ 
+ 
+ 
+ 
+The DMREG Procedure
+ 
+Newton-Raphson Ridge Optimization
+ 
+Without Parameter Scaling
+ 
+Parameter Estimates               6
+ 
+                                             Optimization Start
+ 
+Active Constraints                                  0  Objective Function                       2720.3428425
+Max Abs Gradient Element                  337.2955601
+ 
+ 
+                                                                                                        Ratio
+                                                                                                      Between
+                                                                                                       Actual
+                                                                 Objective     Max Abs                    and
+                     Function         Active        Objective     Function    Gradient              Predicted
+Iter     Restarts       Calls    Constraints         Function       Change     Element     Ridge       Change
+ 
+   1            0           2              0             2398        321.9       164.7         0        0.964
+   2            0           3              0             2379      19.6662     10.0202         0        1.048
+   3            0           4              0             2379       0.1519      0.1078         0        1.008
+   4            0           5              0             2379     0.000024    0.000017         0        1.000
+ 
+                                            Optimization Results
+ 
+Iterations                                          4  Function Calls                                      7
+Hessian Calls                                       5  Active Constraints                                  0
+Objective Function                       2378.5897891  Max Abs Gradient Element                 0.0000168841
+Ridge                                               0  Actual Over Pred Change                  1.0001084556
+ 
+Convergence criterion (GCONV=1E-6) satisfied.
+ 
+ 
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+ 
+   5440.686        4757.180       683.5061        5         <.0001
+ 
+ 
+              Type 3 Analysis of Effects
+ 
+                                     Wald
+Effect                   DF    Chi-Square    Pr > ChiSq
+ 
+Age_Zscore                1      424.3903        <.0001
+CountrySpain              1       17.1284        <.0001
+GenderFemale              1       59.2535        <.0001
+IsActiveMemberNo          1      190.3406        <.0001
+NumOfProducts             1        6.0710        0.0137
+ 
+ 
+                                      Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard          Wald                  Standardized
+Parameter              Churned    DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+ 
+Intercept              Yes         1     -2.0490      0.1190        296.70        <.0001                       0.129
+Age_Zscore             Yes         1      0.7459      0.0362        424.39        <.0001          0.4105       2.108
+CountrySpain           Yes         1     -0.3659      0.0884         17.13        <.0001         -0.0876       0.694
+GenderFemale           Yes         1      0.5623      0.0730         59.25        <.0001          0.1544       1.755
+IsActiveMemberNo       Yes         1      1.0667      0.0773        190.34        <.0001          0.2939       2.906
+NumOfProducts          Yes         1     -0.1518      0.0616          6.07        0.0137         -0.0487       0.859
+ 
+ 
+             Odds Ratio Estimates
+ 
+                                          Point
+Effect                      Churned    Estimate
+ 
+Age_Zscore                  Yes           2.108
+CountrySpain                Yes           0.694
+GenderFemale                Yes           1.755
+IsActiveMemberNo            Yes           2.906
+NumOfProducts               Yes           0.859
+ 
+ 
+NOTE: No (additional) effects met the 0.05 significance level for removal from the model.
+ 
+ 
+                              Summary of Backward Elimination
+ 
+            Effect                         Number          Wald                  Validation
+    Step    Removed                  DF        In    Chi-Square    Pr > ChiSq    Error Rate
+ 
+       1    EstimatedSal_Zscore       1         6        0.0021        0.9632        2025.5
+       2    HasCreditCardNo           1         5        0.1607        0.6885        2025.7
+ 
+ 
+The selected model, based on the error rate for the validation data, is the model trained in Step 1. It consists of the following effects:
+ 
+Intercept  Age_Zscore  CountrySpain  GenderFemale  HasCreditCardNo  IsActiveMemberNo  NumOfProducts
+ 
+ 
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+ 
+   5440.686        4757.019       683.6664        6         <.0001
+ 
+ 
+              Type 3 Analysis of Effects
+ 
+                                     Wald
+Effect                   DF    Chi-Square    Pr > ChiSq
+ 
+Age_Zscore                1      424.5059        <.0001
+CountrySpain              1       17.1818        <.0001
+GenderFemale              1       59.2650        <.0001
+HasCreditCardNo           1        0.1607        0.6885
+IsActiveMemberNo          1      190.4315        <.0001
+NumOfProducts             1        6.0459        0.0139
+ 
+ 
+                                      Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard          Wald                  Standardized
+Parameter              Churned    DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+ 
+Intercept              Yes         1     -2.0589      0.1215        287.02        <.0001                       0.128
+Age_Zscore             Yes         1      0.7461      0.0362        424.51        <.0001          0.4106       2.109
+CountrySpain           Yes         1     -0.3666      0.0884         17.18        <.0001         -0.0877       0.693
+GenderFemale           Yes         1      0.5624      0.0730         59.26        <.0001          0.1544       1.755
+HasCreditCardNo        Yes         1      0.0321      0.0802          0.16        0.6885         0.00803       1.033
+IsActiveMemberNo       Yes         1      1.0670      0.0773        190.43        <.0001          0.2940       2.907
+NumOfProducts          Yes         1     -0.1515      0.0616          6.05        0.0139         -0.0486       0.859
+ 
+ 
+             Odds Ratio Estimates
+ 
+                                          Point
+Effect                      Churned    Estimate
+ 
+Age_Zscore                  Yes           2.109
+CountrySpain                Yes           0.693
+GenderFemale                Yes           1.755
+HasCreditCardNo             Yes           1.033
+IsActiveMemberNo            Yes           2.907
+NumOfProducts               Yes           0.859
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Fit Statistics
+ 
+Target=Churned Target Label=' '
+ 
+   Fit
+Statistics    Statistics Label                     Train    Validation       Test
+ 
+ _AIC_        Akaike's Information Criterion     4771.02          .           .
+ _ASE_        Average Squared Error                 0.14         0.14        0.14
+ _AVERR_      Average Error Function                0.44         0.44        0.44
+ _DFE_        Degrees of Freedom for Error       5376.00          .           .
+ _DFM_        Model Degrees of Freedom              7.00          .           .
+ _DFT_        Total Degrees of Freedom           5383.00          .           .
+ _DIV_        Divisor for ASE                   10766.00      4616.00     4618.00
+ _ERR_        Error Function                     4757.02      2025.53     2032.45
+ _FPE_        Final Prediction Error                0.14          .           .
+ _MAX_        Maximum Absolute Error                0.98         0.98        0.97
+ _MSE_        Mean Square Error                     0.14         0.14        0.14
+ _NOBS_       Sum of Frequencies                 5383.00      2308.00     2309.00
+ _NW_         Number of Estimate Weights            7.00          .           .
+ _RASE_       Root Average Sum of Squares           0.37         0.37        0.37
+ _RFPE_       Root Final Prediction Error           0.37          .           .
+ _RMSE_       Root Mean Squared Error               0.37         0.37        0.37
+ _SBC_        Schwarz's Bayesian Criterion       4817.16          .           .
+ _SSE_        Sum of Squared Errors              1506.85       640.56      647.64
+ _SUMW_       Sum of Case Weights Times Freq    10766.00      4616.00     4618.00
+ _MISC_       Misclassification Rate                0.19         0.19        0.19
+ 
+ 
+ 
+ 
+Classification Table
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+ NO         NO         82.0126       97.5274        4181        77.6704
+ YES        NO         17.9874       83.6679         917        17.0351
+ NO         YES        37.1930        2.4726         106         1.9692
+ YES        YES        62.8070       16.3321         179         3.3253
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+ NO         NO         82.0724       97.3885        1790        77.5563
+ YES        NO         17.9276       83.1915         391        16.9411
+ NO         YES        37.7953        2.6115          48         2.0797
+ YES        YES        62.2047       16.8085          79         3.4229
+ 
+ 
+ 
+ 
+Event Classification Table
+ 
+Data Role=TRAIN Target=Churned Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   917        4181         106         179
+ 
+ 
+Data Role=VALIDATE Target=Churned Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   391        1790         48          79
+ 
+ 
+ 
+ 
+Assessment Score Rankings
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    213.790   3.13790     3.13790     63.8889     63.8889         270         0.60629
+  10    169.950   2.25947     2.69950     46.0037     54.9629         269         0.45698
+  15    143.447   1.90343     2.43447     38.7546     49.5668         269         0.38361
+  20    124.065   1.65847     2.24065     33.7670     45.6206         269         0.33139
+  25    108.477   1.46067     2.08477     29.7398     42.4468         269         0.29331
+  30     92.202   1.10767     1.92202     22.5527     39.1331         269         0.26047
+  35     83.067   1.28427     1.83067     26.1481     37.2732         270         0.23389
+  40     70.215   0.80154     1.70215     16.3197     34.6565         269         0.21115
+  45     60.338   0.81250     1.60338     16.5428     32.6455         269         0.19082
+  50     52.546   0.82355     1.52546     16.7678     31.0589         269         0.17270
+  55     46.051   0.81057     1.46051     16.5036     29.7366         269         0.15587
+  60     40.350   0.77598     1.40350     15.7993     28.5759         269         0.13966
+  65     34.282   0.61414     1.34282     12.5042     27.3403         269         0.12378
+  70     27.707   0.42500     1.27707      8.6532     26.0016         270         0.10921
+  75     22.605   0.51123     1.22605     10.4089     24.9629         269         0.09618
+  80     17.086   0.34234     1.17086      6.9703     23.8391         269         0.08423
+  85     12.738   0.43135     1.12738      8.7825     22.9540         269         0.07334
+  90      8.367   0.34006     1.08367      6.9238     22.0640         269         0.06231
+  95      3.916   0.23736     1.03916      4.8327     21.1576         269         0.05068
+ 100      0.000   0.25562     1.00000      5.2045     20.3604         269         0.03496
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    204.798   3.04798     3.04798     62.0690     62.0690         116         0.62337
+  10    197.614   2.90368     2.97614     59.1304     60.6061         115         0.45394
+  15    158.976   1.82032     2.58976     37.0690     52.7378         116         0.37697
+  20    129.588   1.40914     2.29588     28.6957     46.7532         115         0.33063
+  25    113.617   1.49454     2.13617     30.4348     43.5009         115         0.29573
+  30     96.992   1.14299     1.96992     23.2759     40.1154         116         0.26025
+  35     82.933   0.98213     1.82933     20.0000     37.2525         115         0.23301
+  40     72.723   1.01599     1.72723     20.6897     35.1732         116         0.21211
+  45     60.222   0.59782     1.60222     12.1739     32.6275         115         0.19080
+  50     51.489   0.72592     1.51489     14.7826     30.8492         115         0.17175
+  55     44.535   0.75353     1.44535     15.3448     29.4331         116         0.15388
+  60     40.051   0.90527     1.40051     18.4348     28.5199         115         0.13644
+  65     34.135   0.63500     1.34135     12.9310     27.3151         116         0.12271
+  70     28.843   0.59782     1.28843     12.1739     26.2376         115         0.11032
+  75     24.174   0.58562     1.24174     11.9255     25.2868         115         0.09741
+  80     18.578   0.35076     1.18578      7.1429     24.1473         116         0.08509
+  85     14.131   0.42701     1.14131      8.6957     23.2416         115         0.07415
+  90      8.941   0.21167     1.08941      4.3103     22.1848         116         0.06238
+  95      3.900   0.12810     1.03900      2.6087     21.1582         115         0.05122
+ 100      0.000   0.25621     1.00000      5.2174     20.3640         115         0.03584
+ 
+ 
+ 
+ 
+Assessment Score Distribution
+ 
+Data Role=TRAIN Target Variable=Churned Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.85-0.90         1           0        0.85472         0.0186
+ 0.80-0.85         6           1        0.82658         0.1300
+ 0.75-0.80         4           7        0.76876         0.2043
+ 0.70-0.75        14           4        0.72894         0.3344
+ 0.65-0.70        28          15        0.67208         0.7988
+ 0.60-0.65        25          13        0.61933         0.7059
+ 0.55-0.60        40          21        0.57416         1.1332
+ 0.50-0.55        61          45        0.52435         1.9692
+ 0.45-0.50        60          71        0.47512         2.4336
+ 0.40-0.45        84          95        0.42449         3.3253
+ 0.35-0.40        89         155        0.37415         4.5328
+ 0.30-0.35        95         202        0.32425         5.5174
+ 0.25-0.30       122         337        0.27430         8.5268
+ 0.20-0.25       118         447        0.22319        10.4960
+ 0.15-0.20       133         655        0.17332        14.6387
+ 0.10-0.15       104         758        0.12348        16.0134
+ 0.05-0.10        91        1109        0.07468        22.2924
+ 0.00-0.05        21         352        0.03830         6.9292
+ 
+ 
+Data Role=VALIDATE Target Variable=Churned Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.90-0.95        1           0         0.93450         0.0433
+ 0.85-0.90        0           3         0.88649         0.1300
+ 0.80-0.85        1           1         0.82502         0.0867
+ 0.75-0.80        3           1         0.77237         0.1733
+ 0.70-0.75        7           3         0.71708         0.4333
+ 0.65-0.70       11           4         0.67759         0.6499
+ 0.60-0.65       10          11         0.62467         0.9099
+ 0.55-0.60       20          15         0.57778         1.5165
+ 0.50-0.55       26          10         0.52485         1.5598
+ 0.45-0.50       29          17         0.47310         1.9931
+ 0.40-0.45       35          31         0.42544         2.8596
+ 0.35-0.40       40          67         0.37522         4.6360
+ 0.30-0.35       44         109         0.32546         6.6291
+ 0.25-0.30       45         132         0.27446         7.6690
+ 0.20-0.25       54         199         0.22374        10.9619
+ 0.15-0.20       43         274         0.17352        13.7348
+ 0.10-0.15       57         342         0.12309        17.2877
+ 0.05-0.10       37         473         0.07442        22.0971
+ 0.00-0.05        7         146         0.03870         6.6291

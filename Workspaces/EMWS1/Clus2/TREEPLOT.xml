@@ -1,0 +1,731 @@
+﻿<SASReport version="1.0">
+      <Data>
+            <IQData type="2DEmbedded" name="TreeData">
+                  <EmbeddedData>
+                        <Variables>
+                              <Variable name="Var1" varName="Var1" type="String" />
+                              <Variable name="Var2" varName="Var2" type="String" />
+                              <Variable name="Var3" varName="Var3" type="Numeric" />
+                              <Variable name="Var4" varName="Var4" type="Numeric" />
+                              <Variable name="Var5" varName="Var5" type="Numeric" />
+                              <Variable name="Var6" varName="Var6" type="Numeric" />
+                              <Variable name="Var7" varName="Var7" type="String"  />
+                              <Variable name="Var8" varName="Var8" type="String" />
+                              <Variable name="Var9" varName="Var9" type="Numeric" />
+                        </Variables>
+                        <ValuesList>
+    <Values>
+      <Value>Non-Missing Values</Value>
+      <Value>HasCreditCard</Value>
+      <Value>10</Value>
+      <Value>36</Value>
+      <Value>1</Value>
+      <Value>0</Value>
+      <Value>          5:        36.0%
+ Count:         7963</Value>
+      <Value>Node Id:            1&#10;&#10;1:        15.7%&#10;3:        11.6%&#10;5:        36.0%&#10;4:        28.3%&#10;2:         8.3%&#10; Count:         7963</Value>
+      <Value>7963</Value>
+    </Values>
+    <Values>
+      <Value>NO</Value>
+      <Value>Age</Value>
+      <Value>2.9285445184</Value>
+      <Value>53.6</Value>
+      <Value>2</Value>
+      <Value>1</Value>
+      <Value>          1:        53.6%
+ Count:         2332</Value>
+      <Value>Node Id:            2&#10;&#10;1:        53.6%&#10;3:        39.8%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         6.6%&#10; Count:         2332</Value>
+      <Value>2332</Value>
+    </Values>
+    <Values>
+      <Value>YES Or Missing</Value>
+      <Value>Age</Value>
+      <Value>7.0714554816</Value>
+      <Value>50.91</Value>
+      <Value>3</Value>
+      <Value>1</Value>
+      <Value>          5:        50.9%
+ Count:         5631</Value>
+      <Value>Node Id:            3&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        50.9%&#10;4:        40.0%&#10;2:         9.0%&#10; Count:         5631</Value>
+      <Value>5631</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 53.5 Or Missing</Value>
+      <Value>Balance</Value>
+      <Value>2.7251036042</Value>
+      <Value>57.19</Value>
+      <Value>4</Value>
+      <Value>2</Value>
+      <Value>          1:        57.2%
+ Count:         2170</Value>
+      <Value>Node Id:            4&#10;&#10;1:        57.2%&#10;3:        42.5%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.3%&#10; Count:         2170</Value>
+      <Value>2170</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 53.5</Value>
+      <Value>Age</Value>
+      <Value>0.2034409142</Value>
+      <Value>91.36</Value>
+      <Value>5</Value>
+      <Value>2</Value>
+      <Value>          2:        91.4%
+ Count:          162</Value>
+      <Value>Node Id:            5&#10;&#10;1:         5.6%&#10;3:         3.1%&#10;5:         0.0%&#10;4:         0.0%&#10;2:        91.4%&#10; Count:          162</Value>
+      <Value>162</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 49.5 Or Missing</Value>
+      <Value>Balance</Value>
+      <Value>6.3995981414</Value>
+      <Value>55.59</Value>
+      <Value>6</Value>
+      <Value>3</Value>
+      <Value>          5:        55.6%
+ Count:         5096</Value>
+      <Value>Node Id:            6&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        55.6%&#10;4:        43.8%&#10;2:         0.6%&#10; Count:         5096</Value>
+      <Value>5096</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 49.5</Value>
+      <Value>IsActiveMember</Value>
+      <Value>0.6718573402</Value>
+      <Value>89.16</Value>
+      <Value>7</Value>
+      <Value>3</Value>
+      <Value>          2:        89.2%
+ Count:          535</Value>
+      <Value>Node Id:            7&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         6.4%&#10;4:         4.5%&#10;2:        89.2%&#10; Count:          535</Value>
+      <Value>535</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 40702.27</Value>
+      <Value>NumOfProducts</Value>
+      <Value>1.0435765415</Value>
+      <Value>97.47</Value>
+      <Value>8</Value>
+      <Value>4</Value>
+      <Value>          3:        97.5%
+ Count:          831</Value>
+      <Value>Node Id:            8&#10;&#10;1:         2.2%&#10;3:        97.5%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.4%&#10; Count:          831</Value>
+      <Value>831</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 40702.27 Or Missing</Value>
+      <Value>Age</Value>
+      <Value>1.6815270627</Value>
+      <Value>91.34</Value>
+      <Value>9</Value>
+      <Value>4</Value>
+      <Value>          1:        91.3%
+ Count:         1339</Value>
+      <Value>Node Id:            9&#10;&#10;1:        91.3%&#10;3:         8.4%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.3%&#10; Count:         1339</Value>
+      <Value>1339</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 56.5</Value>
+      <Value>Balance</Value>
+      <Value>0.0276277785</Value>
+      <Value>50</Value>
+      <Value>10</Value>
+      <Value>5</Value>
+      <Value>          2:        50.0%
+ Count:           22</Value>
+      <Value>Node Id:           10&#10;&#10;1:        36.4%&#10;3:        13.6%&#10;5:         0.0%&#10;4:         0.0%&#10;2:        50.0%&#10; Count:           22</Value>
+      <Value>22</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 56.5 Or Missing</Value>
+      <Value></Value>
+      <Value>0.1758131358</Value>
+      <Value>97.86</Value>
+      <Value>11</Value>
+      <Value>5</Value>
+      <Value>          2:        97.9%
+ Count:          140</Value>
+      <Value>Node Id:           11&#10;&#10;1:         0.7%&#10;3:         1.4%&#10;5:         0.0%&#10;4:         0.0%&#10;2:        97.9%&#10; Count:          140</Value>
+      <Value>140</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 22771.615</Value>
+      <Value>Age</Value>
+      <Value>2.5467788522</Value>
+      <Value>99.36</Value>
+      <Value>12</Value>
+      <Value>6</Value>
+      <Value>          4:        99.4%
+ Count:         2028</Value>
+      <Value>Node Id:           12&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.1%&#10;4:        99.4%&#10;2:         0.5%&#10; Count:         2028</Value>
+      <Value>2028</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 22771.615 Or Missing</Value>
+      <Value>NumOfProducts</Value>
+      <Value>3.8528192892</Value>
+      <Value>92.24</Value>
+      <Value>13</Value>
+      <Value>6</Value>
+      <Value>          5:        92.2%
+ Count:         3068</Value>
+      <Value>Node Id:           13&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        92.2%&#10;4:         7.0%&#10;2:         0.7%&#10; Count:         3068</Value>
+      <Value>3068</Value>
+    </Values>
+    <Values>
+      <Value>YES Or Missing</Value>
+      <Value>Age</Value>
+      <Value>0.5927414291</Value>
+      <Value>97.03</Value>
+      <Value>14</Value>
+      <Value>7</Value>
+      <Value>          2:        97.0%
+ Count:          472</Value>
+      <Value>Node Id:           14&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.6%&#10;4:         2.3%&#10;2:        97.0%&#10; Count:          472</Value>
+      <Value>472</Value>
+    </Values>
+    <Values>
+      <Value>NO</Value>
+      <Value>Balance</Value>
+      <Value>0.0791159111</Value>
+      <Value>49.21</Value>
+      <Value>15</Value>
+      <Value>7</Value>
+      <Value>          5:        49.2%
+ Count:           63</Value>
+      <Value>Node Id:           15&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        49.2%&#10;4:        20.6%&#10;2:        30.2%&#10; Count:           63</Value>
+      <Value>63</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 1.5</Value>
+      <Value>Age</Value>
+      <Value>0.1820921763</Value>
+      <Value>85.52</Value>
+      <Value>16</Value>
+      <Value>8</Value>
+      <Value>          3:        85.5%
+ Count:          145</Value>
+      <Value>Node Id:           16&#10;&#10;1:        12.4%&#10;3:        85.5%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         2.1%&#10; Count:          145</Value>
+      <Value>145</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 1.5 Or Missing</Value>
+      <Value></Value>
+      <Value>0.8614843652</Value>
+      <Value>100</Value>
+      <Value>17</Value>
+      <Value>8</Value>
+      <Value>          3:       100.0%
+ Count:          686</Value>
+      <Value>Node Id:           17&#10;&#10;1:         0.0%&#10;3:       100.0%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:          686</Value>
+      <Value>686</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 51.5 Or Missing</Value>
+      <Value>NumOfProducts</Value>
+      <Value>1.6601783248</Value>
+      <Value>91.6</Value>
+      <Value>18</Value>
+      <Value>9</Value>
+      <Value>          1:        91.6%
+ Count:         1322</Value>
+      <Value>Node Id:           18&#10;&#10;1:        91.6%&#10;3:         8.4%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:         1322</Value>
+      <Value>1322</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 51.5</Value>
+      <Value></Value>
+      <Value>0.0213487379</Value>
+      <Value>70.59</Value>
+      <Value>19</Value>
+      <Value>9</Value>
+      <Value>          1:        70.6%
+ Count:           17</Value>
+      <Value>Node Id:           19&#10;&#10;1:        70.6%&#10;3:         5.9%&#10;5:         0.0%&#10;4:         0.0%&#10;2:        23.5%&#10; Count:           17</Value>
+      <Value>17</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 115528.7 Or Missing</Value>
+      <Value></Value>
+      <Value>0.0188371217</Value>
+      <Value>73.33</Value>
+      <Value>20</Value>
+      <Value>10</Value>
+      <Value>          2:        73.3%
+ Count:           15</Value>
+      <Value>Node Id:           20&#10;&#10;1:         6.7%&#10;3:        20.0%&#10;5:         0.0%&#10;4:         0.0%&#10;2:        73.3%&#10; Count:           15</Value>
+      <Value>15</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 115528.7</Value>
+      <Value></Value>
+      <Value>0.0087906568</Value>
+      <Value>100</Value>
+      <Value>21</Value>
+      <Value>10</Value>
+      <Value>          1:       100.0%
+ Count:            7</Value>
+      <Value>Node Id:           21&#10;&#10;1:       100.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:            7</Value>
+      <Value>7</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 45.5 Or Missing</Value>
+      <Value></Value>
+      <Value>2.3898028381</Value>
+      <Value>99.79</Value>
+      <Value>24</Value>
+      <Value>12</Value>
+      <Value>          4:        99.8%
+ Count:         1903</Value>
+      <Value>Node Id:           24&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.2%&#10;4:        99.8%&#10;2:         0.1%&#10; Count:         1903</Value>
+      <Value>1903</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 45.5</Value>
+      <Value>NumOfProducts</Value>
+      <Value>0.1569760141</Value>
+      <Value>92.8</Value>
+      <Value>25</Value>
+      <Value>12</Value>
+      <Value>          4:        92.8%
+ Count:          125</Value>
+      <Value>Node Id:           25&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:        92.8%&#10;2:         7.2%&#10; Count:          125</Value>
+      <Value>125</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 1.5 Or Missing</Value>
+      <Value></Value>
+      <Value>2.4538490519</Value>
+      <Value>99.64</Value>
+      <Value>26</Value>
+      <Value>13</Value>
+      <Value>          5:        99.6%
+ Count:         1954</Value>
+      <Value>Node Id:           26&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        99.6%&#10;4:         0.0%&#10;2:         0.4%&#10; Count:         1954</Value>
+      <Value>1954</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 1.5</Value>
+      <Value>Balance</Value>
+      <Value>1.3989702373</Value>
+      <Value>79.26</Value>
+      <Value>27</Value>
+      <Value>13</Value>
+      <Value>          5:        79.3%
+ Count:         1114</Value>
+      <Value>Node Id:           27&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        79.3%&#10;4:        19.4%&#10;2:         1.3%&#10; Count:         1114</Value>
+      <Value>1114</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 52.5</Value>
+      <Value>Balance</Value>
+      <Value>0.089162376</Value>
+      <Value>80.28</Value>
+      <Value>28</Value>
+      <Value>14</Value>
+      <Value>          2:        80.3%
+ Count:           71</Value>
+      <Value>Node Id:           28&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         4.2%&#10;4:        15.5%&#10;2:        80.3%&#10; Count:           71</Value>
+      <Value>71</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 52.5 Or Missing</Value>
+      <Value></Value>
+      <Value>0.5035790531</Value>
+      <Value>100</Value>
+      <Value>29</Value>
+      <Value>14</Value>
+      <Value>          2:       100.0%
+ Count:          401</Value>
+      <Value>Node Id:           29&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:         0.0%&#10;2:       100.0%&#10; Count:          401</Value>
+      <Value>401</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 24556.875</Value>
+      <Value>Age</Value>
+      <Value>0.0251161623</Value>
+      <Value>65</Value>
+      <Value>30</Value>
+      <Value>15</Value>
+      <Value>          4:        65.0%
+ Count:           20</Value>
+      <Value>Node Id:           30&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:        65.0%&#10;2:        35.0%&#10; Count:           20</Value>
+      <Value>20</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 24556.875 Or Missing</Value>
+      <Value>Age</Value>
+      <Value>0.0539997488</Value>
+      <Value>72.09</Value>
+      <Value>31</Value>
+      <Value>15</Value>
+      <Value>          5:        72.1%
+ Count:           43</Value>
+      <Value>Node Id:           31&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        72.1%&#10;4:         0.0%&#10;2:        27.9%&#10; Count:           43</Value>
+      <Value>43</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 46.5 Or Missing</Value>
+      <Value>CreditScore</Value>
+      <Value>0.1733015195</Value>
+      <Value>87.68</Value>
+      <Value>32</Value>
+      <Value>16</Value>
+      <Value>          3:        87.7%
+ Count:          138</Value>
+      <Value>Node Id:           32&#10;&#10;1:        12.3%&#10;3:        87.7%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:          138</Value>
+      <Value>138</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 46.5</Value>
+      <Value></Value>
+      <Value>0.0087906568</Value>
+      <Value>42.86</Value>
+      <Value>33</Value>
+      <Value>16</Value>
+      <Value>          3:        42.9%
+ Count:            7</Value>
+      <Value>Node Id:           33&#10;&#10;1:        14.3%&#10;3:        42.9%&#10;5:         0.0%&#10;4:         0.0%&#10;2:        42.9%&#10; Count:            7</Value>
+      <Value>7</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 1.5 Or Missing</Value>
+      <Value></Value>
+      <Value>1.059902047</Value>
+      <Value>100</Value>
+      <Value>34</Value>
+      <Value>18</Value>
+      <Value>          1:       100.0%
+ Count:          844</Value>
+      <Value>Node Id:           34&#10;&#10;1:       100.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:          844</Value>
+      <Value>844</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 1.5</Value>
+      <Value>Balance</Value>
+      <Value>0.6002762778</Value>
+      <Value>76.78</Value>
+      <Value>35</Value>
+      <Value>18</Value>
+      <Value>          1:        76.8%
+ Count:          478</Value>
+      <Value>Node Id:           35&#10;&#10;1:        76.8%&#10;3:        23.2%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:          478</Value>
+      <Value>478</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 1.5</Value>
+      <Value>IsActiveMember</Value>
+      <Value>0.0238603541</Value>
+      <Value>52.63</Value>
+      <Value>38</Value>
+      <Value>25</Value>
+      <Value>          4:        52.6%
+ Count:           19</Value>
+      <Value>Node Id:           38&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:        52.6%&#10;2:        47.4%&#10; Count:           19</Value>
+      <Value>19</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 1.5 Or Missing</Value>
+      <Value></Value>
+      <Value>0.1331156599</Value>
+      <Value>100</Value>
+      <Value>39</Value>
+      <Value>25</Value>
+      <Value>          4:       100.0%
+ Count:          106</Value>
+      <Value>Node Id:           39&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:       100.0%&#10;2:         0.0%&#10; Count:          106</Value>
+      <Value>106</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 104499.045</Value>
+      <Value>Age</Value>
+      <Value>0.4181841015</Value>
+      <Value>55.56</Value>
+      <Value>42</Value>
+      <Value>27</Value>
+      <Value>          4:        55.6%
+ Count:          333</Value>
+      <Value>Node Id:           42&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        42.3%&#10;4:        55.6%&#10;2:         2.1%&#10; Count:          333</Value>
+      <Value>333</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 104499.045 Or Missing</Value>
+      <Value></Value>
+      <Value>0.9807861359</Value>
+      <Value>95.01</Value>
+      <Value>43</Value>
+      <Value>27</Value>
+      <Value>          5:        95.0%
+ Count:          781</Value>
+      <Value>Node Id:           43&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        95.0%&#10;4:         4.0%&#10;2:         1.0%&#10; Count:          781</Value>
+      <Value>781</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 20342.96</Value>
+      <Value></Value>
+      <Value>0.0251161623</Value>
+      <Value>55</Value>
+      <Value>44</Value>
+      <Value>28</Value>
+      <Value>          4:        55.0%
+ Count:           20</Value>
+      <Value>Node Id:           44&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:        55.0%&#10;2:        45.0%&#10; Count:           20</Value>
+      <Value>20</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 20342.96 Or Missing</Value>
+      <Value></Value>
+      <Value>0.0640462137</Value>
+      <Value>94.12</Value>
+      <Value>45</Value>
+      <Value>28</Value>
+      <Value>          2:        94.1%
+ Count:           51</Value>
+      <Value>Node Id:           45&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         5.9%&#10;4:         0.0%&#10;2:        94.1%&#10; Count:           51</Value>
+      <Value>51</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 54 Or Missing</Value>
+      <Value></Value>
+      <Value>0.0138138892</Value>
+      <Value>100</Value>
+      <Value>46</Value>
+      <Value>30</Value>
+      <Value>          4:       100.0%
+ Count:           11</Value>
+      <Value>Node Id:           46&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:       100.0%&#10;2:         0.0%&#10; Count:           11</Value>
+      <Value>11</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 54</Value>
+      <Value></Value>
+      <Value>0.011302273</Value>
+      <Value>77.78</Value>
+      <Value>47</Value>
+      <Value>30</Value>
+      <Value>          2:        77.8%
+ Count:            9</Value>
+      <Value>Node Id:           47&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:        22.2%&#10;2:        77.8%&#10; Count:            9</Value>
+      <Value>9</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 55.5 Or Missing</Value>
+      <Value></Value>
+      <Value>0.0401858596</Value>
+      <Value>93.75</Value>
+      <Value>48</Value>
+      <Value>31</Value>
+      <Value>          5:        93.8%
+ Count:           32</Value>
+      <Value>Node Id:           48&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        93.8%&#10;4:         0.0%&#10;2:         6.3%&#10; Count:           32</Value>
+      <Value>32</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 55.5</Value>
+      <Value></Value>
+      <Value>0.0138138892</Value>
+      <Value>90.91</Value>
+      <Value>49</Value>
+      <Value>31</Value>
+      <Value>          2:        90.9%
+ Count:           11</Value>
+      <Value>Node Id:           49&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         9.1%&#10;4:         0.0%&#10;2:        90.9%&#10; Count:           11</Value>
+      <Value>11</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 774 Or Missing</Value>
+      <Value></Value>
+      <Value>0.1532085897</Value>
+      <Value>95.08</Value>
+      <Value>50</Value>
+      <Value>32</Value>
+      <Value>          3:        95.1%
+ Count:          122</Value>
+      <Value>Node Id:           50&#10;&#10;1:         4.9%&#10;3:        95.1%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:          122</Value>
+      <Value>122</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 774</Value>
+      <Value></Value>
+      <Value>0.0200929298</Value>
+      <Value>68.75</Value>
+      <Value>51</Value>
+      <Value>32</Value>
+      <Value>          1:        68.8%
+ Count:           16</Value>
+      <Value>Node Id:           51&#10;&#10;1:        68.8%&#10;3:        31.3%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:           16</Value>
+      <Value>16</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 87802.34</Value>
+      <Value></Value>
+      <Value>0.1017204571</Value>
+      <Value>71.6</Value>
+      <Value>52</Value>
+      <Value>35</Value>
+      <Value>          3:        71.6%
+ Count:           81</Value>
+      <Value>Node Id:           52&#10;&#10;1:        28.4%&#10;3:        71.6%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:           81</Value>
+      <Value>81</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 87802.34 Or Missing</Value>
+      <Value></Value>
+      <Value>0.4985558207</Value>
+      <Value>86.65</Value>
+      <Value>53</Value>
+      <Value>35</Value>
+      <Value>          1:        86.6%
+ Count:          397</Value>
+      <Value>Node Id:           53&#10;&#10;1:        86.6%&#10;3:        13.4%&#10;5:         0.0%&#10;4:         0.0%&#10;2:         0.0%&#10; Count:          397</Value>
+      <Value>397</Value>
+    </Values>
+    <Values>
+      <Value>NO</Value>
+      <Value></Value>
+      <Value>0.011302273</Value>
+      <Value>100</Value>
+      <Value>56</Value>
+      <Value>38</Value>
+      <Value>          4:       100.0%
+ Count:            9</Value>
+      <Value>Node Id:           56&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:       100.0%&#10;2:         0.0%&#10; Count:            9</Value>
+      <Value>9</Value>
+    </Values>
+    <Values>
+      <Value>YES Or Missing</Value>
+      <Value></Value>
+      <Value>0.0125580811</Value>
+      <Value>90</Value>
+      <Value>57</Value>
+      <Value>38</Value>
+      <Value>          2:        90.0%
+ Count:           10</Value>
+      <Value>Node Id:           57&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:         0.0%&#10;4:        10.0%&#10;2:        90.0%&#10; Count:           10</Value>
+      <Value>10</Value>
+    </Values>
+    <Values>
+      <Value>&lt; 45.5 Or Missing</Value>
+      <Value></Value>
+      <Value>0.3993469798</Value>
+      <Value>57.23</Value>
+      <Value>60</Value>
+      <Value>42</Value>
+      <Value>          4:        57.2%
+ Count:          318</Value>
+      <Value>Node Id:           60&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        42.8%&#10;4:        57.2%&#10;2:         0.0%&#10; Count:          318</Value>
+      <Value>318</Value>
+    </Values>
+    <Values>
+      <Value>&gt;= 45.5</Value>
+      <Value></Value>
+      <Value>0.0188371217</Value>
+      <Value>46.67</Value>
+      <Value>61</Value>
+      <Value>42</Value>
+      <Value>          2:        46.7%
+ Count:           15</Value>
+      <Value>Node Id:           61&#10;&#10;1:         0.0%&#10;3:         0.0%&#10;5:        33.3%&#10;4:        20.0%&#10;2:        46.7%&#10; Count:           15</Value>
+      <Value>15</Value>
+    </Values>
+                        </ValuesList>
+                  </EmbeddedData>
+            </IQData>
+      </Data>
+
+      <View>
+            <Section>
+                  <Body>
+                        <Graph name="DecisionTree" >
+                              <ChartDataList>
+                                    <ChartData name="DTreeData" data="TreeData" >
+                                          <Roles>
+                                                <Role type="AboveText"   variable="Var1" > </Role>
+                                                <Role type="BelowText"   variable="Var2" > </Role>
+                                                <Role type="LinkWidth"   variable="Var3" > </Role>
+                                                <Role type="NodeColor"   variable="Var4" > </Role>
+                                                <Role type="ID"      variable="Var5" > </Role>
+                                                <Role type="Parent"    variable="Var6" > </Role>
+                                                <Role type="NodeText"    variable="Var7" > </Role>
+                                                <Role type="ToolTipText" variable="Var8" > </Role>
+                                                <Role type="NodeSize"    variable="Var9" > </Role>
+                                          </Roles>
+                                    </ChartData>
+                              </ChartDataList>
+                              <ColorMappers>
+                                    <ColorRamp  name="NodeColorRamp"
+                                                      underFlowColor="Red"
+                                                      overflowColor="Green"
+                                                      low="0"
+                                                      high="1000"
+                                                      beginColor="CX0000FF"
+                                                      endColor="CXFFFFFF" >
+                                    </ColorRamp>
+                                    <ColorRamp  name="LinkColorRamp"
+                                                      low="1"
+                                                      high="10"
+                                                      beginColor="CX000000"
+                                                      endColor="CX000000" >
+                                    </ColorRamp>
+                              </ColorMappers>
+                              <ChartAreas>
+                                    <ChartArea>
+                                          <Charts>
+                                          <DecisionTree name="DTree"
+                                                  chartData="DTreeData"
+                                                  selectionColor="CX00FF00"
+                                                  orientation="Vertical"
+                                                  emptyNodes="False"
+                                                  legendVisible="False"
+                                                  titleAnchor="Root"
+                                                  footnoteAnchor="Chart"
+                                                  displayDepth="4" >
+
+                                    <SplitVarList>
+                                          <SplitVar name="SPLIT VAR A" type="DISCRETE" missingBranch="3" values="1,A:1,B:2,C:3,D"/>
+                                          <SplitVar name="SPLIT VAR B" type="CONTINUOUS" breaks="10:50:100" />
+                                    </SplitVarList>
+
+                                    <IciclePlot isVisible="True"></IciclePlot>
+
+                                    <NodeStyle colorMapper="NodeColorRamp"
+                                                   outlineColor="Black"
+                                                   outlineWidth="1">
+                                          <NodeText textColor="Black"
+                                                        textFont="SansSerif"
+                                                        textSize="12 pt"
+                                                        textFlags="Bold" />
+                                    </NodeStyle>
+                                    <FlaggedNodeStyle color="CXFF8844"
+                                                              outlineColor="Black"
+                                                              outlineWidth="3" >
+                                          <FlaggedNodeText textColor="Black"
+                                                        textFont="SansSerif"
+                                                        textSize="12 pt"
+                                                        textFlags="Italic" />
+                                    </FlaggedNodeStyle>
+                                    <LinkStyle textVisible="True"
+                                                   colorMapper="LinkColorRamp"
+                                                   linkStyle="Manhattan"
+                                                   staticWidth="3" >
+                                          <LinkText textColor="Black"
+                                                        textFont="SansSerif"
+                                                        textSize="10 pt"
+                                                        textFlags="Bold" />
+                                    </LinkStyle>
+                                    <GraphStyle numBars="3"
+                                                      numStacks="3"
+                                                      axisMin="0"
+                                                      axisMax="20"
+                                                      orientation="Vertical"
+                                                      visible="True" >
+                                    </GraphStyle>
+                              </DecisionTree>
+                              </Charts>
+                        </ChartArea>
+                  </ChartAreas>
+            </Graph>
+      </Body>
+      </Section>
+      </View>
+
+  </SASReport>
+

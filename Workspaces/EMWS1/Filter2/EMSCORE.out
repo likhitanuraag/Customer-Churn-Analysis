@@ -1,0 +1,20 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+Excluded Class Values
+(maximum 500 observations printed)
+
+                                    Train     Train              Filter
+Variable     Role     Level         Count    Percent    Label    Method
+
+Churned     TARGET     Yes           2037     20.37              MANUAL
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Number Of Observations
+
+Data
+Role     Filtered    Excluded     DATA
+
+TRAIN      7963        2037      10000

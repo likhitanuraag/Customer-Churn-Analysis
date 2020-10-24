@@ -1,0 +1,68 @@
+*------------------------------------------------------------*
+User:                20161277
+Date:                October 24, 2020
+Time:                18:48:40
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+INPUT      INTERVAL          6
+INPUT      NOMINAL           4
+TARGET     NOMINAL           1
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+Filter Limits for Interval Variables
+(maximum 500 observations printed)
+ 
+                                                      Keep
+                                           Filter    Missing
+Variable    Role     Minimum    Maximum    Method    Values     Label
+ 
+ Tenure     INPUT      -0.5      8.543     MANUAL       Y
+ 
+ 
+ 
+ 
+Number Of Observations
+ 
+Data
+Role     Filtered    Excluded    DATA
+ 
+TRAIN      6803        1160      7963
+ 
+ 
+ 
+Statistics for Original and FILTERED Data
+(maximum 500 observations printed)
+ 
+Data Role=TRAIN Variable=Tenure
+ 
+Statistics            Original    Filtered
+ 
+Non Missing            7963.00     6803.00
+Missing                   0.00        0.00
+Minimum                   0.00        0.00
+Maximum                  10.00        8.00
+Mean                      5.03        4.30
+Standard Deviation        2.88        2.45
+Skewness                  0.00       -0.03
+Kurtosis                 -1.16       -1.20
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*

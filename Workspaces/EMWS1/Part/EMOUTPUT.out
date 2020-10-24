@@ -1,0 +1,83 @@
+*------------------------------------------------------------*
+User:                20161277
+Date:                October 23, 2020
+Time:                19:46:42
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+Role         Level         Count
+ 
+ID         INTERVAL          1
+INPUT      INTERVAL          6
+INPUT      NOMINAL           4
+TARGET     NOMINAL           1
+ 
+ 
+ 
+ 
+Partition Summary
+ 
+                                     Number of
+Type             Data Set          Observations
+ 
+DATA        EMWS1.Trans_TRAIN          10000
+TRAIN       EMWS1.Part_TRAIN            5383
+VALIDATE    EMWS1.Part_VALIDATE         2308
+TEST        EMWS1.Part_TEST             2309
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Summary Statistics for Class Targets
+ 
+Data=DATA
+ 
+            Numeric    Formatted    Frequency
+Variable     Value       Value        Count      Percent    Label
+ 
+Churned        .          No           7963       79.63
+Churned        .          Yes          2037       20.37
+ 
+ 
+Data=TEST
+ 
+            Numeric    Formatted    Frequency
+Variable     Value       Value        Count      Percent    Label
+ 
+Churned        .          No           1838      79.6016
+Churned        .          Yes           471      20.3984
+ 
+ 
+Data=TRAIN
+ 
+            Numeric    Formatted    Frequency
+Variable     Value       Value        Count      Percent    Label
+ 
+Churned        .          No           4287      79.6396
+Churned        .          Yes          1096      20.3604
+ 
+ 
+Data=VALIDATE
+ 
+            Numeric    Formatted    Frequency
+Variable     Value       Value        Count      Percent    Label
+ 
+Churned        .          No           1838      79.6360
+Churned        .          Yes           470      20.3640

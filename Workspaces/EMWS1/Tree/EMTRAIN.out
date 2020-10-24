@@ -1,0 +1,38 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+Role         Level         Count
+
+ID         INTERVAL          2    
+INPUT      INTERVAL          7    
+TARGET     NOMINAL           1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Model Events
+
+                                   Number
+                    Measurement      of
+Target     Event       Level       Levels      Order       Label
+
+Churned     YES       NOMINAL         2      Descending         
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Predicted and decision variables
+
+Type         Variable        Label
+
+TARGET       Churned                               
+PREDICTED    P_ChurnedYes    Predicted: Churned=Yes
+RESIDUAL     R_ChurnedYes    Residual: Churned=Yes 
+PREDICTED    P_ChurnedNo     Predicted: Churned=No 
+RESIDUAL     R_ChurnedNo     Residual: Churned=No  
+FROM         F_Churned       From: Churned         
+INTO         I_Churned       Into: Churned         

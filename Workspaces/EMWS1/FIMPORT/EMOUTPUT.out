@@ -1,0 +1,92 @@
+*------------------------------------------------------------*
+User:                20161277
+Date:                October 22, 2020
+Time:                02:00:08
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+Role         Level         Count
+ 
+ID         INTERVAL          1
+INPUT      INTERVAL          6
+INPUT      NOMINAL           4
+TARGET     NOMINAL           1
+ 
+ 
+ 
+ 
+ 
+The CONTENTS Procedure
+ 
+Data Set Name        EMWS1.FIMPORT_DATA            Observations          10000
+Member Type          DATA                          Variables             12
+Engine               V9                            Indexes               0
+Created              10/22/2020 02:00:06           Observation Length    80
+Last Modified        10/22/2020 02:00:06           Deleted Observations  0
+Protection                                         Compressed            NO
+Data Set Type                                      Sorted                NO
+Label
+Data Representation  WINDOWS_64
+Encoding             wlatin1  Western (Windows)
+ 
+ 
+                                      Engine/Host Dependent Information
+ 
+Data Set Page Size          65536
+Number of Data Set Pages    13
+First Data Page             1
+Max Obs per Page            817
+Obs in First Data Page      789
+Number of Data Set Repairs  0
+ExtendObsCounter            YES
+Filename                    C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\fimport_data.sas7bdat
+Release Created             9.0401M3
+Host Created                X64_DS08R2
+ 
+ 
+        Alphabetic List of Variables and Attributes
+ 
+ #    Variable           Type    Len    Format     Informat
+ 
+ 5    Age                Num       8    BEST12.    BEST32.
+ 7    Balance            Num       8    BEST12.    BEST32.
+12    Churned            Char      3    $3.        $3.
+ 3    Country            Char      7    $7.        $7.
+ 2    CreditScore        Num       8    BEST12.    BEST32.
+ 1    CustomerID         Num       8    BEST12.    BEST32.
+11    EstimatedSalary    Num       8    BEST12.    BEST32.
+ 4    Gender             Char      6    $6.        $6.
+ 9    HasCreditCard      Char      3    $3.        $3.
+10    IsActiveMember     Char      3    $3.        $3.
+ 8    NumOfProducts      Num       8    BEST12.    BEST32.
+ 6    Tenure             Num       8    BEST12.    BEST32.
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Exported Attributes for TRAIN Port
+ 
+          Measurement    Frequency
+Role         Level         Count
+ 
+ID         INTERVAL          1
+INPUT      INTERVAL          6
+INPUT      NOMINAL           4
+TARGET     NOMINAL           1

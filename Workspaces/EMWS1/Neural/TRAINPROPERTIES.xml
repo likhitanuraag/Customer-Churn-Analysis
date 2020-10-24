@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  UseEstimates="N" NetworkArchitecture="MLP" DirectConnection="N" Hidden="8" Prelim="Y"
+ PreliminaryRuns="5" PrelimMaxiter="10" PrelimMaxTime="1 HOUR" Maxiter="50" Maxtime="4 HOURS"
+ TrainingTechnique="DEFAULT" ConvDefaults="Y" AbsConvValue="-1.34078E154" AbsFValue="0"
+ AbsFTime="1" AbsGValue="0.00001" AbsGTime="1" AbsXValue="1E-8" AbsXTime="1" FConvValue="0"
+ FConvTime="1" GConvValue="1E-6" GConvTime="1" ModelSelectionCriterion="AVERAGE ERROR"
+ SuppressOutput="N" Residuals="Y" Standardizations="N" HiddenUnits="N" TrainCode=""
+ PrelimOutest="" Outest="" Outfit="" InitialDs="" CodefileRes="" CodefileNoRes=""
+ AddHidden="Y" HiddenCombFunction="DEFAULT" HiddenActivation="DEFAULT" HiddenBias="Y"
+ TargetCombFunction="DEFAULT" TargetActivation="DEFAULT" TargetError="DEFAULT" TargetBias="Y"
+ InitialSeed="12345" RandDist="NORMAL" RandScale="0.1" RandLoc="0" InputStandardization="STD"
+ WeightDecay="0" Accelerate="1.2" Decelerate="0.5" Learn="0.1" MaxLearn="50" MinLearn="0.00001"
+ Momentum="0" MaxMomentum="1.75" Tilt="0" ForceRun="N" RunAction="Train" Component="NeuralNetwork"
+ RawCreateTime="1918989897.1" CreateTime="22OCT2020:12:44:57" RunId="3b8732e4-5ab3-4e48-a791-cda874d37f28"
+ RawLastTimeRun="1919101615.4" RawRunTime="15.139999866" LastTimeRun="23OCT2020:19:46:55"
+ RunTime="0 Hr. 0 Min. 15.14 Sec.">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES/>
+</_ROOT_>

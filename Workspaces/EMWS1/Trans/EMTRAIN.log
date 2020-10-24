@@ -1,0 +1,163 @@
+*------------------------------------------------------------*
+* Training Log
+Date:                October 23, 2020
+Time:                19:46:32
+*------------------------------------------------------------*
+10865  proc freq data=EMWS1.Trans_VariableSet noprint;
+10866  table ROLE*LEVEL/out=WORK.TransMETA;
+10867  run;
+
+NOTE: There were 11 observations read from the data set EMWS1.TRANS_VARIABLESET.
+NOTE: The data set WORK.TRANSMETA has 3 observations and 4 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.03 seconds
+      
+
+10868  proc print data=WORK.TransMETA label noobs;
+10869  var ROLE LEVEL COUNT;
+10870  label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+10871  title9 ' ';
+10872  title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+10873  run;
+
+NOTE: There were 3 observations read from the data set WORK.TRANSMETA.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+10874  title10;
+
+10875  data WORK.M0SKA4EV;
+10876  set WORK.M0SKA4EV;
+10877  if (METHOD='NONE' and ROLE ne 'FREQ') or (role = 'REJECTED' and METHOD = 'DEFAULT') then delete;
+10878  run;
+
+NOTE: There were 11 observations read from the data set WORK.M0SKA4EV.
+NOTE: The data set WORK.M0SKA4EV has 11 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: There were 10000 observations read from the data set EMWS1.FIMPORT2_DATA.
+NOTE: View EMWS1.STAT_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.06 seconds
+      
+NOTE: There were 10000 observations read from the data set EMWS1.FIMPORT2_TRAIN.
+10943  *------------------------------------------------------------*;
+10944  * Trans: Computing Summary Statistics;
+10945  *------------------------------------------------------------*;
+10946  data WORK.M0H5MDB9;
+10947  set WORK.M0H5MDB9;
+10948  if (role = 'REJECTED') then role = 'INPUT';
+10949  run;
+
+NOTE: There were 11 observations read from the data set WORK.M0H5MDB9.
+NOTE: The data set WORK.M0H5MDB9 has 11 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+10950  *------------------------------------------------------------* ;
+10951  * EM: DMDBClass Macro ;
+10952  *------------------------------------------------------------* ;
+10953  %macro DMDBClass;
+10954      Churned(DESC) Country(ASC) Gender(ASC) HasCreditCard(ASC) IsActiveMember(ASC)
+10955  %mend DMDBClass;
+10956  *------------------------------------------------------------* ;
+10957  * EM: DMDBVar Macro ;
+10958  *------------------------------------------------------------* ;
+10959  %macro DMDBVar;
+10960      Age Balance CreditScore EstimatedSalary NumOfProducts Tenure
+10961  %mend DMDBVar;
+10962  *------------------------------------------------------------*;
+10963  * EM: Create DMDB;
+10964  *------------------------------------------------------------*;
+10965  proc dmdb batch data=EMWS1.Stat_TRAIN
+10966  dmdbcat=WORK.EM_DMDB
+10967  classout=WORK.Transclassout
+10968  maxlevel = 513
+10969  ;
+10970  class %DMDBClass;
+10971  var %DMDBVar;
+10972  target
+10973  Churned
+10974  ;
+10975  run;
+
+NOTE: Records processed = 10000   Memory used = 511K.
+NOTE: There were 10000 observations read from the data set EMWS1.FIMPORT2_DATA.
+NOTE: View EMWS1.STAT_TRAIN.VIEW used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.06 seconds
+      
+NOTE: There were 10000 observations read from the data set EMWS1.FIMPORT2_TRAIN.
+NOTE: There were 10000 observations read from the data set EMWS1.STAT_TRAIN.
+NOTE: The data set WORK.TRANSCLASSOUT has 11 observations and 9 variables.
+NOTE: PROCEDURE DMDB used (Total process time):
+      real time           0.10 seconds
+      cpu time            0.07 seconds
+      
+
+10976  quit;
+10977  *--- end code ---*;
+
+10978  data WORK.TransINTERVALMETA;
+10979  set WORK.M0SKA4EV;
+10980  if LEVEL ne 'INTERVAL' then delete;
+10981  run;
+
+NOTE: There were 11 observations read from the data set WORK.M0SKA4EV.
+NOTE: The data set WORK.TRANSINTERVALMETA has 6 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+10982  *------------------------------------------------------------*;
+10983  * Trans: Determining Variables to Scale;
+10984  *------------------------------------------------------------*;
+10985  data WORK.M3L5CVD2;
+10986  set WORK.M3L5CVD2;
+10987  where (TYPE="N" and (METHOD in("MAX_NORM", "MAX_CORR", "EQUALIZE", "OP_MAX_NORM", "OP_EQUALIZE"))) or (ROLE eq "FREQ");
+10988  run;
+
+NOTE: There were 0 observations read from the data set WORK.M3L5CVD2.
+      WHERE ((TYPE='N') and METHOD in ('EQUALIZE', 'MAX_CORR', 'MAX_NORM', 'OP_EQUALIZE', 'OP_MAX_NORM')) or (ROLE='FREQ');
+NOTE: The data set WORK.M3L5CVD2 has 0 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: View EMWS1.STAT_TRAIN.VIEW used (Total process time):
+      real time           0.20 seconds
+      cpu time            0.17 seconds
+      
+10991  %exploreSample(DATA=EMWS1.Stat_TRAIN, OUTPUT=EMWS1.Trans_SAMPLE_DATA, METADATA=EMWS1.Stat_CMeta_TRAIN, VARS=, METHOD=FIRSTN, SIZE=DEFAULT, ALPHA=0.01, PVALUE=0.01, SEED=12345);
+NOTE: Fileref X has been deassigned.
+NOTE: EXPLOREOBS EMWS1.Stat_TRAIN : vars= 12 : recl= 78 : max=60000 : def= 6000
+PERFORMANCE  DETAILS
+*------------------------------------------------------------*
+* FirstN/Top sample
+*------------------------------------------------------------*
+
+NOTE: There were 10000 observations read from the data set EMWS1.FIMPORT2_DATA.
+NOTE: View EMWS1.STAT_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+NOTE: There were 10000 observations read from the data set EMWS1.FIMPORT2_TRAIN.
+NOTE: There were 6000 observations read from the data set EMWS1.STAT_TRAIN.
+NOTE: The data set EMWS1.TRANS_SAMPLE_DATA has 6000 observations and 12 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.06 seconds
+      
+
+

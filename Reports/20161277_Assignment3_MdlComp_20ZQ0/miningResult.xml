@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  WorkspaceName="EMWS1" UUID="1eeb790a-485f-4d20-819e-4ddb6fb0708b" EMVersion="14.1"
+ ScoreCodeType="Data Step" MiningFunction="Classification" MiningAlgorithm="NeuralNetwork"
+ MiningAlgorithmNode="Neural" NodeAlgorithm="ModelCompare" NodeId="MdlComp" NodeDescription="Task-2  Model Comparison"
+ Time="24OCT2020:18:52:37" RawLastTimeRun="1919101633.6" LastTimeRun="23OCT2020:19:47:14"
+ Userid="20161277" NTarget="1" NSegment="1">
+<TARGETS >
+<TARGET  Variable="Churned" Level="NOMINAL" Type="C" Format="$3." Order="DESC" NodeId="Neural"
+/>
+</TARGETS>
+<SEGMENTS >
+<SEGMENT  Variable="b_Churned" Level="NOMINAL" Type="N" Format="" Order="DESC" NodeId="MdlComp"
+/>
+</SEGMENTS>
+</_ROOT_>

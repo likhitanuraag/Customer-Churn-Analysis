@@ -1,0 +1,40 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Summary Statistics for Class Targets
+
+Data=DATA
+
+            Numeric    Formatted    Frequency
+Variable     Value       Value        Count      Percent    Label
+
+Churned        .          No           7963       79.63          
+Churned        .          Yes          2037       20.37          
+
+
+Data=TEST
+
+            Numeric    Formatted    Frequency
+Variable     Value       Value        Count      Percent    Label
+
+Churned        .          No           1838      79.6016         
+Churned        .          Yes           471      20.3984         
+
+
+Data=TRAIN
+
+            Numeric    Formatted    Frequency
+Variable     Value       Value        Count      Percent    Label
+
+Churned        .          No           4287      79.6396         
+Churned        .          Yes          1096      20.3604         
+
+
+Data=VALIDATE
+
+            Numeric    Formatted    Frequency
+Variable     Value       Value        Count      Percent    Label
+
+Churned        .          No           1838      79.6360         
+Churned        .          Yes           470      20.3640         

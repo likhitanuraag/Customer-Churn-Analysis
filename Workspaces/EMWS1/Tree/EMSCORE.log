@@ -1,0 +1,1603 @@
+*------------------------------------------------------------*
+* Score Log
+Date:                October 23, 2020
+Time:                19:47:09
+*------------------------------------------------------------*
+16629  %let EMEXCEPTIONSTRING=;
+16630  *------------------------------------------------------------*;
+16631  * SCORE: Tree;
+16632  *------------------------------------------------------------*;
+16633  %let EM_ACTION = SCORE;
+16634  %let syscc = 0;
+16635  %macro main;
+16636  
+16637    %if %upcase(&EM_ACTION) = CREATE %then %do;
+16638      filename temp catalog 'sashelp.emmodl.tree_create.source';
+16639      %include temp;
+16640      filename temp;
+16641  
+16642      %em_tree_create;
+16643    %end;
+16644  
+16645     %else
+16646     %if %upcase(&EM_ACTION) = TRAIN %then %do;
+16647  
+16648         filename temp catalog 'sashelp.emmodl.tree_train.source';
+16649         %include temp;
+16650         filename temp;
+16651         %em_tree_train;
+16652     %end;
+16653  
+16654    %else
+16655    %if %upcase(&EM_ACTION) = SCORE %then %do;
+16656      filename temp catalog 'sashelp.emmodl.tree_score.source';
+16657      %include temp;
+16658      filename temp;
+16659  
+16660      %em_tree_score;
+16661  
+16662    %end;
+16663  
+16664    %else
+16665    %if %upcase(&EM_ACTION) = REPORT %then %do;
+16666  
+16667         filename temp catalog 'sashelp.emmodl.tree_report.source';
+16668         %include temp;
+16669         filename temp;
+16670  
+16671         %em_tree_report;
+16672     %end;
+16673  
+16674    %else
+16675    %if %upcase(&EM_ACTION) = OPENINT %then %do;
+16676  
+16677         filename temp catalog 'sashelp.emmodl.tree_actions.source';
+16678         %include temp;
+16679         filename temp;
+16680         %EM_TREE_OPENTREEVIEWER;
+16681  
+16682     %end;
+16683  
+16684    %else
+16685    %if %upcase(&EM_ACTION) = CLOSEINT %then %do;
+16686  
+16687         filename temp catalog 'sashelp.emmodl.tree_actions.source';
+16688         %include temp;
+16689         filename temp;
+16690         %EM_TREE_CLOSETREEVIEWER;
+16691  
+16692     %end;
+16693  
+16694  
+16695     %doendm:
+16696  %mend main;
+16697  
+16698  %main;
+NOTE: %INCLUDE (level 1) file TEMP is file SASHELP.EMMODL.TREE_SCORE.SOURCE.
+16700 +%macro em_tree_score;
+16702 +   /* determine if multiple targets will be processed */
+16703 +   %let em_tree_multipleTargets=N;
+16704 +   %let em_tree_numTarget=1;
+16705 +   %if "&EM_PROPERTY_USEMULTIPLETARGET" eq "Y" %then %do;
+16706 +      /* determine if there are any ordinal target variables - if so, multiple targets are not supported */
+16707 +      %if &EM_NUM_ORDINAL_TARGET gt 0 %then %do;
+16708 +         %let em_tree_multipleTargets=N;
+16709 +      %end;
+16710 +      %else %do;
+16711 +         /* create macro array of targets  */
+16712 +         data _null_;
+16713 +           set &EM_DATA_VARIABLESET(where=(ROLE='TARGET' AND LEVEL^='ORDINAL')) end=eof;
+16714 +           call symput('em_tree_targetVars'!!strip(put(_N_, BEST.)), strip(Name));
+16715 +           if eof then
+16716 +             call symput('em_tree_numTarget', strip(put(_N_, BEST.)));
+16717 +        run;
+16719 +        %if &em_tree_numTarget gt 1 %then %do;
+16720 +           %let em_tree_multipleTargets=Y;
+16721 +        %end;
+16722 +      %end;
+16723 +   %end;
+16725 +   /* build flow and publish scoring code */
+16726 +   %EM_GETNAME(key=TREEFLOW, type=FILE, extension=sas);
+16727 +   %EM_GETNAME(key=TREEPUBLISH, type=FILE, extension=sas);
+16729 +   filename treeflow "&EM_USER_TREEFLOW";
+16730 +   filename treepub "&EM_USER_TREEPUBLISH";
+16732 +   filename flowref  "&EM_FILE_EMFLOWSCORECODE";
+16733 +   filename pubref   "&EM_FILE_EMPUBLISHSCORECODE";
+16735 +   %em_copyfile(infref=treeflow, outfref=flowref);
+16736 +   %em_copyfile(infref=treepub, outfref=pubref);
+16738 +   filename treeflow;
+16739 +   filename treepub;
+16741 +   /* if priors are used, add code to generate unadjusted residuals in export */
+16742 +   %let useAdjPriors = N;
+16743 +   data _null_;
+16744 +     set &EM_DEC_DECMETA(where=(_TYPE_="DECPRIOR"));
+16745 +     if USE="Y" then call symput('useAdjPriors', 'Y');
+16746 +   run;
+16747 +   %if (("&em_tree_multipleTargets" eq "N") AND ("&useAdjPriors" eq "Y")) %then %do;
+16748 +      filename temp catalog 'sashelp.emutil.em_makeunadjustedresidualvars.source';
+16749 +      %include temp;
+16750 +      filename temp;
+16752 +      %EM_GETNAME(key=adjResidualCode, type=FILE, extension=sas);
+16753 +      filename adjref "&EM_USER_adjResidualCode";
+16754 +      %makeUnadjustedResidualVars(target=%EM_TARGET, decmeta=&EM_DEC_DECMETA, fref=adjref);
+16756 +      %em_copyfile(infref=adjref, outfref=flowref, append=Y);
+16758 +      filename adjref;
+16759 +   %end;
+16761 +   /* LEAF */
+16762 +   %if "&EM_PROPERTY_LEAFID" eq "Y" %then %do;
+16763 +      data _null_;
+16764 +        file flowref mod;
+16765 +        put 'drop _LEAF_;';
+16766 +      run;
+16768 +      data _null_;
+16769 +        file pubref mod;
+16770 +        put 'drop _LEAF_;';
+16771 +      run;
+16773 +   %end;
+16775 +   filename flowref;
+16776 +   filename pubref;
+16778 +   /* em_metachange code */
+16779 +   %if "&EM_PROPERTY_LEAFID" eq "Y" %then %do;
+16780 +     %EM_METACHANGE(name=_NODE_, role=&EM_PROPERTY_NODEROLE, LEVEL=NOMINAL);
+16781 +   %end;
+16783 +   /* variable selection based on importance stat    */
+16784 +   %if "&EM_PROPERTY_VARSELECTION" eq "Y" %then %do;
+16785 +     %EM_GETNAME(key=OUTIMPORT, type=DATA);
+16786 +     %let dsid = %sysfunc(open(&EM_USER_OUTIMPORT(where=(IMPORTANCE<0.05))));
+16787 +     %let varnum = %sysfunc(varnum(&dsid, NAME));
+16788 +     %let obs = %sysfunc(fetch(&dsid));
+16789 +     %do %while(&obs=0);
+16790 +       %let temp = %nrbquote(%sysfunc(getvarc(&dsid, &varnum)));
+16791 +       %let varname = %nrbquote(%sysfunc(tranwrd(&temp,  %str(%"),"")));
+16792 +       %EM_METACHANGE(name=&varname, role=REJECTED);
+16793 +       %let obs = %sysfunc(fetch(&dsid));
+16794 +     %end;
+16795 +     %if &dsid %then %let dsid=%sysfunc(close(&dsid));
+16796 +   %end;
+16798 +   /* set Q_ varaibles to role of ASSESS when in the presense of prior probabilities */
+16799 +   %if %sysfunc(exist(&EM_DEC_DECMETA)) %then %do;
+16800 +    %let tree_pred_vars = ;
+16801 +    %let tree_pred_lvl =;
+16802 +    %let numpred= 0;
+16804 +    data _null_;
+16805 +     set &EM_DEC_DECMETA(where=(_TYPE_="PREDICTED")) end=eof;
+16806 +     call symput('tree_pred_vars'!!strip(put(_N_, BEST.)), strip(VARIABLE));
+16807 +     call symput('tree_pred_lvl'!!strip(put(_N_, BEST.)), strip(LEVEL));
+16808 +     if eof then
+16809 +       call symput('numpred', strip(put(_N_, BEST.)));
+16810 +    run;
+16811 +   %end;
+16813 +   %if &numpred ne 0 %then %do;
+16814 +    %do i=1 %to &numpred;
+16815 +      %let qpred = Q%substr(&&tree_pred_vars&i,2);
+16816 +      %EM_METACHANGE(name=&qpred, role=ASSESS);
+16817 +    %end;
+16818 +   %end;
+16820 +   /* determine if multiple targets will be processed */
+16821 +   %let em_tree_multipleTargets=N;
+16822 +   %let em_tree_numTarget=1;
+16823 +   %if "&EM_PROPERTY_USEMULTIPLETARGET" eq "Y" %then %do;
+16824 +      /* determine if there are any ordinal target variables - if so, multiple targets are not supported */
+16825 +      %if &EM_NUM_ORDINAL_TARGET gt 0 %then %do;
+16826 +         %let em_tree_multipleTargets=N;
+16827 +      %end;
+16828 +      %else %do;
+16829 +        data _null_;
+16830 +          set &EM_DATA_VARIABLESET(where=(ROLE='TARGET' AND LEVEL^='ORDINAL')) end=eof;
+16831 +          if eof then
+16832 +            call symput('em_tree_numTarget', strip(put(_N_, BEST.)));
+16833 +        run;
+16835 +        %if &em_tree_numTarget gt 1 %then %do;
+16836 +           %let em_tree_multipleTargets=Y;
+16837 +        %end;
+16838 +     %end;
+16839 +   %end;
+16841 +   /* need to include this code to do the %em_report for OUTIMPORT here instead of in Report code so _loop data set is created when group processing */
+16842 +   %if "&em_tree_multipleTargets" eq "N" %then %do;
+16844 +      /* variable importance */
+16845 +      %EM_GETNAME(key=OUTIMPORT, type=DATA);
+16846 +      %if %sysfunc(exist(&EM_USER_OUTIMPORT)) eq 1 %then %do;
+16848 +         %let validexist=0;
+16849 +         %if (("&EM_IMPORT_VALIDATE" ne "") AND (%sysfunc(exist(&EM_IMPORT_VALIDATE)) or %sysfunc(exist(&EM_IMPORT_VALIDATE,VIEW)))) %then %do;
+16850 +           %let validexist=1;
+16851 +         %end;
+16853 +         /* determine if vars exists - properties could indicate they are they but freeze=Y would mean the node wasn't retrained */
+16854 +         /* and the columns may not be generated                                                                                 */
+16855 +         %let em_tree_cvexists=;
+16856 +         %let em_tree_surrexists=.;
+16857 +         data _null_;
+16858 +            set &EM_USER_OUTIMPORT (obs=2) end=eof;
+16859 +            if eof then do ;
+16860 +               call symput("em_tree_cvexists" , strip(put(cvimportance,best.))) ;
+16861 +               call symput("em_tree_surrexists", strip(put(nsurrogates, best.)));
+16862 +            end;
+16863 +         run;
+16865 +         data &EM_USER_OUTIMPORT;
+16866 +            set &EM_USER_OUTIMPORT;
+16868 +            /* format columns based on Precison value specified */
+16869 +            format importance 15.&EM_PROPERTY_PRECISION
+16870 +                 %if &validexist %then %do;
+16871 +                   vimportance ratio 15.&EM_PROPERTY_PRECISION
+16872 +                 %end;
+16873 +                 %if "&EM_TREE_CVEXISTS" ne "." %then %do;
+16874 +                   cvimportance vimportance ratio 15.&EM_PROPERTY_PRECISION
+16875 +                 %end;
+16876 +            ;
+16877 +            label  NAME       = "%sysfunc(sasmsg(sashelp.dmine, meta_name_vlabel, noquote))"
+16878 +                 LABEL        = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel, noquote))"
+16879 +                 NRULES       = "%sysfunc(sasmsg(sashelp.dmine, rpt_nrules_vlabel, noquote))"
+16880 +                 IMPORTANCE   = "%sysfunc(sasmsg(sashelp.dmine, rpt_importance_vlabel, noquote))"
+16881 +                 %if "&em_tree_surrexists" ne "" %then %do;
+16882 +                   NSURROGATES  = "%sysfunc(sasmsg(sashelp.dmine, rpt_nsurrogates_vlabel, noquote))"
+16883 +                 %end;
+16884 +                 %if &validexist %then %do;
+16885 +                   VIMPORTANCE = "%sysfunc(sasmsg(sashelp.dmine, rpt_vimportance_vlabel, noquote))"
+16886 +                   RATIO       = "%sysfunc(sasmsg(sashelp.dmine, rpt_ratio_vlabel, noquote))"
+16887 +                 %end;
+16888 +                 %if "&EM_TREE_CVEXISTS" ne "" %then %do;
+16889 +                   VIMPORTANCE = "%sysfunc(sasmsg(sashelp.dmine, rpt_vimportance_vlabel, noquote))"
+16890 +                   CVIMPORTANCE =  "%sysfunc(sasmsg(sashelp.dmine, rpt_cvimport_vlabel, noquote))"
+16891 +                   CVRULES= "%sysfunc(sasmsg(sashelp.dmine, rpt_cvrules_vlabel, noquote))"
+16892 +                   RATIO = "%sysfunc(sasmsg(sashelp.dmine, rpt_ratio_vlabel, noquote))"
+16893 +                 %end;
+16894 +            ;
+16895 +         run;
+16897 +         %EM_REPORT(key=OUTIMPORT, viewtype=DATA, block=MODEL, description=IMPORTANCE, autodisplay=N);
+16898 +      %end;
+16899 +   %end;
+16901 +   %doendm:
+16902 +%mend em_tree_score;
+NOTE: %INCLUDE (level 1) ending.
+NOTE: Fileref TEMP has been deassigned.
+
+NOTE: The file FLOWREF is:
+      Filename=C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMFLOWSCORE.sas,
+      RECFM=V,LRECL=20000,File Size (bytes)=0,
+      Last Modified=23Oct2020:19:47:08,
+      Create Time=22Oct2020:12:42:47
+
+NOTE: 321 records were written to the file FLOWREF.
+      The minimum record length was 1.
+      The maximum record length was 65.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file PUBREF is:
+      Filename=C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMPUBLISHSCORE.sas,
+      RECFM=V,LRECL=20000,File Size (bytes)=0,
+      Last Modified=23Oct2020:19:47:08,
+      Create Time=22Oct2020:12:42:47
+
+NOTE: 299 records were written to the file PUBREF.
+      The minimum record length was 1.
+      The maximum record length was 65.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+NOTE: Fileref TREEFLOW has been deassigned.
+NOTE: Fileref TREEPUB has been deassigned.
+
+NOTE: There were 1 observations read from the data set EMWS1.TREE_CHURNED_DM.
+      WHERE _TYPE_='DECPRIOR';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file FLOWREF is:
+      Filename=C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMFLOWSCORE.sas,
+      RECFM=V,LRECL=32767,File Size (bytes)=12063,
+      Last Modified=23Oct2020:19:47:08,
+      Create Time=22Oct2020:12:42:47
+
+NOTE: 1 record was written to the file FLOWREF.
+      The minimum record length was 12.
+      The maximum record length was 12.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The file PUBREF is:
+      Filename=C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMPUBLISHSCORE.sas,
+      RECFM=V,LRECL=32767,File Size (bytes)=11413,
+      Last Modified=23Oct2020:19:47:08,
+      Create Time=22Oct2020:12:42:47
+
+NOTE: 1 record was written to the file PUBREF.
+      The minimum record length was 12.
+      The maximum record length was 12.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: Fileref FLOWREF has been deassigned.
+NOTE: Fileref PUBREF has been deassigned.
+
+NOTE: The data set WORK.EM_METACHANGE has 1 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 1 observations read from the data set WORK.EM_METACHANGE.
+NOTE: The data set WORK.EM_METACHANGE has 2 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 2 observations read from the data set WORK.EM_METACHANGE.
+NOTE: The data set WORK.EM_METACHANGE has 3 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 3 observations read from the data set WORK.EM_METACHANGE.
+NOTE: The data set WORK.EM_METACHANGE has 4 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: There were 2 observations read from the data set EMWS1.TREE_CHURNED_DM.
+      WHERE _TYPE_='PREDICTED';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: There were 4 observations read from the data set WORK.EM_METACHANGE.
+NOTE: The data set WORK.EM_METACHANGE has 5 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 5 observations read from the data set WORK.EM_METACHANGE.
+NOTE: The data set WORK.EM_METACHANGE has 6 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: Variable cvimportance is uninitialized.
+NOTE: Variable nsurrogates is uninitialized.
+NOTE: There were 2 observations read from the data set EMWS1.TREE_OUTIMPORT.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: Variable NSURROGATES is uninitialized.
+NOTE: Variable CVIMPORTANCE is uninitialized.
+NOTE: Variable CVRULES is uninitialized.
+NOTE: There were 7 observations read from the data set EMWS1.TREE_OUTIMPORT.
+NOTE: The data set EMWS1.TREE_OUTIMPORT has 7 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The data set WORK.EM_USER_REPORT has 132 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+
+16903  
+16904  *------------------------------------------------------------*;
+16905  * End SCORE: Tree;
+16906  *------------------------------------------------------------*;
+
+16907  proc sort data=WORK.EM_METACHANGE;
+16908  by key uname;
+16909  run;
+
+NOTE: There were 6 observations read from the data set WORK.EM_METACHANGE.
+NOTE: The data set WORK.EM_METACHANGE has 6 observations and 9 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+16910  filename x "C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\CDELTA_TRAIN.sas";
+16911  data _null_;
+16912  file x;
+16913  put 'if upcase(NAME) = "COUNTRYSPAIN" then do;';
+16914  put 'ROLE = "REJECTED";';
+16915  put 'end;';
+16916  put 'else ';
+16917  put 'if upcase(NAME) = "ESTIMATEDSAL_ZSCORE" then do;';
+16918  put 'ROLE = "REJECTED";';
+16919  put 'end;';
+16920  put 'else ';
+16921  put 'if upcase(NAME) = "HASCREDITCARDNO" then do;';
+16922  put 'ROLE = "REJECTED";';
+16923  put 'end;';
+16924  put 'else ';
+16925  put 'if upcase(NAME) = "Q_CHURNEDNO" then do;';
+16926  put 'ROLE = "ASSESS";';
+16927  put 'end;';
+16928  put 'else ';
+16929  put 'if upcase(NAME) = "Q_CHURNEDYES" then do;';
+16930  put 'ROLE = "ASSESS";';
+16931  put 'end;';
+16932  put 'else ';
+16933  put 'if upcase(NAME) = "_NODE_" then do;';
+16934  put 'ROLE = "SEGMENT";';
+16935  put 'LEVEL = "NOMINAL";';
+16936  put 'end;';
+16937  run;
+
+NOTE: The file X is:
+      Filename=C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\CDELTA_TRAIN.sas,
+      RECFM=V,LRECL=32767,File Size (bytes)=0,
+      Last Modified=23Oct2020:19:47:08,
+      Create Time=22Oct2020:12:42:47
+
+NOTE: 24 records were written to the file X.
+      The minimum record length was 4.
+      The maximum record length was 48.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+16938  filename x;
+NOTE: Fileref X has been deassigned.
+
+16939  filename emflow "C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMFLOWSCORE.sas";
+16940  *------------------------------------------------------------*;
+16941  * Tree: Scoring DATA data;
+16942  *------------------------------------------------------------*;
+16943  data EMWS1.Tree_TRAIN
+16944  / view=EMWS1.Tree_TRAIN
+16945  ;
+16946  set EMWS1.VarClus_TRAIN
+16947  ;
+16948  %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMFLOWSCORE.sas.
+16949 +****************************************************************;
+16950 +******             DECISION TREE SCORING CODE             ******;
+16951 +****************************************************************;
+16952 +
+16953 +******         LENGTHS OF NEW CHARACTER VARIABLES         ******;
+16954 +LENGTH F_Churned  $    3;
+16955 +LENGTH I_Churned  $    3;
+16956 +LENGTH U_Churned  $    3;
+16957 +LENGTH _WARN_  $    4;
+16958 +
+16959 +******              LABELS FOR NEW VARIABLES              ******;
+16960 +label _NODE_ = 'Node' ;
+16961 +label _LEAF_ = 'Leaf' ;
+16962 +label P_ChurnedYes = 'Predicted: Churned=Yes' ;
+16963 +label P_ChurnedNo = 'Predicted: Churned=No' ;
+16964 +label Q_ChurnedYes = 'Unadjusted P: Churned=Yes' ;
+16965 +label Q_ChurnedNo = 'Unadjusted P: Churned=No' ;
+16966 +label V_ChurnedYes = 'Validated: Churned=Yes' ;
+16967 +label V_ChurnedNo = 'Validated: Churned=No' ;
+16968 +label R_ChurnedYes = 'Residual: Churned=Yes' ;
+16969 +label R_ChurnedNo = 'Residual: Churned=No' ;
+16970 +label F_Churned = 'From: Churned' ;
+16971 +label I_Churned = 'Into: Churned' ;
+16972 +label U_Churned = 'Unnormalized Into: Churned' ;
+16973 +label _WARN_ = 'Warnings' ;
+16974 +
+16975 +
+16976 +******      TEMPORARY VARIABLES FOR FORMATTED VALUES      ******;
+16977 +LENGTH _ARBFMT_3 $      3; DROP _ARBFMT_3;
+16978 +_ARBFMT_3 = ' '; /* Initialize to avoid warning. */
+16979 +
+16980 +
+16981 +_ARBFMT_3 = PUT( Churned , $3.);
+16982 + %DMNORMCP( _ARBFMT_3, F_Churned );
+16983 +
+16984 +******             ASSIGN OBSERVATION TO NODE             ******;
+16985 +IF  NOT MISSING(Age_Zscore ) AND
+16986 +      0.34117704268097 <= Age_Zscore  THEN DO;
+16987 +  IF  NOT MISSING(IsActiveMemberNo ) AND
+16988 +                     0.5 <= IsActiveMemberNo  THEN DO;
+16989 +    IF  NOT MISSING(Age_Zscore ) AND
+16990 +          0.91326978654266 <= Age_Zscore  THEN DO;
+16991 +      IF  NOT MISSING(NumOfProducts ) AND
+16992 +                         1.5 <= NumOfProducts  THEN DO;
+16993 +        IF  NOT MISSING(NumOfProducts ) AND
+16994 +                           2.5 <= NumOfProducts  THEN DO;
+16995 +          _NODE_  =                   37;
+16996 +          _LEAF_  =                   18;
+16997 +          P_ChurnedYes  =                    1;
+16998 +          P_ChurnedNo  =                    0;
+16999 +          Q_ChurnedYes  =                    1;
+17000 +          Q_ChurnedNo  =                    0;
+17001 +          V_ChurnedYes  =                    1;
+17002 +          V_ChurnedNo  =                    0;
+17003 +          I_Churned  = 'YES' ;
+17004 +          U_Churned  = 'Yes' ;
+17005 +          END;
+17006 +        ELSE DO;
+17007 +          IF  NOT MISSING(Age_Zscore ) AND
+17008 +            Age_Zscore  <      1.1993161584735 THEN DO;
+17009 +            _NODE_  =                   42;
+17010 +            _LEAF_  =                   16;
+17011 +            P_ChurnedYes  =                 0.32;
+17012 +            P_ChurnedNo  =                 0.68;
+17013 +            Q_ChurnedYes  =                 0.32;
+17014 +            Q_ChurnedNo  =                 0.68;
+17015 +            V_ChurnedYes  =     0.21428571428571;
+17016 +            V_ChurnedNo  =     0.78571428571428;
+17017 +            I_Churned  = 'NO' ;
+17018 +            U_Churned  = 'No' ;
+17019 +            END;
+17020 +          ELSE DO;
+17021 +            _NODE_  =                   43;
+17022 +            _LEAF_  =                   17;
+17023 +            P_ChurnedYes  =     0.76190476190476;
+17024 +            P_ChurnedNo  =     0.23809523809523;
+17025 +            Q_ChurnedYes  =     0.76190476190476;
+17026 +            Q_ChurnedNo  =     0.23809523809523;
+17027 +            V_ChurnedYes  =     0.58823529411764;
+17028 +            V_ChurnedNo  =     0.41176470588235;
+17029 +            I_Churned  = 'YES' ;
+17030 +            U_Churned  = 'Yes' ;
+17031 +            END;
+17032 +          END;
+17033 +        END;
+17034 +      ELSE DO;
+17035 +        _NODE_  =                   24;
+17036 +        _LEAF_  =                   15;
+17037 +        P_ChurnedYes  =     0.87373737373737;
+17038 +        P_ChurnedNo  =     0.12626262626262;
+17039 +        Q_ChurnedYes  =     0.87373737373737;
+17040 +        Q_ChurnedNo  =     0.12626262626262;
+17041 +        V_ChurnedYes  =     0.85393258426966;
+17042 +        V_ChurnedNo  =     0.14606741573033;
+17043 +        I_Churned  = 'YES' ;
+17044 +        U_Churned  = 'Yes' ;
+17045 +        END;
+17046 +      END;
+17047 +    ELSE DO;
+17048 +      IF  NOT MISSING(NumOfProducts ) AND
+17049 +                         1.5 <= NumOfProducts  THEN DO;
+17050 +        _NODE_  =                   23;
+17051 +        _LEAF_  =                   14;
+17052 +        P_ChurnedYes  =     0.30246913580246;
+17053 +        P_ChurnedNo  =     0.69753086419753;
+17054 +        Q_ChurnedYes  =     0.30246913580246;
+17055 +        Q_ChurnedNo  =     0.69753086419753;
+17056 +        V_ChurnedYes  =                 0.25;
+17057 +        V_ChurnedNo  =                 0.75;
+17058 +        I_Churned  = 'NO' ;
+17059 +        U_Churned  = 'No' ;
+17060 +        END;
+17061 +      ELSE DO;
+17062 +        _NODE_  =                   22;
+17063 +        _LEAF_  =                   13;
+17064 +        P_ChurnedYes  =                0.552;
+17065 +        P_ChurnedNo  =                0.448;
+17066 +        Q_ChurnedYes  =                0.552;
+17067 +        Q_ChurnedNo  =                0.448;
+17068 +        V_ChurnedYes  =     0.61363636363636;
+17069 +        V_ChurnedNo  =     0.38636363636363;
+17070 +        I_Churned  = 'YES' ;
+17071 +        U_Churned  = 'Yes' ;
+17072 +        END;
+17073 +      END;
+17074 +    END;
+17075 +  ELSE DO;
+17076 +    IF  NOT MISSING(NumOfProducts ) AND
+17077 +                       2.5 <= NumOfProducts  THEN DO;
+17078 +      _NODE_  =                   13;
+17079 +      _LEAF_  =                   12;
+17080 +      P_ChurnedYes  =     0.94871794871794;
+17081 +      P_ChurnedNo  =     0.05128205128205;
+17082 +      Q_ChurnedYes  =     0.94871794871794;
+17083 +      Q_ChurnedNo  =     0.05128205128205;
+17084 +      V_ChurnedYes  =     0.92857142857142;
+17085 +      V_ChurnedNo  =     0.07142857142857;
+17086 +      I_Churned  = 'YES' ;
+17087 +      U_Churned  = 'Yes' ;
+17088 +      END;
+17089 +    ELSE DO;
+17090 +      IF  NOT MISSING(NumOfProducts ) AND
+17091 +                         1.5 <= NumOfProducts  THEN DO;
+17092 +        _NODE_  =                   21;
+17093 +        _LEAF_  =                   11;
+17094 +        P_ChurnedYes  =     0.11475409836065;
+17095 +        P_ChurnedNo  =     0.88524590163934;
+17096 +        Q_ChurnedYes  =     0.11475409836065;
+17097 +        Q_ChurnedNo  =     0.88524590163934;
+17098 +        V_ChurnedYes  =     0.12883435582822;
+17099 +        V_ChurnedNo  =     0.87116564417177;
+17100 +        I_Churned  = 'NO' ;
+17101 +        U_Churned  = 'No' ;
+17102 +        END;
+17103 +      ELSE DO;
+17104 +        IF  NOT MISSING(Age_Zscore ) AND
+17105 +              1.77140890233518 <= Age_Zscore  THEN DO;
+17106 +          _NODE_  =                   31;
+17107 +          _LEAF_  =                   10;
+17108 +          P_ChurnedYes  =     0.14473684210526;
+17109 +          P_ChurnedNo  =     0.85526315789473;
+17110 +          Q_ChurnedYes  =     0.14473684210526;
+17111 +          Q_ChurnedNo  =     0.85526315789473;
+17112 +          V_ChurnedYes  =     0.19607843137254;
+17113 +          V_ChurnedNo  =     0.80392156862745;
+17114 +          I_Churned  = 'NO' ;
+17115 +          U_Churned  = 'No' ;
+17116 +          END;
+17117 +        ELSE DO;
+17118 +          _NODE_  =                   30;
+17119 +          _LEAF_  =                    9;
+17120 +          P_ChurnedYes  =     0.41806020066889;
+17121 +          P_ChurnedNo  =      0.5819397993311;
+17122 +          Q_ChurnedYes  =     0.41806020066889;
+17123 +          Q_ChurnedNo  =      0.5819397993311;
+17124 +          V_ChurnedYes  =     0.38518518518518;
+17125 +          V_ChurnedNo  =     0.61481481481481;
+17126 +          I_Churned  = 'NO' ;
+17127 +          U_Churned  = 'No' ;
+17128 +          END;
+17129 +        END;
+17130 +      END;
+17131 +    END;
+17132 +  END;
+17133 +ELSE DO;
+17134 +  IF  NOT MISSING(NumOfProducts ) AND
+17135 +                     2.5 <= NumOfProducts  THEN DO;
+17136 +    IF  NOT MISSING(Age_Zscore ) AND
+17137 +         -0.13556691053708 <= Age_Zscore  THEN DO;
+17138 +      _NODE_  =                   11;
+17139 +      _LEAF_  =                    8;
+17140 +      P_ChurnedYes  =     0.83333333333333;
+17141 +      P_ChurnedNo  =     0.16666666666666;
+17142 +      Q_ChurnedYes  =     0.83333333333333;
+17143 +      Q_ChurnedNo  =     0.16666666666666;
+17144 +      V_ChurnedYes  =     0.86666666666666;
+17145 +      V_ChurnedNo  =     0.13333333333333;
+17146 +      I_Churned  = 'YES' ;
+17147 +      U_Churned  = 'Yes' ;
+17148 +      END;
+17149 +    ELSE DO;
+17150 +      _NODE_  =                   10;
+17151 +      _LEAF_  =                    7;
+17152 +      P_ChurnedYes  =      0.6078431372549;
+17153 +      P_ChurnedNo  =     0.39215686274509;
+17154 +      Q_ChurnedYes  =      0.6078431372549;
+17155 +      Q_ChurnedNo  =     0.39215686274509;
+17156 +      V_ChurnedYes  =     0.65217391304347;
+17157 +      V_ChurnedNo  =     0.34782608695652;
+17158 +      I_Churned  = 'YES' ;
+17159 +      U_Churned  = 'Yes' ;
+17160 +      END;
+17161 +    END;
+17162 +  ELSE DO;
+17163 +    IF  NOT MISSING(NumOfProducts ) AND
+17164 +      NumOfProducts  <                  1.5 THEN DO;
+17165 +      IF  NOT MISSING(IsActiveMemberNo ) AND
+17166 +                         0.5 <= IsActiveMemberNo  THEN DO;
+17167 +        IF  NOT MISSING(Age_Zscore ) AND
+17168 +             -0.13556691053708 <= Age_Zscore  THEN DO;
+17169 +          _NODE_  =                   29;
+17170 +          _LEAF_  =                    4;
+17171 +          P_ChurnedYes  =     0.29411764705882;
+17172 +          P_ChurnedNo  =     0.70588235294117;
+17173 +          Q_ChurnedYes  =     0.29411764705882;
+17174 +          Q_ChurnedNo  =     0.70588235294117;
+17175 +          V_ChurnedYes  =      0.3095238095238;
+17176 +          V_ChurnedNo  =     0.69047619047619;
+17177 +          I_Churned  = 'NO' ;
+17178 +          U_Churned  = 'No' ;
+17179 +          END;
+17180 +        ELSE DO;
+17181 +          _NODE_  =                   28;
+17182 +          _LEAF_  =                    3;
+17183 +          P_ChurnedYes  =     0.16108452950558;
+17184 +          P_ChurnedNo  =     0.83891547049441;
+17185 +          Q_ChurnedYes  =     0.16108452950558;
+17186 +          Q_ChurnedNo  =     0.83891547049441;
+17187 +          V_ChurnedYes  =     0.18181818181818;
+17188 +          V_ChurnedNo  =     0.81818181818181;
+17189 +          I_Churned  = 'NO' ;
+17190 +          U_Churned  = 'No' ;
+17191 +          END;
+17192 +        END;
+17193 +      ELSE DO;
+17194 +        IF  NOT MISSING(GenderFemale ) AND
+17195 +                           0.5 <= GenderFemale  THEN DO;
+17196 +          _NODE_  =                   27;
+17197 +          _LEAF_  =                    2;
+17198 +          P_ChurnedYes  =     0.15776081424936;
+17199 +          P_ChurnedNo  =     0.84223918575063;
+17200 +          Q_ChurnedYes  =     0.15776081424936;
+17201 +          Q_ChurnedNo  =     0.84223918575063;
+17202 +          V_ChurnedYes  =                 0.16;
+17203 +          V_ChurnedNo  =                 0.84;
+17204 +          I_Churned  = 'NO' ;
+17205 +          U_Churned  = 'No' ;
+17206 +          END;
+17207 +        ELSE DO;
+17208 +          _NODE_  =                   26;
+17209 +          _LEAF_  =                    1;
+17210 +          P_ChurnedYes  =     0.09140767824497;
+17211 +          P_ChurnedNo  =     0.90859232175502;
+17212 +          Q_ChurnedYes  =     0.09140767824497;
+17213 +          Q_ChurnedNo  =     0.90859232175502;
+17214 +          V_ChurnedYes  =     0.11004784688995;
+17215 +          V_ChurnedNo  =     0.88995215311004;
+17216 +          I_Churned  = 'NO' ;
+17217 +          U_Churned  = 'No' ;
+17218 +          END;
+17219 +        END;
+17220 +      END;
+17221 +    ELSE DO;
+17222 +      IF  NOT MISSING(GenderFemale ) AND
+17223 +                         0.5 <= GenderFemale  THEN DO;
+17224 +        _NODE_  =                   19;
+17225 +        _LEAF_  =                    6;
+17226 +        P_ChurnedYes  =     0.06153846153846;
+17227 +        P_ChurnedNo  =     0.93846153846153;
+17228 +        Q_ChurnedYes  =     0.06153846153846;
+17229 +        Q_ChurnedNo  =     0.93846153846153;
+17230 +        V_ChurnedYes  =     0.05962059620596;
+17231 +        V_ChurnedNo  =     0.94037940379403;
+17232 +        I_Churned  = 'NO' ;
+17233 +        U_Churned  = 'No' ;
+17234 +        END;
+17235 +      ELSE DO;
+17236 +        _NODE_  =                   18;
+17237 +        _LEAF_  =                    5;
+17238 +        P_ChurnedYes  =     0.02966507177033;
+17239 +        P_ChurnedNo  =     0.97033492822966;
+17240 +        Q_ChurnedYes  =     0.02966507177033;
+17241 +        Q_ChurnedNo  =     0.97033492822966;
+17242 +        V_ChurnedYes  =                 0.02;
+17243 +        V_ChurnedNo  =                 0.98;
+17244 +        I_Churned  = 'NO' ;
+17245 +        U_Churned  = 'No' ;
+17246 +        END;
+17247 +      END;
+17248 +    END;
+17249 +  END;
+17250 +
+17251 +*****  RESIDUALS R_ *************;
+17252 +IF  F_Churned  NE 'YES'
+17253 +AND F_Churned  NE 'NO'  THEN DO;
+17254 +        R_ChurnedYes  = .;
+17255 +        R_ChurnedNo  = .;
+17256 + END;
+17257 + ELSE DO;
+17258 +       R_ChurnedYes  =  -P_ChurnedYes ;
+17259 +       R_ChurnedNo  =  -P_ChurnedNo ;
+17260 +       SELECT( F_Churned  );
+17261 +          WHEN( 'YES'  ) R_ChurnedYes  = R_ChurnedYes  +1;
+17262 +          WHEN( 'NO'  ) R_ChurnedNo  = R_ChurnedNo  +1;
+17263 +       END;
+17264 + END;
+17265 +
+17266 +****************************************************************;
+17267 +******          END OF DECISION TREE SCORING CODE         ******;
+17268 +****************************************************************;
+17269 +
+17270 +drop _LEAF_;
+NOTE: %INCLUDE (level 1) ending.
+17271  run;
+
+NOTE: DATA STEP view saved on file EMWS1.TREE_TRAIN.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.VARCLUS_TRAIN.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.04 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+
+17272  quit;
+17273  filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+
+17274  filename emflow "C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMFLOWSCORE.sas";
+17275  *------------------------------------------------------------*;
+17276  * Tree: Scoring VALIDATE data;
+17277  *------------------------------------------------------------*;
+17278  data EMWS1.Tree_VALIDATE
+17279  / view=EMWS1.Tree_VALIDATE
+17280  ;
+17281  set EMWS1.VarClus_VALIDATE
+17282  ;
+17283  %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMFLOWSCORE.sas.
+17284 +****************************************************************;
+17285 +******             DECISION TREE SCORING CODE             ******;
+17286 +****************************************************************;
+17287 +
+17288 +******         LENGTHS OF NEW CHARACTER VARIABLES         ******;
+17289 +LENGTH F_Churned  $    3;
+17290 +LENGTH I_Churned  $    3;
+17291 +LENGTH U_Churned  $    3;
+17292 +LENGTH _WARN_  $    4;
+17293 +
+17294 +******              LABELS FOR NEW VARIABLES              ******;
+17295 +label _NODE_ = 'Node' ;
+17296 +label _LEAF_ = 'Leaf' ;
+17297 +label P_ChurnedYes = 'Predicted: Churned=Yes' ;
+17298 +label P_ChurnedNo = 'Predicted: Churned=No' ;
+17299 +label Q_ChurnedYes = 'Unadjusted P: Churned=Yes' ;
+17300 +label Q_ChurnedNo = 'Unadjusted P: Churned=No' ;
+17301 +label V_ChurnedYes = 'Validated: Churned=Yes' ;
+17302 +label V_ChurnedNo = 'Validated: Churned=No' ;
+17303 +label R_ChurnedYes = 'Residual: Churned=Yes' ;
+17304 +label R_ChurnedNo = 'Residual: Churned=No' ;
+17305 +label F_Churned = 'From: Churned' ;
+17306 +label I_Churned = 'Into: Churned' ;
+17307 +label U_Churned = 'Unnormalized Into: Churned' ;
+17308 +label _WARN_ = 'Warnings' ;
+17309 +
+17310 +
+17311 +******      TEMPORARY VARIABLES FOR FORMATTED VALUES      ******;
+17312 +LENGTH _ARBFMT_3 $      3; DROP _ARBFMT_3;
+17313 +_ARBFMT_3 = ' '; /* Initialize to avoid warning. */
+17314 +
+17315 +
+17316 +_ARBFMT_3 = PUT( Churned , $3.);
+17317 + %DMNORMCP( _ARBFMT_3, F_Churned );
+17318 +
+17319 +******             ASSIGN OBSERVATION TO NODE             ******;
+17320 +IF  NOT MISSING(Age_Zscore ) AND
+17321 +      0.34117704268097 <= Age_Zscore  THEN DO;
+17322 +  IF  NOT MISSING(IsActiveMemberNo ) AND
+17323 +                     0.5 <= IsActiveMemberNo  THEN DO;
+17324 +    IF  NOT MISSING(Age_Zscore ) AND
+17325 +          0.91326978654266 <= Age_Zscore  THEN DO;
+17326 +      IF  NOT MISSING(NumOfProducts ) AND
+17327 +                         1.5 <= NumOfProducts  THEN DO;
+17328 +        IF  NOT MISSING(NumOfProducts ) AND
+17329 +                           2.5 <= NumOfProducts  THEN DO;
+17330 +          _NODE_  =                   37;
+17331 +          _LEAF_  =                   18;
+17332 +          P_ChurnedYes  =                    1;
+17333 +          P_ChurnedNo  =                    0;
+17334 +          Q_ChurnedYes  =                    1;
+17335 +          Q_ChurnedNo  =                    0;
+17336 +          V_ChurnedYes  =                    1;
+17337 +          V_ChurnedNo  =                    0;
+17338 +          I_Churned  = 'YES' ;
+17339 +          U_Churned  = 'Yes' ;
+17340 +          END;
+17341 +        ELSE DO;
+17342 +          IF  NOT MISSING(Age_Zscore ) AND
+17343 +            Age_Zscore  <      1.1993161584735 THEN DO;
+17344 +            _NODE_  =                   42;
+17345 +            _LEAF_  =                   16;
+17346 +            P_ChurnedYes  =                 0.32;
+17347 +            P_ChurnedNo  =                 0.68;
+17348 +            Q_ChurnedYes  =                 0.32;
+17349 +            Q_ChurnedNo  =                 0.68;
+17350 +            V_ChurnedYes  =     0.21428571428571;
+17351 +            V_ChurnedNo  =     0.78571428571428;
+17352 +            I_Churned  = 'NO' ;
+17353 +            U_Churned  = 'No' ;
+17354 +            END;
+17355 +          ELSE DO;
+17356 +            _NODE_  =                   43;
+17357 +            _LEAF_  =                   17;
+17358 +            P_ChurnedYes  =     0.76190476190476;
+17359 +            P_ChurnedNo  =     0.23809523809523;
+17360 +            Q_ChurnedYes  =     0.76190476190476;
+17361 +            Q_ChurnedNo  =     0.23809523809523;
+17362 +            V_ChurnedYes  =     0.58823529411764;
+17363 +            V_ChurnedNo  =     0.41176470588235;
+17364 +            I_Churned  = 'YES' ;
+17365 +            U_Churned  = 'Yes' ;
+17366 +            END;
+17367 +          END;
+17368 +        END;
+17369 +      ELSE DO;
+17370 +        _NODE_  =                   24;
+17371 +        _LEAF_  =                   15;
+17372 +        P_ChurnedYes  =     0.87373737373737;
+17373 +        P_ChurnedNo  =     0.12626262626262;
+17374 +        Q_ChurnedYes  =     0.87373737373737;
+17375 +        Q_ChurnedNo  =     0.12626262626262;
+17376 +        V_ChurnedYes  =     0.85393258426966;
+17377 +        V_ChurnedNo  =     0.14606741573033;
+17378 +        I_Churned  = 'YES' ;
+17379 +        U_Churned  = 'Yes' ;
+17380 +        END;
+17381 +      END;
+17382 +    ELSE DO;
+17383 +      IF  NOT MISSING(NumOfProducts ) AND
+17384 +                         1.5 <= NumOfProducts  THEN DO;
+17385 +        _NODE_  =                   23;
+17386 +        _LEAF_  =                   14;
+17387 +        P_ChurnedYes  =     0.30246913580246;
+17388 +        P_ChurnedNo  =     0.69753086419753;
+17389 +        Q_ChurnedYes  =     0.30246913580246;
+17390 +        Q_ChurnedNo  =     0.69753086419753;
+17391 +        V_ChurnedYes  =                 0.25;
+17392 +        V_ChurnedNo  =                 0.75;
+17393 +        I_Churned  = 'NO' ;
+17394 +        U_Churned  = 'No' ;
+17395 +        END;
+17396 +      ELSE DO;
+17397 +        _NODE_  =                   22;
+17398 +        _LEAF_  =                   13;
+17399 +        P_ChurnedYes  =                0.552;
+17400 +        P_ChurnedNo  =                0.448;
+17401 +        Q_ChurnedYes  =                0.552;
+17402 +        Q_ChurnedNo  =                0.448;
+17403 +        V_ChurnedYes  =     0.61363636363636;
+17404 +        V_ChurnedNo  =     0.38636363636363;
+17405 +        I_Churned  = 'YES' ;
+17406 +        U_Churned  = 'Yes' ;
+17407 +        END;
+17408 +      END;
+17409 +    END;
+17410 +  ELSE DO;
+17411 +    IF  NOT MISSING(NumOfProducts ) AND
+17412 +                       2.5 <= NumOfProducts  THEN DO;
+17413 +      _NODE_  =                   13;
+17414 +      _LEAF_  =                   12;
+17415 +      P_ChurnedYes  =     0.94871794871794;
+17416 +      P_ChurnedNo  =     0.05128205128205;
+17417 +      Q_ChurnedYes  =     0.94871794871794;
+17418 +      Q_ChurnedNo  =     0.05128205128205;
+17419 +      V_ChurnedYes  =     0.92857142857142;
+17420 +      V_ChurnedNo  =     0.07142857142857;
+17421 +      I_Churned  = 'YES' ;
+17422 +      U_Churned  = 'Yes' ;
+17423 +      END;
+17424 +    ELSE DO;
+17425 +      IF  NOT MISSING(NumOfProducts ) AND
+17426 +                         1.5 <= NumOfProducts  THEN DO;
+17427 +        _NODE_  =                   21;
+17428 +        _LEAF_  =                   11;
+17429 +        P_ChurnedYes  =     0.11475409836065;
+17430 +        P_ChurnedNo  =     0.88524590163934;
+17431 +        Q_ChurnedYes  =     0.11475409836065;
+17432 +        Q_ChurnedNo  =     0.88524590163934;
+17433 +        V_ChurnedYes  =     0.12883435582822;
+17434 +        V_ChurnedNo  =     0.87116564417177;
+17435 +        I_Churned  = 'NO' ;
+17436 +        U_Churned  = 'No' ;
+17437 +        END;
+17438 +      ELSE DO;
+17439 +        IF  NOT MISSING(Age_Zscore ) AND
+17440 +              1.77140890233518 <= Age_Zscore  THEN DO;
+17441 +          _NODE_  =                   31;
+17442 +          _LEAF_  =                   10;
+17443 +          P_ChurnedYes  =     0.14473684210526;
+17444 +          P_ChurnedNo  =     0.85526315789473;
+17445 +          Q_ChurnedYes  =     0.14473684210526;
+17446 +          Q_ChurnedNo  =     0.85526315789473;
+17447 +          V_ChurnedYes  =     0.19607843137254;
+17448 +          V_ChurnedNo  =     0.80392156862745;
+17449 +          I_Churned  = 'NO' ;
+17450 +          U_Churned  = 'No' ;
+17451 +          END;
+17452 +        ELSE DO;
+17453 +          _NODE_  =                   30;
+17454 +          _LEAF_  =                    9;
+17455 +          P_ChurnedYes  =     0.41806020066889;
+17456 +          P_ChurnedNo  =      0.5819397993311;
+17457 +          Q_ChurnedYes  =     0.41806020066889;
+17458 +          Q_ChurnedNo  =      0.5819397993311;
+17459 +          V_ChurnedYes  =     0.38518518518518;
+17460 +          V_ChurnedNo  =     0.61481481481481;
+17461 +          I_Churned  = 'NO' ;
+17462 +          U_Churned  = 'No' ;
+17463 +          END;
+17464 +        END;
+17465 +      END;
+17466 +    END;
+17467 +  END;
+17468 +ELSE DO;
+17469 +  IF  NOT MISSING(NumOfProducts ) AND
+17470 +                     2.5 <= NumOfProducts  THEN DO;
+17471 +    IF  NOT MISSING(Age_Zscore ) AND
+17472 +         -0.13556691053708 <= Age_Zscore  THEN DO;
+17473 +      _NODE_  =                   11;
+17474 +      _LEAF_  =                    8;
+17475 +      P_ChurnedYes  =     0.83333333333333;
+17476 +      P_ChurnedNo  =     0.16666666666666;
+17477 +      Q_ChurnedYes  =     0.83333333333333;
+17478 +      Q_ChurnedNo  =     0.16666666666666;
+17479 +      V_ChurnedYes  =     0.86666666666666;
+17480 +      V_ChurnedNo  =     0.13333333333333;
+17481 +      I_Churned  = 'YES' ;
+17482 +      U_Churned  = 'Yes' ;
+17483 +      END;
+17484 +    ELSE DO;
+17485 +      _NODE_  =                   10;
+17486 +      _LEAF_  =                    7;
+17487 +      P_ChurnedYes  =      0.6078431372549;
+17488 +      P_ChurnedNo  =     0.39215686274509;
+17489 +      Q_ChurnedYes  =      0.6078431372549;
+17490 +      Q_ChurnedNo  =     0.39215686274509;
+17491 +      V_ChurnedYes  =     0.65217391304347;
+17492 +      V_ChurnedNo  =     0.34782608695652;
+17493 +      I_Churned  = 'YES' ;
+17494 +      U_Churned  = 'Yes' ;
+17495 +      END;
+17496 +    END;
+17497 +  ELSE DO;
+17498 +    IF  NOT MISSING(NumOfProducts ) AND
+17499 +      NumOfProducts  <                  1.5 THEN DO;
+17500 +      IF  NOT MISSING(IsActiveMemberNo ) AND
+17501 +                         0.5 <= IsActiveMemberNo  THEN DO;
+17502 +        IF  NOT MISSING(Age_Zscore ) AND
+17503 +             -0.13556691053708 <= Age_Zscore  THEN DO;
+17504 +          _NODE_  =                   29;
+17505 +          _LEAF_  =                    4;
+17506 +          P_ChurnedYes  =     0.29411764705882;
+17507 +          P_ChurnedNo  =     0.70588235294117;
+17508 +          Q_ChurnedYes  =     0.29411764705882;
+17509 +          Q_ChurnedNo  =     0.70588235294117;
+17510 +          V_ChurnedYes  =      0.3095238095238;
+17511 +          V_ChurnedNo  =     0.69047619047619;
+17512 +          I_Churned  = 'NO' ;
+17513 +          U_Churned  = 'No' ;
+17514 +          END;
+17515 +        ELSE DO;
+17516 +          _NODE_  =                   28;
+17517 +          _LEAF_  =                    3;
+17518 +          P_ChurnedYes  =     0.16108452950558;
+17519 +          P_ChurnedNo  =     0.83891547049441;
+17520 +          Q_ChurnedYes  =     0.16108452950558;
+17521 +          Q_ChurnedNo  =     0.83891547049441;
+17522 +          V_ChurnedYes  =     0.18181818181818;
+17523 +          V_ChurnedNo  =     0.81818181818181;
+17524 +          I_Churned  = 'NO' ;
+17525 +          U_Churned  = 'No' ;
+17526 +          END;
+17527 +        END;
+17528 +      ELSE DO;
+17529 +        IF  NOT MISSING(GenderFemale ) AND
+17530 +                           0.5 <= GenderFemale  THEN DO;
+17531 +          _NODE_  =                   27;
+17532 +          _LEAF_  =                    2;
+17533 +          P_ChurnedYes  =     0.15776081424936;
+17534 +          P_ChurnedNo  =     0.84223918575063;
+17535 +          Q_ChurnedYes  =     0.15776081424936;
+17536 +          Q_ChurnedNo  =     0.84223918575063;
+17537 +          V_ChurnedYes  =                 0.16;
+17538 +          V_ChurnedNo  =                 0.84;
+17539 +          I_Churned  = 'NO' ;
+17540 +          U_Churned  = 'No' ;
+17541 +          END;
+17542 +        ELSE DO;
+17543 +          _NODE_  =                   26;
+17544 +          _LEAF_  =                    1;
+17545 +          P_ChurnedYes  =     0.09140767824497;
+17546 +          P_ChurnedNo  =     0.90859232175502;
+17547 +          Q_ChurnedYes  =     0.09140767824497;
+17548 +          Q_ChurnedNo  =     0.90859232175502;
+17549 +          V_ChurnedYes  =     0.11004784688995;
+17550 +          V_ChurnedNo  =     0.88995215311004;
+17551 +          I_Churned  = 'NO' ;
+17552 +          U_Churned  = 'No' ;
+17553 +          END;
+17554 +        END;
+17555 +      END;
+17556 +    ELSE DO;
+17557 +      IF  NOT MISSING(GenderFemale ) AND
+17558 +                         0.5 <= GenderFemale  THEN DO;
+17559 +        _NODE_  =                   19;
+17560 +        _LEAF_  =                    6;
+17561 +        P_ChurnedYes  =     0.06153846153846;
+17562 +        P_ChurnedNo  =     0.93846153846153;
+17563 +        Q_ChurnedYes  =     0.06153846153846;
+17564 +        Q_ChurnedNo  =     0.93846153846153;
+17565 +        V_ChurnedYes  =     0.05962059620596;
+17566 +        V_ChurnedNo  =     0.94037940379403;
+17567 +        I_Churned  = 'NO' ;
+17568 +        U_Churned  = 'No' ;
+17569 +        END;
+17570 +      ELSE DO;
+17571 +        _NODE_  =                   18;
+17572 +        _LEAF_  =                    5;
+17573 +        P_ChurnedYes  =     0.02966507177033;
+17574 +        P_ChurnedNo  =     0.97033492822966;
+17575 +        Q_ChurnedYes  =     0.02966507177033;
+17576 +        Q_ChurnedNo  =     0.97033492822966;
+17577 +        V_ChurnedYes  =                 0.02;
+17578 +        V_ChurnedNo  =                 0.98;
+17579 +        I_Churned  = 'NO' ;
+17580 +        U_Churned  = 'No' ;
+17581 +        END;
+17582 +      END;
+17583 +    END;
+17584 +  END;
+17585 +
+17586 +*****  RESIDUALS R_ *************;
+17587 +IF  F_Churned  NE 'YES'
+17588 +AND F_Churned  NE 'NO'  THEN DO;
+17589 +        R_ChurnedYes  = .;
+17590 +        R_ChurnedNo  = .;
+17591 + END;
+17592 + ELSE DO;
+17593 +       R_ChurnedYes  =  -P_ChurnedYes ;
+17594 +       R_ChurnedNo  =  -P_ChurnedNo ;
+17595 +       SELECT( F_Churned  );
+17596 +          WHEN( 'YES'  ) R_ChurnedYes  = R_ChurnedYes  +1;
+17597 +          WHEN( 'NO'  ) R_ChurnedNo  = R_ChurnedNo  +1;
+17598 +       END;
+17599 + END;
+17600 +
+17601 +****************************************************************;
+17602 +******          END OF DECISION TREE SCORING CODE         ******;
+17603 +****************************************************************;
+17604 +
+17605 +drop _LEAF_;
+NOTE: %INCLUDE (level 1) ending.
+17606  run;
+
+NOTE: DATA STEP view saved on file EMWS1.TREE_VALIDATE.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.VARCLUS_VALIDATE.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+
+17607  quit;
+17608  filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+
+17609  filename emflow "C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMFLOWSCORE.sas";
+17610  *------------------------------------------------------------*;
+17611  * Tree: Scoring TEST data;
+17612  *------------------------------------------------------------*;
+17613  data EMWS1.Tree_TEST
+17614  / view=EMWS1.Tree_TEST
+17615  ;
+17616  set EMWS1.VarClus_TEST
+17617  ;
+17618  %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\20161277\Documents\CA Assignment 3\Workspaces\EMWS1\Tree\EMFLOWSCORE.sas.
+17619 +****************************************************************;
+17620 +******             DECISION TREE SCORING CODE             ******;
+17621 +****************************************************************;
+17622 +
+17623 +******         LENGTHS OF NEW CHARACTER VARIABLES         ******;
+17624 +LENGTH F_Churned  $    3;
+17625 +LENGTH I_Churned  $    3;
+17626 +LENGTH U_Churned  $    3;
+17627 +LENGTH _WARN_  $    4;
+17628 +
+17629 +******              LABELS FOR NEW VARIABLES              ******;
+17630 +label _NODE_ = 'Node' ;
+17631 +label _LEAF_ = 'Leaf' ;
+17632 +label P_ChurnedYes = 'Predicted: Churned=Yes' ;
+17633 +label P_ChurnedNo = 'Predicted: Churned=No' ;
+17634 +label Q_ChurnedYes = 'Unadjusted P: Churned=Yes' ;
+17635 +label Q_ChurnedNo = 'Unadjusted P: Churned=No' ;
+17636 +label V_ChurnedYes = 'Validated: Churned=Yes' ;
+17637 +label V_ChurnedNo = 'Validated: Churned=No' ;
+17638 +label R_ChurnedYes = 'Residual: Churned=Yes' ;
+17639 +label R_ChurnedNo = 'Residual: Churned=No' ;
+17640 +label F_Churned = 'From: Churned' ;
+17641 +label I_Churned = 'Into: Churned' ;
+17642 +label U_Churned = 'Unnormalized Into: Churned' ;
+17643 +label _WARN_ = 'Warnings' ;
+17644 +
+17645 +
+17646 +******      TEMPORARY VARIABLES FOR FORMATTED VALUES      ******;
+17647 +LENGTH _ARBFMT_3 $      3; DROP _ARBFMT_3;
+17648 +_ARBFMT_3 = ' '; /* Initialize to avoid warning. */
+17649 +
+17650 +
+17651 +_ARBFMT_3 = PUT( Churned , $3.);
+17652 + %DMNORMCP( _ARBFMT_3, F_Churned );
+17653 +
+17654 +******             ASSIGN OBSERVATION TO NODE             ******;
+17655 +IF  NOT MISSING(Age_Zscore ) AND
+17656 +      0.34117704268097 <= Age_Zscore  THEN DO;
+17657 +  IF  NOT MISSING(IsActiveMemberNo ) AND
+17658 +                     0.5 <= IsActiveMemberNo  THEN DO;
+17659 +    IF  NOT MISSING(Age_Zscore ) AND
+17660 +          0.91326978654266 <= Age_Zscore  THEN DO;
+17661 +      IF  NOT MISSING(NumOfProducts ) AND
+17662 +                         1.5 <= NumOfProducts  THEN DO;
+17663 +        IF  NOT MISSING(NumOfProducts ) AND
+17664 +                           2.5 <= NumOfProducts  THEN DO;
+17665 +          _NODE_  =                   37;
+17666 +          _LEAF_  =                   18;
+17667 +          P_ChurnedYes  =                    1;
+17668 +          P_ChurnedNo  =                    0;
+17669 +          Q_ChurnedYes  =                    1;
+17670 +          Q_ChurnedNo  =                    0;
+17671 +          V_ChurnedYes  =                    1;
+17672 +          V_ChurnedNo  =                    0;
+17673 +          I_Churned  = 'YES' ;
+17674 +          U_Churned  = 'Yes' ;
+17675 +          END;
+17676 +        ELSE DO;
+17677 +          IF  NOT MISSING(Age_Zscore ) AND
+17678 +            Age_Zscore  <      1.1993161584735 THEN DO;
+17679 +            _NODE_  =                   42;
+17680 +            _LEAF_  =                   16;
+17681 +            P_ChurnedYes  =                 0.32;
+17682 +            P_ChurnedNo  =                 0.68;
+17683 +            Q_ChurnedYes  =                 0.32;
+17684 +            Q_ChurnedNo  =                 0.68;
+17685 +            V_ChurnedYes  =     0.21428571428571;
+17686 +            V_ChurnedNo  =     0.78571428571428;
+17687 +            I_Churned  = 'NO' ;
+17688 +            U_Churned  = 'No' ;
+17689 +            END;
+17690 +          ELSE DO;
+17691 +            _NODE_  =                   43;
+17692 +            _LEAF_  =                   17;
+17693 +            P_ChurnedYes  =     0.76190476190476;
+17694 +            P_ChurnedNo  =     0.23809523809523;
+17695 +            Q_ChurnedYes  =     0.76190476190476;
+17696 +            Q_ChurnedNo  =     0.23809523809523;
+17697 +            V_ChurnedYes  =     0.58823529411764;
+17698 +            V_ChurnedNo  =     0.41176470588235;
+17699 +            I_Churned  = 'YES' ;
+17700 +            U_Churned  = 'Yes' ;
+17701 +            END;
+17702 +          END;
+17703 +        END;
+17704 +      ELSE DO;
+17705 +        _NODE_  =                   24;
+17706 +        _LEAF_  =                   15;
+17707 +        P_ChurnedYes  =     0.87373737373737;
+17708 +        P_ChurnedNo  =     0.12626262626262;
+17709 +        Q_ChurnedYes  =     0.87373737373737;
+17710 +        Q_ChurnedNo  =     0.12626262626262;
+17711 +        V_ChurnedYes  =     0.85393258426966;
+17712 +        V_ChurnedNo  =     0.14606741573033;
+17713 +        I_Churned  = 'YES' ;
+17714 +        U_Churned  = 'Yes' ;
+17715 +        END;
+17716 +      END;
+17717 +    ELSE DO;
+17718 +      IF  NOT MISSING(NumOfProducts ) AND
+17719 +                         1.5 <= NumOfProducts  THEN DO;
+17720 +        _NODE_  =                   23;
+17721 +        _LEAF_  =                   14;
+17722 +        P_ChurnedYes  =     0.30246913580246;
+17723 +        P_ChurnedNo  =     0.69753086419753;
+17724 +        Q_ChurnedYes  =     0.30246913580246;
+17725 +        Q_ChurnedNo  =     0.69753086419753;
+17726 +        V_ChurnedYes  =                 0.25;
+17727 +        V_ChurnedNo  =                 0.75;
+17728 +        I_Churned  = 'NO' ;
+17729 +        U_Churned  = 'No' ;
+17730 +        END;
+17731 +      ELSE DO;
+17732 +        _NODE_  =                   22;
+17733 +        _LEAF_  =                   13;
+17734 +        P_ChurnedYes  =                0.552;
+17735 +        P_ChurnedNo  =                0.448;
+17736 +        Q_ChurnedYes  =                0.552;
+17737 +        Q_ChurnedNo  =                0.448;
+17738 +        V_ChurnedYes  =     0.61363636363636;
+17739 +        V_ChurnedNo  =     0.38636363636363;
+17740 +        I_Churned  = 'YES' ;
+17741 +        U_Churned  = 'Yes' ;
+17742 +        END;
+17743 +      END;
+17744 +    END;
+17745 +  ELSE DO;
+17746 +    IF  NOT MISSING(NumOfProducts ) AND
+17747 +                       2.5 <= NumOfProducts  THEN DO;
+17748 +      _NODE_  =                   13;
+17749 +      _LEAF_  =                   12;
+17750 +      P_ChurnedYes  =     0.94871794871794;
+17751 +      P_ChurnedNo  =     0.05128205128205;
+17752 +      Q_ChurnedYes  =     0.94871794871794;
+17753 +      Q_ChurnedNo  =     0.05128205128205;
+17754 +      V_ChurnedYes  =     0.92857142857142;
+17755 +      V_ChurnedNo  =     0.07142857142857;
+17756 +      I_Churned  = 'YES' ;
+17757 +      U_Churned  = 'Yes' ;
+17758 +      END;
+17759 +    ELSE DO;
+17760 +      IF  NOT MISSING(NumOfProducts ) AND
+17761 +                         1.5 <= NumOfProducts  THEN DO;
+17762 +        _NODE_  =                   21;
+17763 +        _LEAF_  =                   11;
+17764 +        P_ChurnedYes  =     0.11475409836065;
+17765 +        P_ChurnedNo  =     0.88524590163934;
+17766 +        Q_ChurnedYes  =     0.11475409836065;
+17767 +        Q_ChurnedNo  =     0.88524590163934;
+17768 +        V_ChurnedYes  =     0.12883435582822;
+17769 +        V_ChurnedNo  =     0.87116564417177;
+17770 +        I_Churned  = 'NO' ;
+17771 +        U_Churned  = 'No' ;
+17772 +        END;
+17773 +      ELSE DO;
+17774 +        IF  NOT MISSING(Age_Zscore ) AND
+17775 +              1.77140890233518 <= Age_Zscore  THEN DO;
+17776 +          _NODE_  =                   31;
+17777 +          _LEAF_  =                   10;
+17778 +          P_ChurnedYes  =     0.14473684210526;
+17779 +          P_ChurnedNo  =     0.85526315789473;
+17780 +          Q_ChurnedYes  =     0.14473684210526;
+17781 +          Q_ChurnedNo  =     0.85526315789473;
+17782 +          V_ChurnedYes  =     0.19607843137254;
+17783 +          V_ChurnedNo  =     0.80392156862745;
+17784 +          I_Churned  = 'NO' ;
+17785 +          U_Churned  = 'No' ;
+17786 +          END;
+17787 +        ELSE DO;
+17788 +          _NODE_  =                   30;
+17789 +          _LEAF_  =                    9;
+17790 +          P_ChurnedYes  =     0.41806020066889;
+17791 +          P_ChurnedNo  =      0.5819397993311;
+17792 +          Q_ChurnedYes  =     0.41806020066889;
+17793 +          Q_ChurnedNo  =      0.5819397993311;
+17794 +          V_ChurnedYes  =     0.38518518518518;
+17795 +          V_ChurnedNo  =     0.61481481481481;
+17796 +          I_Churned  = 'NO' ;
+17797 +          U_Churned  = 'No' ;
+17798 +          END;
+17799 +        END;
+17800 +      END;
+17801 +    END;
+17802 +  END;
+17803 +ELSE DO;
+17804 +  IF  NOT MISSING(NumOfProducts ) AND
+17805 +                     2.5 <= NumOfProducts  THEN DO;
+17806 +    IF  NOT MISSING(Age_Zscore ) AND
+17807 +         -0.13556691053708 <= Age_Zscore  THEN DO;
+17808 +      _NODE_  =                   11;
+17809 +      _LEAF_  =                    8;
+17810 +      P_ChurnedYes  =     0.83333333333333;
+17811 +      P_ChurnedNo  =     0.16666666666666;
+17812 +      Q_ChurnedYes  =     0.83333333333333;
+17813 +      Q_ChurnedNo  =     0.16666666666666;
+17814 +      V_ChurnedYes  =     0.86666666666666;
+17815 +      V_ChurnedNo  =     0.13333333333333;
+17816 +      I_Churned  = 'YES' ;
+17817 +      U_Churned  = 'Yes' ;
+17818 +      END;
+17819 +    ELSE DO;
+17820 +      _NODE_  =                   10;
+17821 +      _LEAF_  =                    7;
+17822 +      P_ChurnedYes  =      0.6078431372549;
+17823 +      P_ChurnedNo  =     0.39215686274509;
+17824 +      Q_ChurnedYes  =      0.6078431372549;
+17825 +      Q_ChurnedNo  =     0.39215686274509;
+17826 +      V_ChurnedYes  =     0.65217391304347;
+17827 +      V_ChurnedNo  =     0.34782608695652;
+17828 +      I_Churned  = 'YES' ;
+17829 +      U_Churned  = 'Yes' ;
+17830 +      END;
+17831 +    END;
+17832 +  ELSE DO;
+17833 +    IF  NOT MISSING(NumOfProducts ) AND
+17834 +      NumOfProducts  <                  1.5 THEN DO;
+17835 +      IF  NOT MISSING(IsActiveMemberNo ) AND
+17836 +                         0.5 <= IsActiveMemberNo  THEN DO;
+17837 +        IF  NOT MISSING(Age_Zscore ) AND
+17838 +             -0.13556691053708 <= Age_Zscore  THEN DO;
+17839 +          _NODE_  =                   29;
+17840 +          _LEAF_  =                    4;
+17841 +          P_ChurnedYes  =     0.29411764705882;
+17842 +          P_ChurnedNo  =     0.70588235294117;
+17843 +          Q_ChurnedYes  =     0.29411764705882;
+17844 +          Q_ChurnedNo  =     0.70588235294117;
+17845 +          V_ChurnedYes  =      0.3095238095238;
+17846 +          V_ChurnedNo  =     0.69047619047619;
+17847 +          I_Churned  = 'NO' ;
+17848 +          U_Churned  = 'No' ;
+17849 +          END;
+17850 +        ELSE DO;
+17851 +          _NODE_  =                   28;
+17852 +          _LEAF_  =                    3;
+17853 +          P_ChurnedYes  =     0.16108452950558;
+17854 +          P_ChurnedNo  =     0.83891547049441;
+17855 +          Q_ChurnedYes  =     0.16108452950558;
+17856 +          Q_ChurnedNo  =     0.83891547049441;
+17857 +          V_ChurnedYes  =     0.18181818181818;
+17858 +          V_ChurnedNo  =     0.81818181818181;
+17859 +          I_Churned  = 'NO' ;
+17860 +          U_Churned  = 'No' ;
+17861 +          END;
+17862 +        END;
+17863 +      ELSE DO;
+17864 +        IF  NOT MISSING(GenderFemale ) AND
+17865 +                           0.5 <= GenderFemale  THEN DO;
+17866 +          _NODE_  =                   27;
+17867 +          _LEAF_  =                    2;
+17868 +          P_ChurnedYes  =     0.15776081424936;
+17869 +          P_ChurnedNo  =     0.84223918575063;
+17870 +          Q_ChurnedYes  =     0.15776081424936;
+17871 +          Q_ChurnedNo  =     0.84223918575063;
+17872 +          V_ChurnedYes  =                 0.16;
+17873 +          V_ChurnedNo  =                 0.84;
+17874 +          I_Churned  = 'NO' ;
+17875 +          U_Churned  = 'No' ;
+17876 +          END;
+17877 +        ELSE DO;
+17878 +          _NODE_  =                   26;
+17879 +          _LEAF_  =                    1;
+17880 +          P_ChurnedYes  =     0.09140767824497;
+17881 +          P_ChurnedNo  =     0.90859232175502;
+17882 +          Q_ChurnedYes  =     0.09140767824497;
+17883 +          Q_ChurnedNo  =     0.90859232175502;
+17884 +          V_ChurnedYes  =     0.11004784688995;
+17885 +          V_ChurnedNo  =     0.88995215311004;
+17886 +          I_Churned  = 'NO' ;
+17887 +          U_Churned  = 'No' ;
+17888 +          END;
+17889 +        END;
+17890 +      END;
+17891 +    ELSE DO;
+17892 +      IF  NOT MISSING(GenderFemale ) AND
+17893 +                         0.5 <= GenderFemale  THEN DO;
+17894 +        _NODE_  =                   19;
+17895 +        _LEAF_  =                    6;
+17896 +        P_ChurnedYes  =     0.06153846153846;
+17897 +        P_ChurnedNo  =     0.93846153846153;
+17898 +        Q_ChurnedYes  =     0.06153846153846;
+17899 +        Q_ChurnedNo  =     0.93846153846153;
+17900 +        V_ChurnedYes  =     0.05962059620596;
+17901 +        V_ChurnedNo  =     0.94037940379403;
+17902 +        I_Churned  = 'NO' ;
+17903 +        U_Churned  = 'No' ;
+17904 +        END;
+17905 +      ELSE DO;
+17906 +        _NODE_  =                   18;
+17907 +        _LEAF_  =                    5;
+17908 +        P_ChurnedYes  =     0.02966507177033;
+17909 +        P_ChurnedNo  =     0.97033492822966;
+17910 +        Q_ChurnedYes  =     0.02966507177033;
+17911 +        Q_ChurnedNo  =     0.97033492822966;
+17912 +        V_ChurnedYes  =                 0.02;
+17913 +        V_ChurnedNo  =                 0.98;
+17914 +        I_Churned  = 'NO' ;
+17915 +        U_Churned  = 'No' ;
+17916 +        END;
+17917 +      END;
+17918 +    END;
+17919 +  END;
+17920 +
+17921 +*****  RESIDUALS R_ *************;
+17922 +IF  F_Churned  NE 'YES'
+17923 +AND F_Churned  NE 'NO'  THEN DO;
+17924 +        R_ChurnedYes  = .;
+17925 +        R_ChurnedNo  = .;
+17926 + END;
+17927 + ELSE DO;
+17928 +       R_ChurnedYes  =  -P_ChurnedYes ;
+17929 +       R_ChurnedNo  =  -P_ChurnedNo ;
+17930 +       SELECT( F_Churned  );
+17931 +          WHEN( 'YES'  ) R_ChurnedYes  = R_ChurnedYes  +1;
+17932 +          WHEN( 'NO'  ) R_ChurnedNo  = R_ChurnedNo  +1;
+17933 +       END;
+17934 + END;
+17935 +
+17936 +****************************************************************;
+17937 +******          END OF DECISION TREE SCORING CODE         ******;
+17938 +****************************************************************;
+17939 +
+17940 +drop _LEAF_;
+NOTE: %INCLUDE (level 1) ending.
+17941  run;
+
+NOTE: DATA STEP view saved on file EMWS1.TREE_TEST.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.VARCLUS_TEST.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+
+17942  quit;
+17943  filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+
+NOTE: View EMWS1.TREE_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+17945  proc sort data=WORK.EM_USER_REPORT;
+17946  by ID VIEW;
+17947  run;
+
+NOTE: There were 132 observations read from the data set WORK.EM_USER_REPORT.
+NOTE: The data set WORK.EM_USER_REPORT has 132 observations and 4 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+17948  *------------------------------------------------------------*;
+17949  * Tree: Computing metadata for TRAIN data;
+17950  *------------------------------------------------------------*;
+
+NOTE: View EMWS1.TREE_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.03 seconds
+      
+18322  data WORK.MODELTEMP_INFO;
+18323  set EMWS1.Tree_EMINFO;
+18324  where DATA='Tree' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+18325  run;
+
+NOTE: There were 0 observations read from the data set EMWS1.TREE_EMINFO.
+      WHERE (DATA='Tree') and KEY not in ('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+NOTE: The data set WORK.MODELTEMP_INFO has 0 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+18326  data EMWS1.Tree_EMINFO;
+18327  length TARGET KEY $32 DATA $43;
+18328  input TARGET KEY DATA $;
+18329  cards;
+
+NOTE: The data set EMWS1.TREE_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+18333  run;
+18334  data EMWS1.Tree_EMINFO;
+18335  set EMWS1.Tree_EMINFO WORK.MODELTEMP_INFO;
+18336  run;
+
+NOTE: There were 3 observations read from the data set EMWS1.TREE_EMINFO.
+NOTE: There were 0 observations read from the data set WORK.MODELTEMP_INFO.
+NOTE: The data set EMWS1.TREE_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+18337  proc sort data = EMWS1.Tree_EMINFO NOTHREADS;
+18338  by TARGET KEY;
+18339  run;
+
+NOTE: There were 3 observations read from the data set EMWS1.TREE_EMINFO.
+NOTE: The data set EMWS1.TREE_EMINFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+NOTE: View EMWS1.TREE_TRAIN.VIEW used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+NOTE: View EMWS1.TREE_VALIDATE.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+NOTE: View EMWS1.TREE_TEST.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.06 seconds
+      

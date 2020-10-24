@@ -1,0 +1,410 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+INPUT      INTERVAL          7    
+TARGET     NOMINAL           1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Model Events
+
+                                   Number
+                    Measurement      of
+Target     Event       Level       Levels      Order       Label
+
+Churned     YES       NOMINAL         2      Descending         
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Predicted and decision variables
+
+Type         Variable        Label
+
+TARGET       Churned                               
+PREDICTED    P_ChurnedYes    Predicted: Churned=Yes
+RESIDUAL     R_ChurnedYes    Residual: Churned=Yes 
+PREDICTED    P_ChurnedNo     Predicted: Churned=No 
+RESIDUAL     R_ChurnedNo     Residual: Churned=No  
+FROM         F_Churned       From: Churned         
+INTO         I_Churned       Into: Churned         
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The DMREG Procedure
+
+                Model Information
+
+Training Data Set              WORK.EM_DMREG.VIEW
+DMDB Catalog                   WORK.REG_DMDB     
+Target Variable                Churned           
+Target Measurement Level       Nominal           
+Number of Target Categories    2                 
+Error                          MBernoulli        
+Link Function                  Logit             
+Number of Model Parameters     8                 
+Number of Observations         5383              
+
+
+          Target Profile
+ 
+ Ordered                     Total
+   Value     Churned     Frequency
+
+       1     Yes              1096
+       2     No               4287
+
+
+
+
+Backward Elimination Procedure
+
+
+Step 0: The following effects were entered.
+
+Intercept  Age_Zscore  CountrySpain  EstimatedSal_Zscore  GenderFemale  HasCreditCardNo  IsActiveMemberNo  NumOfProducts  
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The DMREG Procedure
+
+Newton-Raphson Ridge Optimization
+
+Without Parameter Scaling
+
+Parameter Estimates               8
+
+                                             Optimization Start
+
+Active Constraints                                  0  Objective Function                       2720.3428425
+Max Abs Gradient Element                  337.2955601                                                       
+
+
+                                                                                                        Ratio
+                                                                                                      Between
+                                                                                                       Actual
+                                                                 Objective     Max Abs                    and
+                     Function         Active        Objective     Function    Gradient              Predicted
+Iter     Restarts       Calls    Constraints         Function       Change     Element     Ridge       Change
+
+   1            0           2              0             2398        322.0       164.7         0        0.964
+   2            0           3              0             2379      19.6758     10.0258         0        1.048
+   3            0           4              0             2379       0.1520      0.1080         0        1.008
+   4            0           5              0             2379     0.000024    0.000017         0        1.000
+
+                                            Optimization Results
+
+Iterations                                          4  Function Calls                                      7
+Hessian Calls                                       5  Active Constraints                                  0
+Objective Function                       2378.5085576  Max Abs Gradient Element                 0.0000169178
+Ridge                                               0  Actual Over Pred Change                  1.0001085572
+
+Convergence criterion (GCONV=1E-6) satisfied.                                                     
+
+
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+
+   5440.686        4757.017       683.6686        7         <.0001
+
+
+              Type 3 Analysis of Effects
+ 
+                                     Wald
+Effect                   DF    Chi-Square    Pr > ChiSq
+
+Age_Zscore                1      424.2928        <.0001
+CountrySpain              1       17.1837        <.0001
+EstimatedSal_Zscore       1        0.0021        0.9632
+GenderFemale              1       59.2605        <.0001
+HasCreditCardNo           1        0.1605        0.6887
+IsActiveMemberNo          1      190.3969        <.0001
+NumOfProducts             1        6.0451        0.0139
+
+
+                                      Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard          Wald                  Standardized
+Parameter              Churned    DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+
+Intercept              Yes         1     -2.0589      0.1215        287.03        <.0001                       0.128
+Age_Zscore             Yes         1      0.7460      0.0362        424.29        <.0001          0.4106       2.109
+CountrySpain           Yes         1     -0.3666      0.0884         17.18        <.0001         -0.0877       0.693
+EstimatedSal_Zscore    Yes         1    -0.00168      0.0363          0.00        0.9632        -0.00093       0.998
+GenderFemale           Yes         1      0.5623      0.0730         59.26        <.0001          0.1544       1.755
+HasCreditCardNo        Yes         1      0.0321      0.0802          0.16        0.6887         0.00803       1.033
+IsActiveMemberNo       Yes         1      1.0671      0.0773        190.40        <.0001          0.2940       2.907
+NumOfProducts          Yes         1     -0.1515      0.0616          6.05        0.0139         -0.0486       0.859
+
+
+             Odds Ratio Estimates
+                       
+                                          Point
+Effect                      Churned    Estimate
+
+Age_Zscore                  Yes           2.109
+CountrySpain                Yes           0.693
+EstimatedSal_Zscore         Yes           0.998
+GenderFemale                Yes           1.755
+HasCreditCardNo             Yes           1.033
+IsActiveMemberNo            Yes           2.907
+NumOfProducts               Yes           0.859
+
+
+Step 1: Effect EstimatedSal_Zscore removed.
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The DMREG Procedure
+
+Newton-Raphson Ridge Optimization
+
+Without Parameter Scaling
+
+Parameter Estimates               7
+
+                                             Optimization Start
+
+Active Constraints                                  0  Objective Function                       2720.3428425
+Max Abs Gradient Element                  337.2955601                                                       
+
+
+                                                                                                        Ratio
+                                                                                                      Between
+                                                                                                       Actual
+                                                                 Objective     Max Abs                    and
+                     Function         Active        Objective     Function    Gradient              Predicted
+Iter     Restarts       Calls    Constraints         Function       Change     Element     Ridge       Change
+
+   1            0           2              0             2398        322.0       164.7         0        0.964
+   2            0           3              0             2379      19.6754     10.0257         0        1.048
+   3            0           4              0             2379       0.1520      0.1080         0        1.008
+   4            0           5              0             2379     0.000024    0.000017         0        1.000
+
+                                            Optimization Results
+
+Iterations                                          4  Function Calls                                      7
+Hessian Calls                                       5  Active Constraints                                  0
+Objective Function                       2378.5096218  Max Abs Gradient Element                 0.0000169154
+Ridge                                               0  Actual Over Pred Change                  1.0001084822
+
+Convergence criterion (GCONV=1E-6) satisfied.                                                     
+
+
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+
+   5440.686        4757.019       683.6664        6         <.0001
+
+
+              Type 3 Analysis of Effects
+ 
+                                     Wald
+Effect                   DF    Chi-Square    Pr > ChiSq
+
+Age_Zscore                1      424.5059        <.0001
+CountrySpain              1       17.1818        <.0001
+GenderFemale              1       59.2650        <.0001
+HasCreditCardNo           1        0.1607        0.6885
+IsActiveMemberNo          1      190.4315        <.0001
+NumOfProducts             1        6.0459        0.0139
+
+
+                                      Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard          Wald                  Standardized
+Parameter              Churned    DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+
+Intercept              Yes         1     -2.0589      0.1215        287.02        <.0001                       0.128
+Age_Zscore             Yes         1      0.7461      0.0362        424.51        <.0001          0.4106       2.109
+CountrySpain           Yes         1     -0.3666      0.0884         17.18        <.0001         -0.0877       0.693
+GenderFemale           Yes         1      0.5624      0.0730         59.26        <.0001          0.1544       1.755
+HasCreditCardNo        Yes         1      0.0321      0.0802          0.16        0.6885         0.00803       1.033
+IsActiveMemberNo       Yes         1      1.0670      0.0773        190.43        <.0001          0.2940       2.907
+NumOfProducts          Yes         1     -0.1515      0.0616          6.05        0.0139         -0.0486       0.859
+
+
+             Odds Ratio Estimates
+                       
+                                          Point
+Effect                      Churned    Estimate
+
+Age_Zscore                  Yes           2.109
+CountrySpain                Yes           0.693
+GenderFemale                Yes           1.755
+HasCreditCardNo             Yes           1.033
+IsActiveMemberNo            Yes           2.907
+NumOfProducts               Yes           0.859
+
+
+Step 2: Effect HasCreditCardNo removed.
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The DMREG Procedure
+
+Newton-Raphson Ridge Optimization
+
+Without Parameter Scaling
+
+Parameter Estimates               6
+
+                                             Optimization Start
+
+Active Constraints                                  0  Objective Function                       2720.3428425
+Max Abs Gradient Element                  337.2955601                                                       
+
+
+                                                                                                        Ratio
+                                                                                                      Between
+                                                                                                       Actual
+                                                                 Objective     Max Abs                    and
+                     Function         Active        Objective     Function    Gradient              Predicted
+Iter     Restarts       Calls    Constraints         Function       Change     Element     Ridge       Change
+
+   1            0           2              0             2398        321.9       164.7         0        0.964
+   2            0           3              0             2379      19.6662     10.0202         0        1.048
+   3            0           4              0             2379       0.1519      0.1078         0        1.008
+   4            0           5              0             2379     0.000024    0.000017         0        1.000
+
+                                            Optimization Results
+
+Iterations                                          4  Function Calls                                      7
+Hessian Calls                                       5  Active Constraints                                  0
+Objective Function                       2378.5897891  Max Abs Gradient Element                 0.0000168841
+Ridge                                               0  Actual Over Pred Change                  1.0001084556
+
+Convergence criterion (GCONV=1E-6) satisfied.                                                     
+
+
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+
+   5440.686        4757.180       683.5061        5         <.0001
+
+
+              Type 3 Analysis of Effects
+ 
+                                     Wald
+Effect                   DF    Chi-Square    Pr > ChiSq
+
+Age_Zscore                1      424.3903        <.0001
+CountrySpain              1       17.1284        <.0001
+GenderFemale              1       59.2535        <.0001
+IsActiveMemberNo          1      190.3406        <.0001
+NumOfProducts             1        6.0710        0.0137
+
+
+                                      Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard          Wald                  Standardized
+Parameter              Churned    DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+
+Intercept              Yes         1     -2.0490      0.1190        296.70        <.0001                       0.129
+Age_Zscore             Yes         1      0.7459      0.0362        424.39        <.0001          0.4105       2.108
+CountrySpain           Yes         1     -0.3659      0.0884         17.13        <.0001         -0.0876       0.694
+GenderFemale           Yes         1      0.5623      0.0730         59.25        <.0001          0.1544       1.755
+IsActiveMemberNo       Yes         1      1.0667      0.0773        190.34        <.0001          0.2939       2.906
+NumOfProducts          Yes         1     -0.1518      0.0616          6.07        0.0137         -0.0487       0.859
+
+
+             Odds Ratio Estimates
+                       
+                                          Point
+Effect                      Churned    Estimate
+
+Age_Zscore                  Yes           2.108
+CountrySpain                Yes           0.694
+GenderFemale                Yes           1.755
+IsActiveMemberNo            Yes           2.906
+NumOfProducts               Yes           0.859
+
+
+NOTE: No (additional) effects met the 0.05 significance level for removal from the model.
+
+
+                              Summary of Backward Elimination
+ 
+            Effect                         Number          Wald                  Validation
+    Step    Removed                  DF        In    Chi-Square    Pr > ChiSq    Error Rate
+
+       1    EstimatedSal_Zscore       1         6        0.0021        0.9632        2025.5
+       2    HasCreditCardNo           1         5        0.1607        0.6885        2025.7
+
+
+The selected model, based on the error rate for the validation data, is the model trained in Step 1. It consists of the following effects:
+
+Intercept  Age_Zscore  CountrySpain  GenderFemale  HasCreditCardNo  IsActiveMemberNo  NumOfProducts  
+
+
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+
+   5440.686        4757.019       683.6664        6         <.0001
+
+
+              Type 3 Analysis of Effects
+ 
+                                     Wald
+Effect                   DF    Chi-Square    Pr > ChiSq
+
+Age_Zscore                1      424.5059        <.0001
+CountrySpain              1       17.1818        <.0001
+GenderFemale              1       59.2650        <.0001
+HasCreditCardNo           1        0.1607        0.6885
+IsActiveMemberNo          1      190.4315        <.0001
+NumOfProducts             1        6.0459        0.0139
+
+
+                                      Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard          Wald                  Standardized
+Parameter              Churned    DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+
+Intercept              Yes         1     -2.0589      0.1215        287.02        <.0001                       0.128
+Age_Zscore             Yes         1      0.7461      0.0362        424.51        <.0001          0.4106       2.109
+CountrySpain           Yes         1     -0.3666      0.0884         17.18        <.0001         -0.0877       0.693
+GenderFemale           Yes         1      0.5624      0.0730         59.26        <.0001          0.1544       1.755
+HasCreditCardNo        Yes         1      0.0321      0.0802          0.16        0.6885         0.00803       1.033
+IsActiveMemberNo       Yes         1      1.0670      0.0773        190.43        <.0001          0.2940       2.907
+NumOfProducts          Yes         1     -0.1515      0.0616          6.05        0.0139         -0.0486       0.859
+
+
+             Odds Ratio Estimates
+                       
+                                          Point
+Effect                      Churned    Estimate
+
+Age_Zscore                  Yes           2.109
+CountrySpain                Yes           0.693
+GenderFemale                Yes           1.755
+HasCreditCardNo             Yes           1.033
+IsActiveMemberNo            Yes           2.907
+NumOfProducts               Yes           0.859

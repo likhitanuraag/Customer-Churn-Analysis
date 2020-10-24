@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  NumberOfReportedLevels="1E-6" NormalizeReportingVariables="Y" DecileBin="20" LiftEpsilon="1E-6"
+ ProfitEpsilon="1E-6" RoiEpsilon="1E-6" ScoreDistBin="20" RocChart="Y" RocEpsilon="0.01"
+ AssessAllTargetLevels="N" SelectionData="DEFAULT" HPCriteria="DEFAULT" SelectionTable="VALIDATE"
+ SelectionCriteria="_ASE_" SelectionDepth="10" NumberofBins="20" RecomputeAssess="N"
+ TargetName="Churned" ModelId="Neural" ModelDescription="Neural Network" ModelCriteria="Valid: Average Squared Error"
+ ForceRun="N" RunAction="Train" Component="ModelCompare" RawCreateTime="1918990764.7"
+ CreateTime="22OCT2020:12:59:25" RunId="1eeb790a-485f-4d20-819e-4ddb6fb0708b" StatisticUsed="_VASE_"
+ TargetLabel="" RawLastTimeRun="1919101633.6" RawRunTime="13.393000126" LastTimeRun="23OCT2020:19:47:14"
+ RunTime="0 Hr. 0 Min. 13.39 Sec.">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES/>
+</_ROOT_>

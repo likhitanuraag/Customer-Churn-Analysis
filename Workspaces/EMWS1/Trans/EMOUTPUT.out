@@ -1,0 +1,42 @@
+*------------------------------------------------------------*
+User:                20161277
+Date:                October 23, 2020
+Time:                19:46:35
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+INPUT      INTERVAL          6
+INPUT      NOMINAL           4
+TARGET     NOMINAL           1
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+Formula Transformations
+(maximum 500 observations printed)
+ 
+                                Measurement
+Variable Name          Role        Level       Formula
+ 
+Age_Zscore             INPUT     INTERVAL      (Age - 38.9218)/10.48781
+Balance_Zscore         INPUT     INTERVAL      (Balance - 76485.89)/62397.41
+Creditscore_Zscore     INPUT     INTERVAL      (CreditScore - 650.5288)/96.6533
+EstimatedSal_Zscore    INPUT     INTERVAL      (EstimatedSalary - 100090.2)/57510.49
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
